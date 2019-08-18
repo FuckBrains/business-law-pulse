@@ -1,0 +1,149 @@
+
+<table class="table table-hover" style="margin:0px;">
+    <thead>
+        <tr>
+            <th>
+                <div class="text-muted">Name</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">Empty</div>
+                <div class="text-muted" align="center">Volume</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">With</div>
+                <div class="text-muted" align="center">Questions</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">For</div>
+                <div class="text-muted" align="center">Reference</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">Not</div>
+                <div class="text-muted" align="center">Completed</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">Completed</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">Deal</div>
+                <div class="text-muted" align="center">Quantity</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">Average</div>
+                <div class="text-muted" align="center">Volume</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">Total</div>
+                <div class="text-muted" align="center">Volume</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">Average</div>
+                <div class="text-muted" align="center">Score</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">Total</div>
+                <div class="text-muted" align="center">Score</div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<firms.length;i++) { %>
+        <% 
+            var firm = firms[i];
+            var no_money_count = firm.deals.filter(function(deal) { return deal.value==0; }).length;
+            var review_1_count = firm.deals.filter(function(deal) { return deal.review==1; }).length;
+            var review_2_count = firm.deals.filter(function(deal) { return deal.review==2; }).length;
+            var review_3_count = firm.deals.filter(function(deal) { return deal.review==3; }).length;
+            var review_4_count = firm.deals.filter(function(deal) { return deal.review==4; }).length;
+            var total_count = review_1_count + review_2_count + review_4_count;
+        %>
+        <tr data-firm-id="<%= firm.id %>">
+            <td>
+                <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/firm/<%= firm.id %>/update" target="_blank">
+                    <span><%= firm.name || firm.name_cn %></span>
+                </a>
+            </td>
+            <td style="width:80px;" align="center">
+                <% if (no_money_count) { %>
+                <a class="list-firm-deal-btn site-a site-hover-transition text-muted" href="javascript:void(0)" data-review="0">
+                    <div class="">
+                        <span><%= no_money_count %></span>
+                    </div>
+                </a>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:80px;" align="center">
+                <% if (review_3_count) { %>
+                <a class="list-firm-deal-btn site-a site-hover-transition text-muted" href="javascript:void(0)" data-review="3">
+                    <div class="">
+                        <span><%= review_3_count %></span>
+                    </div>
+                </a>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:80px;" align="center">
+                <% if (review_4_count) { %>
+                <a class="list-firm-deal-btn site-a site-hover-transition text-muted" href="javascript:void(0)" data-review="4">
+                    <div class="">
+                        <span><%= review_4_count %></span>
+                    </div>
+                </a>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:80px;" align="center">
+                <% if (review_2_count) { %>
+                <a class="list-firm-deal-btn site-a site-hover-transition text-muted" href="javascript:void(0)" data-review="2">
+                    <div class="">
+                        <span><%= review_2_count %></span>
+                    </div>
+                </a>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:75px;" align="center">
+                <% if (review_1_count) { %>
+                <a class="list-firm-deal-btn site-a site-hover-transition text-muted" href="javascript:void(0)" data-review="1">
+                    <div class="">
+                        <span><%= review_1_count %></span>
+                    </div>
+                </a>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:80px;" align="center">
+                <span class="text-muted"><%= total_count %></span>
+            </td>
+            <td style="width:80px;" align="center">
+                <% if (total_count>0) { %>
+                <span class="text-muted"><%= Math.round(firm.volume/total_count).shorten().replace(' ','<br>') %></span>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:80px;" align="center">
+                <b><%= firm.volume.shorten().replace(' ','<br>') %></b>
+            </td>
+            <td style="width:75px;" align="center">
+                <% if (total_count>0) { %>
+                <span class="text-muted"><%= Math.round(firm.score*100/total_count)/100 %></span>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:60px;" align="center">
+                <b><%= firm.score %></b>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+
+

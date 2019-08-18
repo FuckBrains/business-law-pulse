@@ -1,0 +1,36 @@
+
+<% if (career.length==0) { %>
+<div class="" style="margin-top:0.6em;">
+    <span style="font-size:0.8em;color:#bbb;">N/A</span>
+</div>
+<% } else { %>
+
+<% for (var i=0;i<career.length;i++) { %>
+<% var item = career[i]; %>
+<hr class="site-hr">
+<div class="firm-item" style="padding:0.8em 0;font-size:0.8em;" data-firm-id="<%= item.firm.id %>">
+    <a class="site-a site-hover-transition" style="color:black;" href="/law/firm/<%= item.firm.id %>/detail" target="_blank">
+        <div class="">
+            <span><%= item.firm.name || item.firm.name_cn %></span>
+        </div>
+        <div class="" style="margin-top:0.5em;font-size:0.8em;color:#bbb;">
+            <% if (item.start) { %>
+            <span><%= new Date(item.start).format('yyyy-mm-dd') %></span>
+            <% } else { %>
+            <span>-</span>
+            <% } %>
+            <span style="margin:0 0.5em;">~</span>
+            <% if (item.end) { %>
+            <span><%= new Date(item.end).format('yyyy-mm-dd') %></span>
+            <% } else { %>
+            <span>-</span>
+            <% } %>
+        </div>
+    </a>
+</div>
+<% } %>
+
+<% } %>
+
+
+

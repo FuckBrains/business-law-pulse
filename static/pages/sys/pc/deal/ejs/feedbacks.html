@@ -1,0 +1,61 @@
+
+<% if (feedbacks.length==0) { %>
+<div class="" style="padding:20px;">
+    <span style="color:#bbb;">No feedback records</span>
+</div>
+<% } else { %>
+<table class="table table-hover" style="margin:0px;">
+    <thead>
+        <tr>
+            <th><div class="text-muted">English</div></th>
+            <th><div class="text-muted">Chinese</div></th>
+            <th><div class="text-muted" align="center">Time</div></th>
+            <th><div class="text-muted" align="center">Rating</div></th>
+            <th><div class="text-muted" align="center">Action</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<feedbacks.length;i++) { %>
+        <% var feedback = feedbacks[i]; %>
+        <tr data-feedback-id="<%= feedback.id %>">
+            <td style="width:300px;">
+                <% if (!!feedback.name && !!feedback.content) { %>
+                <div class="site-text-wrap">
+                    <span><%= feedback.name %></span>
+                    <span>:</span>
+                </div>
+                <div class="site-text-wrap" style="color:#bbb;"><%= feedback.content %></div>
+                <% } else { %>
+                <span style="color:#bbb;">Empty</span>
+                <% } %>
+            </td>
+            <td style="width:300px;">
+                <% if (!!feedback.name_cn && !!feedback.content_cn) { %>
+                <div class="site-text-wrap">
+                    <span><%= feedback.name_cn %></span>
+                    <span>:</span>
+                </div>
+                <div class="site-text-wrap" style="color:#bbb;"><%= feedback.content_cn %></div>
+                <% } else { %>
+                <span style="color:#bbb;">Empty</span>
+                <% } %>
+            </td>
+            <td class="text-muted" style="width:90px;" align="center">
+                <span><%= new Date(feedback.created).format('yyyy-mm-dd')  %></span>
+            </td>
+            <td style="width:75px;" align="center">
+                <span><%= feedback.rating %></span>
+            </td>
+            <td style="width:75px;" align="center">
+                <a class="remove-feedback-btn site-a site-hover-transition" style="color:#bbb;">
+                    <i class="fa fa-remove"></i>
+                </a>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+
+
+

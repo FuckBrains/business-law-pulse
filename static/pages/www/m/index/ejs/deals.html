@@ -1,0 +1,38 @@
+
+<% if (deals.length==0) { %>
+<div class="" style="margin-top:0.6em;">
+    <span style="font-size:0.8em;color:#bbb;">n/a</span>
+</div>
+<% } else { %>
+
+<% for (var i=0;i<deals.length;i++) { %>
+<% var deal = deals[i]; %>
+<div class="" style="padding:0.8em 0;font-size:0.8em;">
+    <a class="site-a site-hover-transition" style="color:black;" href="http://<%= CONST.domain.www %>/law/deal/<%= deal.id %>/detail">
+        <div class="">
+            <span><%= deal.title || deal.title_cn %></span>
+        </div>
+        <div class="" style="margin-top:0.5em;font-size:0.8em;color:#bbb;">
+            <% if (!!deal.date) { %>
+            <span><%= new Date(deal.date).format('yyyy-mm-dd')  %></span>
+            <% } else { %>
+            <span>Empty Date</span>
+            <% } %>
+            <span style="margin:0 1em;">|</span>
+            <% if (!!deal.value) { %>
+            <span><%= deal.value.shorten() %></span>
+            <% } else { %>
+            <span>Empty Value</span>
+            <% } %>
+        </div>
+    </a>
+</div>
+
+<% if (i<deals.length-1) { %>
+<hr class="site-hr">
+<% } %>
+
+<% } %>
+
+<% } %>
+

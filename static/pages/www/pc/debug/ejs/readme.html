@@ -1,0 +1,101 @@
+
+<div class="">
+    <p class="">
+        <span style="font-size:15px;line-height:30px;">接口地址</span>
+    </p>
+</div>
+<div class="" style="font-family:monospace;">
+    <p class="">
+        <span class="text-muted"><%= CONST.ssl ? 'https':'http' %>://<%= CONST.domain.api %>/[ api ]</span>
+    </p>
+    <p class="">
+        <b class="text-muted">[ api ]</b>
+        <span class="text-muted">为对应模块的接口</span>
+    </p>
+</div>
+<br><br>
+<div class="">
+    <p class="">
+        <span style="font-size:15px;line-height:30px;">请求方式</span>
+    </p>
+</div>
+<div class="" style="font-family:monospace;">
+    <p class="">
+        <span class="text-muted">POST （减少 XSS 攻击风险）</span>
+    </p>
+</div>
+<br><br>
+<div class="">
+    <p class="">
+        <span style="font-size:15px;line-height:30px;">请求类型</span>
+    </p>
+</div>
+<div class="" style="font-family:monospace;">
+    <p class="">
+        <span class="text-muted">Content-Type : application/json （普通）</span>
+    </p>
+    <p class="">
+        <span class="text-muted">Content-Type : multipart/form-data （表单）</span>
+    </p>
+    <p class="">
+        <span class="text-muted">User-Agent : [App]/[Version] ([Device]; [OS]; [Manufacturer]) [Client]/[Version] Market/[Market] NetType/[NetType] Language/[Locale]</span>
+    </p>
+</div>
+<br><br>
+<div class="">
+    <p class="">
+        <span style="font-size:15px;line-height:30px;">返回类型</span>
+    </p>
+</div>
+<div class="" style="font-family:monospace;">
+    <p class="">
+        <span class="text-muted">Content-Type : application/json</span>
+    </p>
+    <p class="">
+        <span class="text-muted">时间戳（13位整型）统一精确至毫秒</span>
+    </p>
+</div>
+<br><br>
+<div class="">
+    <p class="">
+        <span style="font-size:15px;line-height:30px;">返回结构</span>
+    </p>
+</div>
+<div class="" style="font-family:monospace;">
+    <p class="">
+        <span class="text-muted">{ "err" : 0, "msg" : "", "data" : {}, "log" : "" }</span>
+    </p>
+    <br>
+    <p class="">
+        <b class="text-muted">[ err ]</b>
+        <br>
+        <span class="text-muted">&nbsp; 0 => 正常</span>
+        <br>
+        <span class="text-muted">&nbsp;-1 => 应用代码异常</span>
+        <br>
+        <span class="text-muted">&nbsp;-2 => 未授权</span>
+        <br>
+        <span class="text-muted">&nbsp;-3 => 版本不支持</span>
+        <br>
+        <span class="text-muted">N>0 => 业务逻辑异常</span>
+    </p>
+    <br>
+    <p class="">
+        <b class="text-muted">[ log ]</b>
+        <br>
+        <span class="text-muted">err = -1 时，输出异常日志</span>
+    </p>
+    <br>
+    <p class="">
+        <b class="text-muted">[ msg ]</b>
+        <br>
+        <span class="text-muted">服务器返回的消息文本（可空）</span>
+    </p>
+    <br>
+    <p class="">
+        <b class="text-muted">[ data ]</b>
+        <br>
+        <span class="text-muted">服务器返回数据的 JSON 结构体</span>
+    </p>
+</div>
+

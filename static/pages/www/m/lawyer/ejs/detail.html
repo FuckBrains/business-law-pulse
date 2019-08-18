@@ -1,0 +1,113 @@
+
+<div class="" style="padding:0.6em;">
+    <div class="clearfix">
+        <div class="pull-left">
+            <div class="site-shadow site-background" style="width:4em;height:4em;background-image:url('<%= lawyer.avatar.thumbnails[0].url %>');"></div>
+        </div>
+        <div class="" style="margin-left:5em;overflow:hidden;">
+            <div class="" style="">
+                <b style="font-family:arial;"><%= lawyer.name || lawyer.name_cn %></b>
+            </div>
+            <div class="" style="font-size:0.75em;color:#bbb;">
+                <% if (lawyer.gender=='M') { %>
+                <span>Male</span>
+                <% } else if (lawyer.gender=='M') { %>
+                <span>Female</span>
+                <% } else { %>
+                <span>-</span>
+                <% } %>
+                <span style="margin:0 0.6em;">|</span>
+                <span style="color:#bbb;"><%= lawyer.position || '-' %></span>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">RECENT DEALS</b>
+    </div>
+    <div class="recent-deal-list">
+        <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+    </div>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">CAREER FIRMS</b>
+    </div>
+    <div class="career-firms">
+        <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+    </div>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">CATEGORIES</b>
+    </div>
+    <% if (lawyer.categories.length==0) { %>
+    <div class="" style="margin-top:0.6em;">
+        <span style="font-size:0.8em;color:#bbb;">N/A</span>
+    </div>
+    <% } else { %>
+    <ul style="margin:0.5em 0;padding-left:1.5em;line-height:1.2em;">
+        <% for (var i=0;i<lawyer.categories.length;i++) { %>
+        <a class="site-a site-hover-transition" style="color:black;" href="javascript:void(0)">
+            <li style="margin-top:0.3em;">
+                <span><%= categories[lawyer.categories[i]].en || categories[lawyer.categories[i]].cn %></span>
+            </li>
+        </a>
+        <% } %>
+    </ul>
+    <% } %>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">FEEDBACKS</b>
+    </div>
+    <div class="feedback-list">
+        <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+    </div>
+    <br><br>
+    <div class="" style="font-size:0.8em;color:#bbb;">
+        <i class="fa fa-exclamation-circle"></i>
+        <span style="margin-left:0.3em;">If you know more information about this lawyer or submit a new lawyer,</span>
+        <a class="site-a text-primary" href="javascript:void(0)" onclick="submit_btn.click()">please contact us</a>
+        <span>.</span>
+    </div>
+</div>
+
+<%
+    var subject = 'RE: ' + (lawyer.name || lawyer.name_cn);
+    var cc = 'me@longsicong.cn';
+    var bcc = '';
+    var body = 'Dear VantageAsia,' + '\r\n\r\n';
+    body += 'I would like to view more information of this lawyer.' + '\r\n\r\n';
+    body += 'Please show me the guidance.' + '\r\n\r\n';
+    body += 'Looking forward to your reply.' + '\r\n\r';
+    body += 'Kind regards';
+%>
+<a id="submit_btn" class="site-a hidden" style="color:white;position:fixed;bottom:20px;right:20px;z-index:999;"
+    href="mailto:llong@vantageasia.com?subject=<%= encodeURIComponent(subject) %>&cc=<%= cc %>&bcc=<%= bcc %>&body=<%= encodeURIComponent(body) %>">
+    <div class="img-rounded site-solid" style="padding:15px 25px;background-color:#0b71bf;">
+        <i class="fa fa-check-square"></i>
+        <span style="margin-left:5px;">SUBMIT</span>
+    </div>
+</a>
+
+
+
+
+<!-- 律所交易列表 -->
+<div id="firm_deal_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:500px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Deals of related firm</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <div class="firm-deal-list" style="max-height:450px;overflow:auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

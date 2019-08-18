@@ -1,0 +1,41 @@
+
+{% extends "m/base.html" %}
+
+
+{% block page_title %}
+<title>Business Law Deals</title>
+{% endblock page_title %}
+
+
+{% block head_extra %}
+<script data-main="{{ main }}" src="{{ CONST.require.source }}"></script>
+{% endblock head_extra %}
+
+
+{% block page_content %}
+<div class="site-canvas" style="min-height:100%;">
+    <nav class="site-navmenu navmenu navmenu-default navmenu-fixed-right offcanvas" style="width:50%;min-height:100%;"></nav>
+    <div class="clearfix navbar navbar-default navbar-fixed-top"
+        style="margin:0;min-height:0;border:0;background-color:white;box-shadow:0px 1px 1px 0px rgba(150,150,150,0.5);">
+        <div class="pull-left" style="width:3em;line-height:3em;" align="center">
+            <a class="site-a" href="//{{ CONST.domain.www }}">
+                <i class="fa fa-home" style="font-size:1.2em;color:#999;"></i>
+            </a>
+        </div>
+        <div class="pull-right" style="width:3em;line-height:3em;" align="center">
+            <a class="site-a" href="javascript:void(0)" data-toggle="offcanvas" data-target=".site-navmenu" data-canvas=".site-canvas" data-placement="right">
+                <i class="fa fa-bars" style="font-size:1.2em;color:#999;"></i>
+            </a>
+        </div>
+        <div class="" style="margin:0 3em;line-height:3em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" align="center">
+            <span class="site-title hidden" style="font-size:0.9em;">Business Law Pulse</span>
+            <img style="height:1.5em;margin-top:-0.2em;" src="{{ CONST.static.url }}images/index/businesslawpulse_logo.png" />
+        </div>
+    </div>
+    <div class="site-main" style="padding:3em 0;"></div>
+</div>
+<div class="site-footer" style="margin-top:-3em;"></div>
+
+{% endblock page_content %}
+
+

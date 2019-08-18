@@ -1,0 +1,73 @@
+
+<% if (deals.length==0) { %>
+<div class="" style="padding:20px;">
+    <span style="color:#bbb;">No deal records</span>
+</div>
+<% } else { %>
+<table class="table table-hover" style="margin:0px;">
+    <thead>
+        <tr>
+            <th><div class="text-muted">Title</div></th>
+            <th><div class="text-muted" align="center">Date</div></th>
+            <th><div class="text-muted" align="center">Status</div></th>
+            <th><div class="text-muted">Value</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<deals.length;i++) { %>
+        <% var deal = deals[i]; %>
+        <tr data-deal-id="<%= deal.id %>">
+            <td>
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <span class="label label-primary" style="opacity:0.75;">EN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/deal/<%= deal.id %>/update" target="_blank">
+                            <span><%= deal.title || '-' %></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:5px;">
+                    <div class="pull-left">
+                        <span class="label label-danger" style="opacity:0.75;">CN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/deal/<%= deal.id %>/update" target="_blank">
+                            <span><%= deal.title_cn || '-' %></span>
+                        </a>
+                    </div>
+                </div>
+            </td>
+            <td class="text-muted" style="width:90px;" align="center">
+                <% if (!!deal.date) { %>
+                <span><%= new Date(deal.date).format('yyyy-mm-dd')  %></span>
+                <% } else { %>
+                <span>-</span>
+                <% } %>
+            </td>
+            <td style="width:75px;" align="center">
+                <% if (deal.status==1) { %>
+                <span>Completed</span>
+                <% } else if (deal.status==2) { %>
+                <span>Published</span>
+                <% } else if (deal.status==3) { %>
+                <span>Canceled</span>
+                <% } else if (deal.status==4) { %>
+                <span>Uncertain</span>
+                <% } %>
+            </td>
+            <td style="width:120px;">
+                <% if (deal.value) { %>
+                <span><%= deal.value.shorten() %></span>
+                <% } else { %>
+                <span style="color:#bbb;">N/A</span>
+                <% } %>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+
+

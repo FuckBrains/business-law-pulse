@@ -1,0 +1,190 @@
+
+<div class="center-block" style="width:1024px;padding:30px 20px;">
+    <div class="clearfix">
+        <div class="pull-left">
+            <a class="upload-client-logo site-a" style="width:100px;height:100px;" data-scene="law/client/logo" data-exist="<%= client.logo.thumbnails[0].url %>"></a>
+        </div>
+        <div class="" style="padding-left:20px;overflow:auto;">
+            <ul class="nav nav-tabs" style="padding:60px 20px 0px 0px;">
+                <li class="pull-right active" style="width:100px;">
+                    <a style="padding:10px 0px;text-align:center;" href="#profile_tab" data-toggle="tab">
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li class="" style="line-height:35px;">
+                    <b style="font-size:15px;">Modify Client</b>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <form class="update-client-form" style="margin-top:30px;">
+        <input name="logo" type="hidden" value="" />
+        <input name="note" type="hidden" value="" />
+        <input name="note_cn" type="hidden" value="" />
+        <input name="raw" type="hidden" value="" />
+        <div class="clearfix">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Name - EN</span>
+            </div>
+            <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                <input name="name" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                    value="<%= client.name %>" placeholder="English Name" /> 
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Name - CN</span>
+            </div>
+            <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                <input name="name_cn" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                    value="<%= client.name_cn %>" placeholder="Chinese Name" /> 
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Parent</span>
+            </div>
+            <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                <div class="pull-right" style="width:30px;line-height:25px;" align="center">
+                    <a class="remove-parent-btn site-a site-hover-transition text-muted" href="javascript:void(0)" title="Clear">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                </div>
+                <div class="" style="margin-right:30px;">
+                    <input name="parent" type="hidden" value="<%= $.isEmptyObject(client.parent) ? '':client.parent.id %>" />
+                    <a class="site-a site-hover-transition" style="color:black;" href="#pick_parent_modal" data-toggle="modal">
+                        <input type="text" class="client-parent" style="width:100%;padding:5px 8px;border:0px;" 
+                            value="<%= $.isEmptyObject(client.parent) ? '':(client.parent.name || client.parent.name_cn) %>"
+                            placeholder="-- Choose --" readonly />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Industries</span>
+            </div>
+            <div class="" style="margin-left:120px;padding:6px 8px;border-bottom:1px solid #e1e2e3;">
+                <select name="industries" style="width:100%;" multiple data-field-type="number">
+                    <% for (var id in industries) { %>
+                    <% if (client.industries.indexOf(parseInt(id)) == -1) { %>
+                    <option value="<%= id %>"><%= industries[id].en || industries[id].cn %></option>
+                    <% } else { %>
+                    <option value="<%= id %>" selected><%= industries[id].en || industries[id].cn %></option>
+                    <% } %>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:50%;padding-right:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Area</span>
+                </div>
+                <div class="" style="margin-left:120px;padding:6px 8px;border-bottom:1px solid #e1e2e3;">
+                    <select name="area" data-field-type="number">
+                        <option value="">-- Choose --</option>
+                        <% for (var id in areas) { %>
+                        <% if (client.area == parseInt(id)) { %>
+                        <option value="<%= id %>" selected><%= areas[id].en || areas[id].cn %></option>
+                        <% } else { %>
+                        <option value="<%= id %>"><%= areas[id].en || areas[id].cn %></option>
+                        <% } %>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-left" style="width:50%;padding-left:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Status</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <select name="status" style="width:100%;height:30px;border:0px;background-color:white;" data-field-type="number">
+                        <option value="1" <%= client.status==1 ? 'selected':'' %>>Normal</option>
+                        <option value="2" <%= client.status==2 ? 'selected':'' %>>Closed</option>
+                        <option value="3" <%= client.status==3 ? 'selected':'' %>>Merged</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:30px;">
+            <div class="pull-right">
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a style="width:75px;padding:5px;text-align:center;" href="#raw_tab" data-toggle="tab">
+                            <span>RAW</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a style="width:75px;padding:5px;text-align:center;" href="#note_tab" data-toggle="tab">
+                            <span>EN</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a style="width:75px;padding:5px;text-align:center;" href="#note_cn_tab" data-toggle="tab">
+                            <span>CN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="" style="width:100px;margin-right:200px;line-height:30px;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Notes</span>
+            </div>
+        </div>
+        <div class="tab-content" style="margin-top:5px;">
+            <div id="raw_tab" class="tab-pane fade in active">
+                <script id="raw_editor" type="text/plain" style="width:100%;height:250px;"></script>
+            </div>
+            <div id="note_tab" class="tab-pane fade">
+                <script id="note_editor" type="text/plain" style="width:100%;height:250px;"></script>
+            </div>
+            <div id="note_cn_tab" class="tab-pane fade">
+                <script id="note_cn_editor" type="text/plain" style="width:100%;height:250px;"></script>
+            </div>
+        </div>
+    </form>
+    <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+        <a class="update-client-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+            <i class="fa fa-check"></i>
+            <span>SUBMIT</span>
+        </a>
+    </div>
+</div>
+
+
+<!-- 查找客户 -->
+<div id="pick_parent_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:500px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Choose Parent Client</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="pull-right" style="margin-left:10px;">
+                        <a class="btn btn-success btn-sm" href="/manage/law/client/create" target="_blank">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                    <div class="input-group">
+                        <input name="keyword" type="text" class="form-control input-sm" placeholder="Keywords of client name" />
+                        <span class="input-group-btn">
+                            <a class="search-client-btn btn btn-default btn-sm">
+                                <i class="fa fa-search text-muted"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="client-list" style="margin-top:20px;"></div>
+                <div class="client-pagination" style="margin-top:20px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,100 @@
+
+
+<% if (clients.length==0) { %>
+<div class="" style="padding:20px;">
+    <span class="text-muted">No client found.</span>
+    <a class="site-a" href="javascript:void(0)" onclick="$('.add-client-tab').tab('show');">
+        <span>Add now</span>
+    </a>
+</div>
+<% } else { %>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th><div class="text-muted">Client</div></th>
+            <th><div class="text-muted">Party</div></th>
+            <th><div class="text-muted">Industries</div></th>
+            <th><div class="text-muted">Areas</div></th>
+            <th><div class="text-muted" align="center">Actions</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<clients.length;i++) { %>
+        <% var client = clients[i] %>
+        <tr class="deal-client-item" data-client-id="<%= client.id %>">
+            <td>
+                <span title="<%= client.remark %>"><%= client.name || client.name_cn %></span>
+                <% if (!!client.major) { %>
+                <i class="fa fa-star text-primary" style="margin-left:5px;" title="Major client"></i>
+                <% } %>
+                <% if (!!client.remark) { %>
+                <i class="fa fa-info-circle site-hover-transition" style="margin-left:5px;color:#bbb;" title="<%= client.remark %>"></i>
+                <% } %>
+            </td>
+            <td>
+                <% if (!!client.party) { %>
+                <span><%= parties[client.party].en ||  parties[client.party].cn %></span>
+                <% } else { %>
+                <span>-</span>
+                <% } %>
+            </td>
+            <td>
+                <% if (client.industries.length==0) { %>
+                <span>-</span>
+                <% } else { %>
+
+                <% for (var j=0;j<client.industries.length;j++) { %>
+                <div class="">
+                    <span><%= industries[client.industries[j]].en || industries[client.industries[j]].cn %></span>
+                </div>
+                <% } %>
+
+                <% } %>
+            </td>
+            <td>
+                <% if (client.areas.length==0) { %>
+                <span>-</span>
+                <% } else { %>
+
+                <% for (var j=0;j<client.areas.length;j++) { %>
+                <div class="">
+                    <span><%= areas[client.areas[j]].en || areas[client.areas[j]].cn %></span>
+                </div>
+                <% } %>
+
+                <% } %>
+            </td>
+            <td style="width:120px;" align="center">
+                <div class="btn-group">
+                    <a class="update-deal-client btn btn-default btn-sm" style="width:75px;" href="javascript:void(0)">
+                        <span>Modify</span>
+                    </a>
+                    <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret text-muted"></span>
+                    </a>
+                    <ul class="dropdown-menu pull-right" style="width:100px;">
+                        <li>
+                            <a class="remove-deal-client-btn" href="javascript:void(0)">
+                                <div class="clearfix">
+                                    <div class="pull-right">
+                                        <i class="fa fa-angle-right text-muted"></i>
+                                    </div>
+                                    <div class="" style="margin-right:20px;">
+                                        <span>Remove</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="btn btn-default btn-sm disabled hidden" href="javascript:void(0)">
+                    <span>Locked</span>
+                </a>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+
+

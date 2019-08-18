@@ -1,0 +1,14 @@
+
+<% var tags = ['Banking','Electronics','Environment','Infrastructure','Pharmaceuticals','Shipping','Media','Entertainment']; %>
+<div class="tag-list clearfix">
+    <% for (var i=0;i<tags.length;i++) { %>
+    <div class="pull-left" style="margin: 10px 10px 0px 0px;">
+        <a class="site-a site-hover-transition text-muted" href="javascript:void(0)">
+            <div class="" style="padding:10px;background-color:#f7f8f9;">
+                <span style="font-size:12px;"><%= tags[i] %></span>
+            </div>
+        </a>
+    </div>
+    <% } %>
+</div>
+

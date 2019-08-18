@@ -1,0 +1,387 @@
+
+<div class="center-block" style="width:1024px;padding:30px 20px;">
+    <div class="tabs-left">
+        <ul class="nav nav-tabs" style="padding:15px 0px 15px 30px;background-color:#f7f8f9;">
+            <li class="active" style="width:100px;">
+                <a style="text-align:center;" href="#category" data-toggle="tab">
+                    <span>Category</span>
+                </a>
+            </li>
+            <li class="" style="width:100px;">
+                <a style="text-align:center;" href="#industry" data-toggle="tab">
+                    <span>Industry</span>
+                </a>
+            </li>
+            <li class="" style="width:100px;">
+                <a style="text-align:center;" href="#area" data-toggle="tab">
+                    <span>Area</span>
+                </a>
+            </li>
+            <li class="" style="width:100px;">
+                <a style="text-align:center;" href="#party" data-toggle="tab">
+                    <span>Party</span>
+                </a>
+            </li>
+            <li class="" style="width:100px;">
+                <a style="text-align:center;" href="#role" data-toggle="tab">
+                    <span>Role</span>
+                </a>
+            </li>
+            <hr>
+            <li class="" style="width:100px;">
+                <a style="text-align:center;" href="#formula" data-toggle="tab">
+                    <span>Formula</span>
+                </a>
+            </li>
+            <li class="" style="width:100px;">
+                <a style="text-align:center;" href="#homepage" data-toggle="tab">
+                    <span>Homepage</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content" style="padding-left:30px;overflow:auto;">
+        <div id="category" class="tab-pane fade in active">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><div class="text-muted" align="center">ID</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">English</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">Chinese</div></th>
+                        <th><div class="text-muted" align="center">Actions</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0;i<categories.length;i++) { %>
+                    <%= new EJS({ text: ejs_item }).render({ config: categories[i], saved: 1 }) %>
+                    <% } %>
+                    <%= new EJS({ text: ejs_item }).render({ config: { id: categories.length+1 }, saved: 0 }) %>
+                </tbody>
+            </table>
+            <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-category-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+        <div id="industry" class="tab-pane fade">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><div class="text-muted" align="center">ID</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">English</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">Chinese</div></th>
+                        <th><div class="text-muted" align="center">Actions</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0;i<industries.length;i++) { %>
+                    <%= new EJS({ text: ejs_item }).render({ config: industries[i], saved: 1 }) %>
+                    <% } %>
+                    <%= new EJS({ text: ejs_item }).render({ config: { id: industries.length+1 }, saved: 0 }) %>
+                </tbody>
+            </table>
+            <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-industry-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+        <div id="area" class="tab-pane fade">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><div class="text-muted" align="center">ID</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">English</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">Chinese</div></th>
+                        <th><div class="text-muted" align="center">Actions</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0;i<areas.length;i++) { %>
+                    <%= new EJS({ text: ejs_item }).render({ config: areas[i], saved: 1 }) %>
+                    <% } %>
+                    <%= new EJS({ text: ejs_item }).render({ config: { id: areas.length+1 }, saved: 0 }) %>
+                </tbody>
+            </table>
+            <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-area-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+        <div id="party" class="tab-pane fade">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><div class="text-muted" align="center">ID</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">English</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">Chinese</div></th>
+                        <th><div class="text-muted" align="center">Actions</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0;i<parties.length;i++) { %>
+                    <%= new EJS({ text: ejs_item }).render({ config: parties[i], saved: 1 }) %>
+                    <% } %>
+                    <%= new EJS({ text: ejs_item }).render({ config: { id: parties.length+1 }, saved: 0 }) %>
+                </tbody>
+            </table>
+            <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-party-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+        <div id="role" class="tab-pane fade">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><div class="text-muted" align="center">ID</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">English</div></th>
+                        <th><div class="text-muted" style="padding-left:10px;">Chinese</div></th>
+                        <th><div class="text-muted" align="center">Actions</div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i=0;i<roles.length;i++) { %>
+                    <%= new EJS({ text: ejs_item }).render({ config: roles[i], saved: 1 }) %>
+                    <% } %>
+                    <%= new EJS({ text: ejs_item }).render({ config: { id: roles.length+1 }, saved: 0 }) %>
+                </tbody>
+            </table>
+            <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-role-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+        <div id="formula" class="tab-pane fade">
+            <form class="update-formula-form">
+                <div class="center-block clearfix" style="width:50%;margin-top:15px;">
+                    <div class="pull-left" style="width:100px;margin-left:-100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Firm Grade</span>
+                    </div>
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">=</span>
+                    </div>
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Volume</span>
+                    </div>
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">x</span>
+                    </div>
+                    <div class="" style="margin-left:200px;border-bottom:1px solid #e1e2e3;">
+                        <div class="pull-right" style="width:30px;padding-top:5px;" align="center">
+                            <span class="text-muted">%</span>
+                        </div>
+                        <div class="" style="margin-right:30px;">
+                            <input name="std_volume" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= formula.std_volume %>" placeholder="weight of total volume" /> 
+                        </div>
+                    </div>
+                </div>
+                <div class="center-block clearfix" style="width:50%;margin-top:15px;">
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">+</span>
+                    </div>
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Avg Volume</span>
+                    </div>
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">x</span>
+                    </div>
+                    <div class="" style="margin-left:200px;border-bottom:1px solid #e1e2e3;">
+                        <div class="pull-right" style="width:30px;padding-top:5px;" align="center">
+                            <span class="text-muted">%</span>
+                        </div>
+                        <div class="" style="margin-right:30px;">
+                            <input name="std_avg_volume" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= formula.std_avg_volume %>" placeholder="weight of average volume" /> 
+                        </div>
+                    </div>
+                </div>
+                <div class="center-block clearfix" style="width:50%;margin-top:15px;">
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">+</span>
+                    </div>
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Score</span>
+                    </div>
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">x</span>
+                    </div>
+                    <div class="" style="margin-left:200px;border-bottom:1px solid #e1e2e3;">
+                        <div class="pull-right" style="width:30px;padding-top:5px;" align="center">
+                            <span class="text-muted">%</span>
+                        </div>
+                        <div class="" style="margin-right:30px;">
+                            <input name="std_score" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= formula.std_score %>" placeholder="weight of total score" /> 
+                        </div>
+                    </div>
+                </div>
+                <div class="center-block clearfix" style="width:50%;margin-top:15px;">
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">+</span>
+                    </div>
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Avg Score</span>
+                    </div>
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">x</span>
+                    </div>
+                    <div class="" style="margin-left:200px;border-bottom:1px solid #e1e2e3;">
+                        <div class="pull-right" style="width:30px;padding-top:5px;" align="center">
+                            <span class="text-muted">%</span>
+                        </div>
+                        <div class="" style="margin-right:30px;">
+                            <input name="std_avg_score" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= formula.std_avg_score %>" placeholder="weight of average score" /> 
+                        </div>
+                    </div>
+                </div>
+                <div class="center-block clearfix" style="width:50%;margin-top:15px;">
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">+</span>
+                    </div>
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Number</span>
+                    </div>
+                    <div class="pull-left" style="width:50px;padding:5px 0px;" align="center">
+                        <span style="color:#bbb;">x</span>
+                    </div>
+                    <div class="" style="margin-left:200px;border-bottom:1px solid #e1e2e3;">
+                        <div class="pull-right" style="width:30px;padding-top:5px;" align="center">
+                            <span class="text-muted">%</span>
+                        </div>
+                        <div class="" style="margin-right:30px;">
+                            <input name="std_number" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= formula.std_number %>" placeholder="weight of total number" /> 
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="" style="margin-top:50px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-formula-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+        <div id="homepage" class="tab-pane fade">
+            <form class="update-homepage-form" style="min-height:400px;">
+                <%
+                    var categories = categories.reduce(function(dict,item) { dict[item.id] = item; return dict; },{});
+                    var industries = industries.reduce(function(dict,item) { dict[item.id] = item; return dict; },{});
+                    var areas = areas.reduce(function(dict,item) { dict[item.id] = item; return dict; },{});
+                %>
+                <div class="clearfix" style="margin-top:15px;">
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Categories</span>
+                    </div>
+                    <div class="" style="margin-left:120px;padding:6px 8px;border-bottom:1px solid #e1e2e3;">
+                        <select name="categories" multiple data-field-type="number">
+                            <% for (var id in categories) { %>
+                            <% if ($.inArray(parseInt(id),homepage.categories)==-1) { %>
+                            <option value="<%= id %>"><%= categories[id].en || categories[id].cn %></option>
+                            <% } else { %>
+                            <option value="<%= id %>" selected><%= categories[id].en || categories[id].cn %></option>
+                            <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:15px;">
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Industries</span>
+                    </div>
+                    <div class="" style="margin-left:120px;padding:6px 8px;border-bottom:1px solid #e1e2e3;">
+                        <select name="industries" multiple data-field-type="number">
+                            <% for (var id in industries) { %>
+                            <% if ($.inArray(parseInt(id),homepage.industries)==-1) { %>
+                            <option value="<%= id %>"><%= industries[id].en || industries[id].cn %></option>
+                            <% } else { %>
+                            <option value="<%= id %>" selected><%= industries[id].en || industries[id].cn %></option>
+                            <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:15px;">
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Areas</span>
+                    </div>
+                    <div class="" style="margin-left:120px;padding:6px 8px;border-bottom:1px solid #e1e2e3;">
+                        <select name="areas" multiple data-field-type="number">
+                            <% for (var id in areas) { %>
+                            <% if ($.inArray(parseInt(id),homepage.areas)==-1) { %>
+                            <option value="<%= id %>"><%= areas[id].en || areas[id].cn %></option>
+                            <% } else { %>
+                            <option value="<%= id %>" selected><%= areas[id].en || areas[id].cn %></option>
+                            <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:15px;">
+                    <div class="pull-left" style="width:50%;padding-right:50px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Start</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <input id="start_date" name="start_date" type="hidden" 
+                                value="<%= new Date(homepage.start_date).format('yyyy-mm-dd') %>" />
+                            <input type="text" class="start-date" style="width:100%;border:0px;padding:5px 8px;" 
+                                value="<%= new Date(homepage.start_date).format('yyyy-mm-dd') %>" placeholder="YYYY-MM-DD" readonly>
+                        </div>
+                    </div>
+                    <div class="pull-left" style="width:50%;padding-left:50px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">End</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <input id="end_date" name="end_date" type="hidden"
+                                value="<%= new Date(homepage.end_date).format('yyyy-mm-dd') %>" />
+                            <input type="text" class="end-date" style="width:100%;border:0px;padding:5px 8px;" 
+                                value="<%= new Date(homepage.end_date).format('yyyy-mm-dd') %>" placeholder="YYYY-MM-DD" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:15px;">
+                    <div class="pull-left" style="width:50%;padding-right:50px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Curve Title</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <input name="curve_title" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= homepage.curve_title %>" placeholder="Curve Title" /> 
+                        </div>
+                    </div>
+                    <div class="pull-left" style="width:50%;padding-left:50px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Bar Title</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <input name="bar_title" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= homepage.bar_title %>" placeholder="Bar Title" /> 
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-homepage-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

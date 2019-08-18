@@ -1,0 +1,121 @@
+
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        {% block page_title %}
+        <title>Base Template Of Mobile Web Page</title>
+        {% endblock page_title %}
+
+        {% block page_icon %}
+        <link rel="shortcut icon" type="image/x-icon" href="{{ CONST.static.url }}images/favicon.ico?_v=1.0" media="screen" />
+        {% endblock page_icon %}
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+        {% block meta_keywords %}
+        <meta name="keywords" content="" />
+        {% endblock meta_keywords %}
+
+        {% block meta_description %}
+        <meta name="description" content="" />
+        {% endblock meta_description %}
+
+        {% block meta_viewport %}
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+        {% endblock meta_viewport %}
+
+        {% block meta_extra %}
+        <!-- QQ Connect Validation -->
+        <meta property="qc:admins" content="4104577757667742144276563756367" />
+        {% endblock meta_extra %}
+
+        <script type="text/javascript">
+        // define CONST
+        var CONST = {
+            env: '{{ CONST.env }}',
+            ssl: {{ 'true' if CONST.ssl else 'false' }},
+            domain: {
+                oss: '{{ CONST.domain.oss }}',
+                api: '{{ CONST.domain.api }}',
+                www: '{{ CONST.domain.www }}',
+            },
+            static: {
+                url: '{{ CONST.static.url }}',
+                cache: '{{ CONST.static.cache }}',
+            },
+            oauth: {
+                qq: '{{ CONST.oauth.qq.web.id }}',
+                weixin: '{{ CONST.oauth.weixin.mp.id }}',
+                weibo: '{{ CONST.oauth.weibo.app.id }}'
+            },
+            mqtt: {
+                host: '{{ CONST.mqtt.web.host }}',
+                port: {{ CONST.mqtt.web.port }},
+                username: '{{ CONST.mqtt.web.username }}',
+                password: '{{ CONST.mqtt.web.password }}',
+                ssl: {{ 'true' if CONST.mqtt.web.ssl else 'false' }},
+            },
+
+            require: {
+                cdn: '{{ CONST.require.cdn }}',
+                source: '{{ CONST.require.source }}',
+                config: '{{ CONST.require.config }}',
+            },
+        };
+
+        // crossdomain within base domain
+        if (window.location.host.indexOf(':')==-1) {
+            document.domain = '{{ CONST.domain.default }}';
+        }
+        </script>
+
+        {% block head_extra %}{% endblock head_extra %}
+    </head>
+
+    <body style="display:none;">
+        <style>
+        /* iPhone 6 plus or bigger */
+        body {
+            font-size: 18px;
+        }
+
+        /* iPhone 6 */
+        @media screen and (max-width: 375px) {
+            body { font-size: 16px; }
+        }
+
+        /* iPhone 4 & 5 */
+        @media screen and (max-width: 320px) {
+            body { font-size: 15px; }
+        }
+        </style>
+
+        <!-- Weixin Share Cover -->
+        <div style="position:absolute;opacity:0;filter:alpha(opacity=0);">
+            <img class="weixin-share-cover" style="height:0px;" src="{{ CONST.static.url }}images/index/businesslawpulse_logo.png" />
+        </div>
+
+        {% block page_content %}{% endblock page_content %}
+
+        <!-- global notification -->
+        <style>
+        .notifications {
+            line-height: 3em;
+        }
+
+        .notifications .alert {
+            padding: 0 1em;
+            font-size: 0.8em;
+            border-radius: 0;
+        }
+
+        .notifications .alert a {
+            line-height: 2.5em;
+            font-size: 1.5em;
+        }
+        </style>
+        <div class="notifications" style="width:100%;bottom:0px;" align="center"></div>
+    </body>
+</html>
+

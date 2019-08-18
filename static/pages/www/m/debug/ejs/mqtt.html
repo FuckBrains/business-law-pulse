@@ -1,0 +1,202 @@
+
+<ul class="nav nav-tabs" style="padding:0.75em 0.75em 0 0.75em;font-size:0.8em;background-color:#f5f6f7;">
+    <li class="active" style="width:33.33333333%;" align="center">
+        <a class="" style="padding:0.5em 0;color:black;" href="#configure" data-toggle="tab">
+            <span class="text-muted" style="font-size:0.8em;">Configure</span>
+        </a>
+    </li>
+    <li class="" style="width:33.33333333%;" align="center">
+        <a class="" style="padding:0.5em 0;color:black;" href="#subscribe" data-toggle="tab">
+            <span class="text-muted" style="font-size:0.8em;">Subscribe</span>
+        </a>
+    </li>
+    <li class="" style="width:33.33333333%;" align="center">
+        <a class="" style="padding:0.5em 0;color:black;" href="#messages" data-toggle="tab">
+            <span class="text-muted" style="font-size:0.8em;">Messages</span>
+        </a>
+    </li>
+</ul>
+<div class="tab-content" style="padding:1.5em 0.5em;font-size:0.75em;">
+    <div id="configure" class="tab-pane fade in active">
+        <div class="clearfix">
+            <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Host</span>
+            </div>
+            <div class="clearfix" style="margin-left:6em;">
+                <input name="mqtt_host" type="text" class="" style="width:100%;border:0;padding:0.2em 0.5em;" 
+                    value="<%= CONST.mqtt.host %>" placeholder="Host">
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:0.75em;">
+            <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Port</span>
+            </div>
+            <div class="pull-left" style="width:4em;margin-left:1em;">
+                <input name="mqtt_port" type="number" class="" style="width:100%;border:0;padding:0.2em 0.5em;"
+                    value="<%= CONST.mqtt.port %>" placeholder="Port">
+            </div>
+            <div class="pull-right" style="width:3em;margin-left:1em;">
+                <input name="mqtt_keep_alive" type="number" style="width:100%;border:0;padding:0.2em 0.5em;" value="60" placeholder="seconds">
+            </div>
+            <div class="pull-right" style="width:7.5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                <b style="color:#bbb;">Keep Alive</b>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:0.75em;">
+            <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Auth</span>
+            </div>
+            <div class="clearfix" style="margin-left:6em;">
+                <input name="mqtt_username" type="text" class="" style="width:100%;border:0;padding:0.2em 0.5em;" 
+                    value="<%= CONST.mqtt.username %>" placeholder="username">
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:0.75em;">
+            <div class="clearfix" style="margin-left:6em;">
+                <input name="mqtt_password" type="text" class="" style="width:100%;border:0;padding:0.2em 0.5em;" 
+                    value="<%= CONST.mqtt.password %>" placeholder="password">
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:0.75em;">
+            <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                <a class="generate-mqtt-clientid-btn site-a" href="javascript:void(0)">
+                    <span style="color:#bbb;">Client</span>
+                </a>
+            </div>
+            <div class="" style="margin-left:6em;">
+                <input name="mqtt_client_id" type="text" class="" style="width:100%;border:0;padding:0.2em 0.5em;" value="" placeholder="clientid">
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:0.75em;">
+            <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Flags</span>
+            </div>
+            <div class="pull-left" style="width:1.5em;margin-left:1em;line-height:2em;" align="center">
+                <input name="mqtt_clean_session" type="checkbox" style="width:1em;height:1em;margin-top:0.5em;" checked />
+            </div>
+            <div class="pull-left" style="line-height:2em;">
+                <span>Clean Session</span>
+            </div>
+            <div class="pull-left" style="width:1.5em;margin-left:2.5em;line-height:2em;" align="center">
+                <input name="mqtt_use_ssl" type="checkbox" style="width:1em;height:1em;margin-top:0.5em;" <%= CONST.mqtt.ssl ? 'checked':'' %>/>
+            </div>
+            <div class="pull-left" style="line-height:2em;">
+                <span>SSL</span>
+            </div>
+            <div class="pull-right" style="line-height:2em;">
+                <span>LWT</span>
+            </div>
+            <div class="pull-right" style="width:1.5em;line-height:2em;" align="center">
+                <input type="checkbox" class="toggle-lwt" style="width:1em;height:1em;margin-top:0.5em;" 
+                    onchange="$('.will-config').toggleClass('hidden')" />
+            </div>
+        </div>
+        <div class="will-config hidden">
+            <div class="" style="margin:1em 0;padding:1em 0;background-color:#f7f8f9;" align="center">
+                <span class="text-muted">Last Will & Testament</span>
+            </div>
+            <div class="clearfix">
+                <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Topic</span>
+                </div>
+                <div class="" style="margin-left:6em;">
+                    <input name="mqtt_will_topic" type="text" class="" style="width:100%;border:0;padding:0.2em 0.5em;" 
+                        value="topic/will" placeholder="Topic">
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:0.75em;">
+                <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">QoS</span>
+                </div>
+                <div class="" style="margin-left:6em;">
+                    <div class="pull-left" style="">
+                        <select name="mqtt_will_qos" class="site-select" style="height:2em;padding:0 0.5em;border:0;background-color:white;">
+                            <option value="0">0 - At most once</option>
+                            <option value="1">1 - At least once</option>
+                            <option value="2">2 - Exactly once</option>
+                        </select>
+                    </div>
+                    <div class="pull-right" style="width:4em;margin-left:1em;">
+                        <select name="mqtt_will_retained" class="site-select" 
+                            style="width:100%;height:2em;padding:0 0.5em;border:0;background-color:white;">
+                            <option value="N">No</option>
+                            <option value="Y">Yes</option>
+                        </select>
+                    </div>
+                    <div class="pull-right" style="width:6em;line-height:2em;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Retained</span>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:0.75em;">
+                <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Payload</span>
+                </div>
+                <div class="" style="margin-left:6em;">
+                    <textarea name="mqtt_will_payload" 
+                        style="width:100%;border:0;padding:0 0.5em;line-height:2em;" 
+                        rows="2" placeholder="Payload String">{ "content" : "last will" }</textarea>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="" style="padding:0.75em 0;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+            <a class="mqtt-connect-broker-btn btn btn-link btn-sm site-a" data-loading-text="Loading">
+                <span>Connect</span>
+            </a>
+            <a class="mqtt-disconnect-broker-btn btn-link btn-sm  site-a hidden" data-loading-text="Loading">
+                <span>Disconnect</span>
+            </a>
+        </div>
+    </div>
+    <div id="subscribe" class="tab-pane fade">
+        <div class="clearfix">
+            <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Topic</span>
+            </div>
+            <div class="pull-right" style="width:3em;line-height:2em;" align="center">
+                <a class="mqtt-subscribe-topic-btn site-a" data-loading-text='<i class="fa fa-spinner fa-spin text-primary"></i>'>
+                    <i class="fa fa-plus text-primary"></i>
+                </a>
+            </div>
+            <div class="" style="margin-left:6em;margin-right:4em;overflow:auto;">
+                <input name="mqtt_subscribe_topic" type="text" class="" style="width:100%;border:0;padding:0.2em 0.5em;" 
+                    value="topic/#" placeholder="Subscribe topic">
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:0.75em;">
+            <div class="pull-left" style="width:5em;line-height:2em;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">QoS</span>
+            </div>
+            <div class="pull-left" style="margin-left:1em;">
+                <select name="mqtt_subscribe_qos" class="site-select" style="height:2em;padding:0 0.5em;border:0;background-color:white;">
+                    <option value="0">0 - At most once</option>
+                    <option value="1">1 - At least once</option>
+                    <option value="2">2 - Exactly once</option>
+                </select>
+            </div>
+            <div class="pull-right" style="width:3em;margin-left:1em;">
+                <input name="mqtt_subscribe_timeout" type="number" 
+                    style="width:100%;border:0;padding:0.2em 0.5em;text-align:center;" 
+                    value="5" placeholder="Seconds" title="Seconds">
+            </div>
+            <div class="pull-right" style="width:6em;line-height:2em;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Timeout</span>
+            </div>
+        </div>
+        <br>
+        <div class="subscribe-list" style="padding:0.5em;border:1px dashed #e1e2e3;"></div>
+    </div>
+    <div id="messages" class="tab-pane fade">
+        <div class="mqtt-history-message-list site-text-wrap"></div>
+        <div class="" style="opacity:0.8;position:fixed;right:0;bottom:4.5em;">
+            <a class="mqtt-clear-message-btn site-a" onclick="$('body,html').animate({ scrollTop: 0 },500);">
+                <span class="fa-stack" style="width:4em;height:4em;line-height:4.5em;">
+                    <i class="fa fa-circle fa-stack-1x text-muted" style="font-size:3.5em;"></i>
+                    <i class="fa fa-trash fa-stack-1x fa-inverse" style="font-size:1.2em;"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+

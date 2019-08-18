@@ -1,0 +1,194 @@
+
+<div class="" style="padding:0.6em;">
+    <div class="" style="margin:0.6em 0;" align="center">
+        <% if (firm.logo.url.indexOf('default') == -1) { %>
+        <img style="max-width:160px;" src="<%= firm.logo.thumbnails[0].url %>" />
+        <% } else { %>
+        <img class="site-block" src="holder.js/160x50?size=9&fg=bbb&bg=eee&text=BRAND MARK" />
+        <% } %>
+    </div>
+    <div class="" style="line-height:30px;">
+        <b style="font-family:arial;"><%= firm.name || firm.name_cn %></b>
+    </div>
+    <% if (!$.isEmptyObject(firm.parent)) { %>
+    <div class="" style="margin-top:0.6em;font-size:0.8em;">
+        <span style="color:#bbb;">Subsidiary of</span>
+        <a class="site-a site-hover-transition" style="color:#bbb;" href="http://<%= CONST.domain.www %>/law/firm/<%= firm.parent.id %>/detail">
+            <span><%= firm.parent.name || firm.parent.name_cn %></span>
+        </a>
+    </div>
+    <% } %>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">PROFILE</b>
+    </div>
+    <div class="clearfix" style="margin:0.6em 0;line-height:2em;font-size:0.8em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.8em;color:#bbb;">STATUS</span>
+        </div>
+        <div class="pull-left" style="margin-left:1em;">
+            <% if (firm.status==1) { %>
+            <span>Normal</span>
+            <% } else if (firm.status==2) { %>
+            <span>Closed</span>
+            <% } else if (firm.status==3) { %>
+            <span>Merged</span>
+            <% } %>
+
+            <% if (!!firm.opened) { %>
+            <span style="margin-left:1em;color:#bbb;">(</span>
+
+            <span style="color:#bbb;"><%= firm.opened %></span>
+
+            <span style="color:#bbb;">~</span>
+
+            <% if (!!firm.closed) { %>
+            <span style="color:#bbb;"><%= firm.closed %></span>
+            <% } else { %>
+            <span style="color:#bbb;">Now</span>
+            <% } %>
+
+            <span style="color:#bbb;">)</span>
+            <% } %>
+        </div>
+    </div>
+    <div class="clearfix" style="margin:0.6em 0;line-height:2em;font-size:0.8em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.8em;color:#bbb;">PHONE</span>
+        </div>
+        <div class="pull-left" style="margin-left:1em;">
+            <% if (!!firm.phone) { %>
+            <span><%= firm.phone %></span>
+            <% } else { %>
+            <span style="color:#bbb;">N/A</span>
+            <% } %>
+        </div>
+    </div>
+    <div class="clearfix" style="margin:0.6em 0;line-height:2em;font-size:0.8em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.8em;color:#bbb;">WEBSITE</span>
+        </div>
+        <div class="pull-left" style="margin-left:1em;">
+            <% if (!!firm.website) { %>
+            <a class="site-a site-hover-transition" style="color:black;"
+                href="<%= firm.website.substr(0,4)=='http' ? '':'http://' %><%= firm.website %>" target="_blank">
+                <span><%= firm.website.substr(0,4)=='http' ? '':'http://' %><%= firm.website %></span>
+            </a>
+            <% } else { %>
+            <span style="color:#bbb;">N/A</span>
+            <% } %>
+        </div>
+    </div>
+    <div class="clearfix" style="margin:0.6em 0;line-height:2em;font-size:0.8em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.8em;color:#bbb;">AREA</span>
+        </div>
+        <div class="pull-left" style="margin-left:1em;">
+            <% if (!!firm.area) { %>
+            <span><%= areas[firm.area].en || areas[firm.area].cn %></span>
+            <% } else { %>
+            <span style="color:#bbb;">N/A</span>
+            <% } %>
+        </div>
+    </div>
+    <div class="clearfix" style="margin:0.6em 0;line-height:2em;font-size:0.8em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.8em;color:#bbb;">ADDRESS</span>
+        </div>
+        <div class="pull-left" style="margin-left:1em;">
+            <% if (!!firm.address) { %>
+            <span><%= firm.address %></span>
+            <% } else { %>
+            <span style="color:#bbb;">N/A</span>
+            <% } %>
+        </div>
+    </div>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">STATISTICS</b>
+    </div>
+    <div class="" style="padding:1em 0;" align="center">
+        <span style="font-size:0.8em;">NUMBER OF TOP DEALS ( PRC, 2016 )</span>
+    </div>
+    <div class="" style="overflow-x:auto;" align="center">
+        <div class="month-count-line" style="width:20em;">
+            <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+        </div>
+    </div>
+    <br>
+    <div class="" style="padding:1em 0;" align="center">
+        <span style="font-size:0.8em;">VOLUME OF TOP DEALS ( PRC, 2016 )</span>
+    </div>
+    <div class="" style="overflow-x:auto;" align="center">
+        <div class="month-volume-bar" style="width:20em;">
+            <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+        </div>
+    </div>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">SELECTED DEALS</b>
+    </div>
+    <div class="recent-deal-list">
+        <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+    </div>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">ACTIVE LAWYERS</b>
+    </div>
+    <div class="recent-lawyer-list" style="margin-top:0.6em;">
+        <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+    </div>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">CATEGORIES</b>
+    </div>
+    <% if (firm.categories.length==0) { %>
+    <div class="" style="margin-top:0.6em;">
+        <span style="font-size:0.8em;color:#bbb;">N/A</span>
+    </div>
+    <% } else { %>
+    <ul style="margin:0.5em 0;padding-left:1.5em;line-height:1.2em;">
+        <% for (var i=0;i<firm.categories.length;i++) { %>
+        <a class="site-a site-hover-transition" style="color:black;" href="javascript:void(0)">
+            <li style="margin-top:0.3em;">
+                <span><%= categories[firm.categories[i]].en || categories[firm.categories[i]].cn %></span>
+            </li>
+        </a>
+        <% } %>
+    </ul>
+    <% } %>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">FEEDBACKS</b>
+    </div>
+    <div class="feedback-list">
+        <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+    </div>
+    <br><br>
+    <div class="" style="font-size:0.8em;color:#bbb;">
+        <i class="fa fa-exclamation-circle"></i>
+        <span style="margin-left:0.3em;">If you know more information about this law firm or submit a new law firm,</span>
+        <a class="site-a text-primary" href="javascript:void(0)" onclick="submit_btn.click()">please contact us</a>
+        <span>.</span>
+    </div>
+</div>
+
+<%
+    var subject = 'RE: ' + (firm.name || firm.name_cn);
+    var cc = 'me@longsicong.cn';
+    var bcc = '';
+    var body = 'Dear VantageAsia,' + '\r\n\r\n';
+    body += 'I would like to view more information of this firm.' + '\r\n\r\n';
+    body += 'Please show me the guidance.' + '\r\n\r\n';
+    body += 'Looking forward to your reply.' + '\r\n\r';
+    body += 'Kind regards';
+%>
+<a id="submit_btn" class="site-a hidden" style="color:white;position:fixed;bottom:20px;right:20px;z-index:999;"
+    href="mailto:llong@vantageasia.com?subject=<%= encodeURIComponent(subject) %>&cc=<%= cc %>&bcc=<%= bcc %>&body=<%= encodeURIComponent(body) %>">
+    <div class="img-rounded site-solid" style="padding:15px 25px;background-color:#0b71bf;">
+        <i class="fa fa-check-square"></i>
+        <span style="margin-left:5px;">SUBMIT</span>
+    </div>
+</a>
+
+

@@ -1,0 +1,168 @@
+
+<div class="center-block" style="width:1024px;margin-top:30px;padding:20px;">
+    <div class="" style="line-height:30px;">
+        <b style="font-size:24px;font-family:arial;"><%= deal.title || deal.title_cn %></b>
+        <% var score = deal.complexity + deal.creativity + deal.influence + deal.uniqueness - deal.deduction %>
+        <% if (score>3) { %>
+        <i class="fa fa-star" style="margin-left:10px;font-size:24px;color:#0b71bf;" title="Business Law Credits"></i>
+        <% } %>
+    </div>
+    <div class="" style="margin-top:20px;color:#bbb;">
+        <span>DATE :</span>
+        <span><%= new Date(deal.date).format('yyyy-mm-dd') %></span>
+
+        <span style="margin:0px 20px;color:#bbb;">|</span>
+
+        <span>STATUS :</span>
+        <% if (deal.status==1) { %>
+        <span>Completed</span>
+        <% } else if (deal.status==2) { %>
+        <span>Published</span>
+        <% } else if (deal.status==3) { %>
+        <span>Canceled</span>
+        <% } else if (deal.status==4) { %>
+        <span>Uncertain</span>
+        <% } %>
+
+        <span style="margin:0px 20px;color:#bbb;">|</span>
+
+        <span>DEAL VALUE :</span>
+        <% if (!!deal.value_txt) { %>
+        <span style="cursor:help;border-bottom:1px dashed #777;" title="USD <%= deal.value.shorten() %>"><%= deal.value_txt %></span>
+        <% } else if (!!deal.value) { %>
+        <span>USD <%= deal.value.shorten() %></span>
+        <% } else { %>
+        <span>N/A</span>
+        <% } %>
+    </div>
+    <hr>
+    <%
+        var highlights = [];
+        if (deal.uniqueness_remark) highlights.push(deal.uniqueness_remark);
+        if (deal.creativity_remark) highlights.push(deal.creativity_remark);
+        if (deal.complexity_remark) highlights.push(deal.complexity_remark);
+        if (deal.influence_remark) highlights.push(deal.influence_remark);
+        if (deal.deduction_remark) highlights.push(deal.deduction_remark);
+    %>
+    <% if (highlights.length>0) { %>
+    <div class="" style="margin-top:50px;padding:10px 0px;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:16px;font-family:arial;color:#0b71bf;">HIGHLIGHTS</b>
+    </div>
+    <ul class="" style="margin-top:10px;padding-left:30px;">
+        <% highlights.forEach(function(highlight) { %>
+        <li style="padding:5px 0px;">
+            <span><%= highlights[i] %></span>
+        </li>
+        <% }) %>
+    </ul>
+    <% } %>
+
+    <div class="" style="margin-top:50px;padding:10px 0px;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:16px;font-family:arial;color:#0b71bf;">PROFESSIONALS</b>
+    </div>
+    <div class="deal-summary" style="margin-top:10px;">
+        <%= new EJS({ text: ejs.loading }).render({ padding: '100px', font: '50px' }) %>
+    </div>
+
+    <div class="clearfix" style="margin:50px -20px 0px -20px;">
+        <div class="pull-left" style="width:33.33333333%;padding:0px 20px;">
+            <div class="" style="padding:10px 0px;border-bottom:1px solid #0b71bf;">
+                <b style="font-size:16px;font-family:arial;color:#0b71bf;">CATEGORIES</b>
+            </div>
+            <% if (deal.categories.length==0) { %>
+            <div class="" style="margin-top:10px;padding:10px 0px;">
+                <span style="color:#bbb;">N/A</span>
+            </div>
+            <% } else { %>
+
+            <% deal.categories.forEach(function(category) { %>
+            <a class="site-a site-hover-transition" style="color:black;" href="javascript:void(0)">
+                <div class="" style="margin-top:10px;padding:10px;background-color:#f5f6f7;">
+                    <span><%= categories[category].en || categories[category].cn %></span>
+                </div>
+            </a>
+            <% }) %>
+
+            <% } %>
+        </div>
+        <div class="pull-left" style="width:33.33333333%;padding:0px 20px;">
+            <div class="" style="padding:10px 0px;border-bottom:1px solid #0b71bf;">
+                <b style="font-size:16px;font-family:arial;color:#0b71bf;">INDUSTRIES</b>
+            </div>
+            <% if (deal.industries.length==0) { %>
+            <div class="" style="margin-top:10px;padding:10px 0px;">
+                <span style="color:#bbb;">N/A</span>
+            </div>
+            <% } else { %>
+
+            <% deal.industries.forEach(function(industry) { %>
+            <a class="site-a site-hover-transition" style="color:black;" href="javascript:void(0)">
+                <div class="" style="margin-top:10px;padding:10px;background-color:#f5f6f7;">
+                    <span><%= industries[industry].en || industries[industry].cn %></span>
+                </div>
+            </a>
+            <% }) %>
+
+            <% } %>
+        </div>
+        <div class="pull-left" style="width:33.33333333%;padding:0px 20px;">
+            <div class="" style="padding:10px 0px;border-bottom:1px solid #0b71bf;">
+                <b style="font-size:16px;font-family:arial;color:#0b71bf;">JURISDICTIONS</b>
+            </div>
+            <% if (deal.areas.length==0) { %>
+            <div class="" style="margin-top:10px;padding:10px 0px;">
+                <span style="color:#bbb;">N/A</span>
+            </div>
+            <% } else { %>
+
+            <% deal.areas.forEach(function(area) { %>
+            <a class="site-a site-hover-transition" style="color:black;" href="javascript:void(0)">
+                <div class="" style="margin-top:10px;padding:10px;background-color:#f5f6f7;">
+                    <span><%= areas[area].en || areas[area].cn %></span>
+                </div>
+            </a>
+            <% }) %>
+
+            <% } %>
+        </div>
+    </div>
+
+    <div class="" style="margin-top:50px;padding:10px 0px;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:16px;font-family:arial;color:#0b71bf;">NOTES</b>
+    </div>
+    <% if (deal.note) { %>
+    <div class="deal-note" style="margin-top:20px;"><%= deal.note %></div>
+    <% } else { %>
+    <div class="" style="padding:20px 0px;">
+        <span style="color:#bbb;">N/A</span>
+    </div>
+    <% } %>
+
+    <br>
+    <div class="" style="margin:30px 0px;color:#bbb;">
+        <i class="fa fa-exclamation-circle"></i>
+        <span style="margin-left:5px;">If you know more information about this deal or submit a new deal,</span>
+        <a class="site-a text-primary" href="javascript:void(0)" onclick="submit_btn.click()">please contact us</a>
+        <span>.</span>
+    </div>
+</div>
+
+<%
+    var subject = 'RE: ' + (deal.title || deal.title_cn);
+    var cc = 'me@longsicong.cn';
+    var bcc = '';
+    var body = 'Dear VantageAsia,' + '\r\n\r\n';
+    body += 'I would like to view more information of this deal.' + '\r\n\r\n';
+    body += 'Please show me the guidance.' + '\r\n\r\n';
+    body += 'Looking forward to your reply.' + '\r\n\r';
+    body += 'Kind regards';
+%>
+<a id="submit_btn" class="site-a" style="color:white;position:fixed;bottom:20px;right:20px;z-index:999;"
+    href="mailto:llong@vantageasia.com?subject=<%= encodeURIComponent(subject) %>&cc=<%= cc %>&bcc=<%= bcc %>&body=<%= encodeURIComponent(body) %>">
+    <div class="img-rounded site-solid" style="padding:15px 25px;background-color:#0b71bf;">
+        <i class="fa fa-check-square"></i>
+        <span style="margin-left:5px;">SUBMIT</span>
+    </div>
+</a>
+
+

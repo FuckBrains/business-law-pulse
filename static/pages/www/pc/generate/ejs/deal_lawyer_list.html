@@ -1,0 +1,98 @@
+
+<% if (lawyers.length==0) { %>
+<div class="">
+    <% if (CONST.lang=='en') { %>
+    <span class="text-muted">No lawyer found.</span>
+    <% } else { %>
+    <span class="text-muted">暂无律师记录，</span>
+    <% } %>
+
+    <a class="site-a" href="javascript:void(0)" onclick="$('.add-lawyer-tab').tab('show');">
+        <% if (CONST.lang=='en') { %>
+        <span>Add now</span>
+        <% } else { %>
+        <span>现在添加</span>
+        <% } %>
+    </a>
+</div>
+<% } else { %>
+
+<table class="table table-hover" style="margin:0px;">
+    <thead>
+        <tr>
+            <% if (CONST.lang=='en') { %>
+            <th><div class="text-muted">Lawyer</div></th>
+            <th><div class="text-muted">Related Firm</div></th>
+            <th><div class="text-muted">Role</div></th>
+            <th><div class="text-muted" align="center">Actions</div></th>
+            <% } else { %>
+            <th><div class="text-muted">律师姓名</div></th>
+            <th><div class="text-muted">关联律所</div></th>
+            <th><div class="text-muted">律师角色</div></th>
+            <th><div class="text-muted" align="center">操作</div></th>
+            <% } %>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<lawyers.length;i++) { %>
+        <% var lawyer = lawyers[i] %>
+        <tr class="deal-lawyer-item" data-lawyer-id="<%= lawyer.id %>">
+            <td>
+                <span><%= lawyer.name %></span>
+            </td>
+            <td>
+                <span><%= firms[lawyer.firm].name %></span>
+            </td>
+            <td>
+                <% if (!!lawyer.role) { %>
+
+                <% if (CONST.lang=='en') { %>
+                <span><%= roles[lawyer.role].en %></span>
+                <% } else { %>
+                <span><%= roles[lawyer.role].cn %></span>
+                <% } %>
+
+                <% } else { %>
+                <span>-</span>
+                <% } %>
+            </td>
+            <td style="width:120px;" align="center">
+                <div class="btn-group">
+                    <a class="update-deal-lawyer btn btn-default btn-sm" style="width:75px;" href="javascript:void(0)">
+                        <% if (CONST.lang=='en') { %>
+                        <span>Modify</span>
+                        <% } else { %>
+                        <span>修改</span>
+                        <% } %>
+                    </a>
+                    <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret text-muted"></span>
+                    </a>
+                    <ul class="dropdown-menu pull-right" style="width:100px;">
+                        <li>
+                            <a class="remove-deal-lawyer-btn" href="javascript:void(0)">
+                                <div class="clearfix">
+                                    <div class="pull-right">
+                                        <i class="fa fa-angle-right text-muted"></i>
+                                    </div>
+                                    <div class="" style="margin-right:20px;">
+                                        <% if (CONST.lang=='en') { %>
+                                        <span>Remove</span>
+                                        <% } else { %>
+                                        <span>删除</span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+
+<% } %>
+
+

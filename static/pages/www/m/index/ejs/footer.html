@@ -1,0 +1,54 @@
+
+<div class="" style="padding:0 1em;line-height:3em;background-color:#0b71bf;">
+    <div class="clearfix" style="font-size:0.75em;">
+        <div class="pull-left">
+            <a class="about-btn site-a site-hover-transition" style="color:white;" href="javascript:void(0);">
+                <span>About</span>
+            </a>
+            <span style="margin:0 1em;color:white;">|</span>
+            <a class="contact-btn site-a site-hover-transition" style="color:white;" href="javascript:void(0);">
+                <span>Contact</span>
+            </a>
+            <span style="margin:0 1em;color:white;">|</span>
+            <a class="copyright-btn site-a site-hover-transition" style="color:white;" href="javascript:void(0);">
+                <span>Copyright</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="" style="opacity:0.6;position:fixed;right:0;bottom:0;">
+    <a class="site-a" onclick="$('body,html').animate({ scrollTop: 0 },500);">
+        <span class="fa-stack" style="width:3em;height:3em;line-height:3em;">
+            <i class="fa fa-circle fa-stack-1x" style="font-size:2.4em;"></i>
+            <i class="fa fa-arrow-up fa-stack-1x fa-inverse" style="font-size:0.8em;"></i>
+        </span>
+    </a>
+</div>
+
+
+<script type="text/javascript">
+$('.about-btn').popover({
+    trigger: 'focus',
+    placement: 'top',
+    html: true,
+    title: '<span class="text-muted">About</span>',
+    content: '<b>Business Law Deals</b> <span>is an intelligence provider designed to offer in-house counsel and business law firms with systematic data and comprehensive analysis. Business Law Deals is a product of</span> <a class="site-a text-primary" href="http://www.vantageasia.com/" target="_blank">Vantage Asia Publishing Limited</a><span>.</span>',
+});
+
+$('.contact-btn').popover({
+    trigger: 'focus',
+    placement: 'top',
+    html: true,
+    title: '<span class="text-muted">Contact</span>',
+    content: '<div class="clearfix" style="margin:0.5em 0;"><div class="pull-left" style="width:2em;" align="center"><i class="fa fa-phone text-muted"></i></div><div style="margin-left:2em;"><a class="site-a text-primary" style="margin:0 0.5em;" href="tel:85236222685"><span>+85 236 222 685</span></a></div></div><div class="clearfix" style="margin:0.5em 0;"><div class="pull-left" style="width:2em;" align="center"><i class="fa fa-envelope text-muted" style="font-size:0.9em;"></i></div><div style="margin-left:2em;"><a class="site-a text-primary" style="margin:0 0.5em;" href="mailto:news@vantageasia.com"><span>news@vantageasia.com</span></a></div></div>',
+});
+
+$('.copyright-btn').popover({
+    trigger: 'focus',
+    placement: 'top',
+    html: true,
+    title: '<span class="text-muted">Copyright</span>',
+    content: '<a class="site-a" style="color:black;" href="http://www.vantageasia.com/" target="_blank">Vantage Asia Publishing Limited</a><br><span>© 2016-2017 All Rights Reserved</span>',
+});
+</script>
+

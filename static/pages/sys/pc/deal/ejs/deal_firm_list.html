@@ -1,0 +1,83 @@
+
+
+<% if (firms.length==0) { %>
+<div class="" style="padding:20px;">
+    <span class="text-muted">No firm found.</span>
+    <a class="site-a" href="javascript:void(0)" onclick="$('.add-firm-tab').tab('show');">
+        <span>Add now</span>
+    </a>
+</div>
+<% } else { %>
+<table class="table table-hover" style="margin:0px;">
+    <thead>
+        <tr>
+            <th><div class="text-muted">Firm</div></th>
+            <th><div class="text-muted">Party</div></th>
+            <th><div class="text-muted">Areas</div></th>
+            <th><div class="text-muted" align="center">Actions</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<firms.length;i++) { %>
+        <% var firm = firms[i] %>
+        <tr class="deal-firm-item" data-firm-id="<%= firm.id %>">
+            <td>
+                <span><%= firm.name || firm.name_cn %></span>
+                <% if (!!firm.remark) { %>
+                <i class="fa fa-info-circle site-hover-transition" style="margin-left:5px;color:#bbb;" title="<%= firm.remark %>"></i>
+                <% } %>
+            </td>
+            <td>
+                <% if (!!firm.party) { %>
+                <span><%= parties[firm.party].en ||  parties[firm.party].cn %></span>
+                <% } else { %>
+                <span>-</span>
+                <% } %>
+            </td>
+            <td>
+                <% if (firm.areas.length==0) { %>
+                <span>-</span>
+                <% } else { %>
+
+                <% for (var j=0;j<firm.areas.length;j++) { %>
+                <div class="">
+                    <span><%= areas[firm.areas[j]].en || areas[firm.areas[j]].cn %></span>
+                </div>
+                <% } %>
+
+                <% } %>
+            </td>
+            <td style="width:120px;" align="center">
+                <div class="btn-group">
+                    <a class="update-deal-firm btn btn-default btn-sm" style="width:75px;" href="javascript:void(0)">
+                        <span>Modify</span>
+                    </a>
+                    <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret text-muted"></span>
+                    </a>
+                    <ul class="dropdown-menu pull-right" style="width:100px;">
+                        <li>
+                            <a class="remove-deal-firm-btn" href="javascript:void(0)">
+                                <div class="clearfix">
+                                    <div class="pull-right">
+                                        <i class="fa fa-angle-right text-muted"></i>
+                                    </div>
+                                    <div class="" style="margin-right:20px;">
+                                        <span>Remove</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <a class="btn btn-link btn-sm disabled hidden" href="javascript:void(0)">
+                    <span>Locked</span>
+                </a>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+
+

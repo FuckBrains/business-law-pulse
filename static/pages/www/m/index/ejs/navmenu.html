@@ -1,0 +1,87 @@
+
+<div class="" style="line-height:3em;" align="center">
+    <b style="font-size:0.8em;">MENU</b>
+</div>
+<hr class="site-hr">
+<ul class="nav navmenu-nav" style="margin:0.5em 0;font-size:0.8em;">
+    <li class="site-hover-light">
+        <a class="site-a" style="padding:0.5em 1em;" href="/">
+            <div class="clearfix" style="line-height:2em;">
+                <div class="pull-right" style="width:1.5em;" align="right">
+                    <i class="fa fa-angle-right text-muted"></i>
+                </div>
+                <div class="" style="margin-right:1.5em;">
+                    <span class="text-muted">Deals</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li class="site-hover-light">
+        <a class="site-a" style="padding:0.5em 1em;" href="/">
+            <div class="clearfix" style="line-height:2em;">
+                <div class="pull-right" style="width:1.5em;" align="right">
+                    <i class="fa fa-angle-right text-muted"></i>
+                </div>
+                <div class="" style="margin-right:1.5em;">
+                    <span class="text-muted">Law Firms</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <li class="site-hover-light">
+        <a class="site-a" style="padding:0.5em 1em;" href="/">
+            <div class="clearfix" style="line-height:2em;">
+                <div class="pull-right" style="width:1.5em;" align="right">
+                    <i class="fa fa-angle-right text-muted"></i>
+                </div>
+                <div class="" style="margin-right:1.5em;">
+                    <span class="text-muted">Lawyers</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <hr class="site-hr" style="margin:0.5em 0;">
+    <li class="site-hover-light">
+        <a class="site-a" style="padding:0.5em 1em;" href="http://www.vantageasia.com/" target="_blank">
+            <div class="clearfix" style="line-height:2em;">
+                <div class="pull-right" style="width:1.5em;" align="right">
+                    <i class="fa fa-link text-muted"></i>
+                </div>
+                <div class="" style="margin-right:1.5em;">
+                    <span class="text-muted">Vantage Asia</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <hr class="site-hr" style="margin:0.5em 0;">
+    <% if ($.isEmptyObject(CORE.user)) { %>
+    <li class="site-hover-light <%= CONST.env=='prd' ? 'hidden':'' %>">
+        <a class="site-a" style="padding:0.5em 1em;" href="/user/login/">
+            <div class="clearfix" style="line-height:2em;">
+                <div class="pull-right" style="width:1.5em;" align="right">
+                    <i class="fa fa-user text-muted"></i>
+                </div>
+                <div class="" style="margin-right:1.5em;">
+                    <span class="text-muted">Sign In</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <% } else { %>
+    <li class="site-hover-light <%= CONST.env=='prd' ? 'hidden':'' %>">
+        <a class="site-a" style="padding:0.5em 1em;" href="/user/manage/">
+            <div class="clearfix">
+                <div class="pull-right" style="width:1.5em;margin-right:-0.4em;padding:0.3em 0;" align="right">
+                    <div class="img-circle site-background"
+                        style="width:1.5em;height:1.5em;background-image:url('<%= CORE.user.avatar.thumbnails[1].url %>');"></div>
+                </div>
+                <div class="" style="margin-right:1.5em;line-height:2em;">
+                    <span class="text-muted">My Profile</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    <% } %>
+</ul>
+
+

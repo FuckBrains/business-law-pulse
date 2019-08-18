@@ -1,0 +1,118 @@
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="active">
+            <th><div class="text-muted" style="padding:5px;">Party</div></th>
+            <th><div class="text-muted" style="padding:5px;">Client</div></th>
+            <th><div class="text-muted" style="padding:5px;">Firm</div></th>
+            <th><div class="text-muted" style="padding:5px;">Lawyer</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var id in summary) { %>
+
+        <% for (var i=0;i<(summary[id].firms.length || 1);i++) { %>
+        <tr>
+            <% if (i==0) { %>
+            <td rowspan="<%= summary[id].firms.length || 1 %>">
+                <div class="" style="padding:5px;">
+                    <% if (!!parties[id]) { %>
+                    <span><%= parties[id].en || parties[id].cn %></span>
+                    <% } else { %>
+                    <span style="color:#bbb;">N/A</span>
+                    <% } %>
+                </div>
+            </td>
+            <td rowspan="<%= summary[id].firms.length || 1 %>">
+                <% if (summary[id].clients.length==0) { %>
+                <div class="" style="padding:5px;color:#bbb;">
+                    <span>N/A</span>
+                </div>
+                <% } else { %>
+
+                <% for (var j=0;j<summary[id].clients.length;j++) { %>
+                <% var client = summary[id].clients[j]; %>
+                <div class="site-hover-light" style="margin:5px 0px;padding:5px;">
+                    <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/client/<%= client.id %>/update" target="_blank">
+                        <div class="">
+                            <span><%= client.name || client.name_cn %></span>
+                            <% if (!!client.major) { %>
+                            <i class="fa fa-star text-primary" style="margin-left:5px;" title="重要客户"></i>
+                            <% } %>
+                        </div>
+                        <div class="" style="font-size:10px;color:#bbb;">
+                            <% for (var k=0;k<client.industries.length;k++) { %>
+                            <span><%= industries[client.industries[k]].en || industries[client.industries[k]].cn %></span>
+                            <% if (k<client.industries.length-1) { %>
+                            <span style="margin:0px 5px;">|</span>
+                            <% } %>
+                            <% } %>
+                        </div>
+                    </a>
+                </div>
+                <% } %>
+
+                <% } %>
+            </td>
+            <% } %>
+            <td>
+                <% if (summary[id].firms.length==0) { %>
+                <div class="" style="padding:5px;color:#bbb;">
+                    <span>N/A</span>
+                </div>
+                <% } else { %>
+
+                <% var firm = summary[id].firms[i]; %>
+                <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/firm/<%= firm.id %>/update" target="_blank">
+                    <div class="site-hover-light" style="margin:5px 0px;padding:5px;">
+                        <div class="">
+                            <span><%= firm.name ||  firm.name_cn %></span>
+                        </div>
+                        <div class="" style="font-size:10px;color:#bbb;">
+                            <% for (var j=0;j<firm.areas.length;j++) { %>
+                            <span><%= areas[firm.areas[j]].en || areas[firm.areas[j]].cn %></span>
+                            <% if (j<firm.areas.length-1) { %>
+                            <span style="margin:0px 5px;">|</span>
+                            <% } %>
+                            <% } %>
+                        </div>
+                    </div>
+                </a>
+
+                <% } %>
+            </td>
+            <td>
+                <% if (summary[id].firms.length==0 || summary[id].firms[i].lawyers.length==0) { %>
+                <div class="" style="padding:5px;color:#bbb;">
+                    <span>N/A</span>
+                </div>
+                <% } else { %>
+
+                <% for (var j=0;j<summary[id].firms[i].lawyers.length;j++) { %>
+                <% var lawyer = summary[id].firms[i].lawyers[j]; %>
+                <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/lawyer/<%= lawyer.id %>/update" target="_blank">
+                    <div class="site-hover-light" style="margin:5px 0px;padding:5px;">
+                        <div class="">
+                            <span><%= lawyer.name || lawyer.name_cn %></span>
+                        </div>
+                        <% if (!!lawyer.role) { %>
+                        <div class="" style="font-size:10px;color:#bbb;">
+                            <span><%= roles[lawyer.role].en ||  roles[lawyer.role].cn %></span>
+                        </div>
+                        <% } %>
+                    </div>
+                </a>
+                <% } %>
+
+                <% } %>
+            </td>
+        </tr>
+        <% } %>
+
+        <% } %>
+    </tbody>
+</table>
+
+
+

@@ -1,0 +1,501 @@
+
+<div class="center-block" style="min-width:1200px;font-size:12px;">
+    <ul class="nav nav-tabs" style="padding:20px 20px 0px 20px;background-color:#f7f8f9;">
+        <li class="pull-left" style="font-size:15px;line-height:25px;">
+            <i class="fa fa-bug" style="font-size:25px;"></i>
+            <b style="margin:0px 10px;">DEBUG</b>
+            <span class="text-muted">[</span>
+            <i class="x-debug fa fa-toggle-off text-muted" style="margin:0px 5px;"></i>
+            <span class="text-muted">]</span>
+        </li>
+        <li class="pull-right" style="width:100px;text-align:center;">
+            <a href="#mqtt" data-toggle="tab">MQTT</a>
+        </li>
+        <li class="pull-right <%= CONST.env=='prd' ? 'hidden':'' %>" style="width:100px;text-align:center;">
+            <a href="#upload" data-toggle="tab">Upload</a>
+        </li>
+        <li class="pull-right active" style="width:100px;text-align:center;">
+            <a href="#ajax" data-toggle="tab">Ajax</a>
+        </li>
+    </ul>
+    <div class="tab-content" style="padding:30px 20px;">
+        <div id="ajax" class="tab-pane fade active in">
+            <div class="clearfix">
+                <div class="pull-left" style="width:400px;">
+                    <form class="">
+                        <div class="clearfix">
+                            <div class="pull-left" style="line-height:25px;">
+                                <span class="label label-default" style="font-size:15px;font-family:monospace;">API</span>
+                            </div>
+                            <div class="pull-right" style="width:100px;">
+                                <select class="site-select api-method" style="width:100%;height:25px;padding:0px 8px;background-color:#f7f8f9;border:0px;">
+                                    <option value="GET">GET</option>
+                                    <option value="POST" selected>POST</option>
+                                    <option value="PUT">PUT</option>
+                                    <option value="DELETE">DELETE</option>
+                                    <option value="HEAD">HEAD</option>
+                                    <option value="OPTIONS">OPTIONS</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix" style="margin-top:10px;border-bottom:1px solid #e1e2e3;">
+                            <input type="text" class="api-url" style="width:100%;padding:10px;background-color:#f7f8f9;border:0px;"
+                                value="/common/geo/country" placeholder="e.g., /module/api" />
+                        </div>
+                        <br><br>
+                        <div class="clearfix" style="line-height:25px;">
+                            <div class="pull-left">
+                                <span class="label label-default" style="font-size:15px;font-family:monospace;">Headers</span>
+                            </div>
+                            <div class="pull-right" style="width:30px;" align="center">
+                                <a class="add-ajax-headers-param-btn site-a site-hover-transition text-muted">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ajax-headers ajax-param-list clearfix">
+                            <%= new EJS({ text: ejs_ajax_param }).render({}) %>
+                            <%= new EJS({ text: ejs_ajax_param }).render({}) %>
+                        </div>
+                        <br><br>
+                        <div class="clearfix" style="line-height:25px;">
+                            <div class="pull-left">
+                                <span class="label label-default" style="font-size:15px;font-family:monospace;">QueryString</span>
+                            </div>
+                            <div class="pull-right" style="width:30px;" align="center">
+                                <a class="add-ajax-querystring-param-btn site-a site-hover-transition text-muted">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ajax-querystring ajax-param-list clearfix">
+                            <%= new EJS({ text: ejs_ajax_param }).render({}) %>
+                        </div>
+                        <br><br>
+                        <div class="clearfix">
+                            <div class="pull-left" style="line-height:25px;">
+                                <span class="label label-default" style="font-size:15px;font-family:monospace;">Body</span>
+                            </div>
+                        </div>
+                        <div class="clearfix" style="margin-top:10px;">
+                            <textarea class="param-json" style="width:100%;padding:10px;line-height:20px;border:0px;background-color:#f7f8f9;resize:vertical;" 
+                                rows="3" placeholder='e.g., { "x": 1, "y": 2 }'>{ "country": "CN" }</textarea>
+                        </div>
+                        <br>
+                        <div class="clearfix">
+                            <a class="btn btn-info btn-block btn-sm submit-ajax-btn" style="padding:10px 0px;" data-loading-text="Submitting">
+                                <i class="fa fa-check"></i>
+                                <span>Submit</span>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <div class="" style="margin-left:450px;overflow:auto;">
+                    <div class="clearfix">
+                        <div class="pull-left" style="line-height:25px;">
+                            <span class="label label-default" style="font-size:15px;font-family:monospace;">REQ</span>
+                        </div>
+                        <div class="" style="min-height:25px;line-height:25px;margin-left:75px;padding:0px 10px;background-color:#f7f8f9;">
+                            <span class="request-error"></span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="clearfix">
+                        <div class="pull-left" style="line-height:25px;">
+                            <span class="label label-default" style="font-size:15px;font-family:monospace;">RES</span>
+                        </div>
+                        <div class="" style="height:150px;line-height:20px;margin-left:75px;padding:5px 10px;background-color:#f7f8f9;overflow:auto;">
+                            <span class="response-header"></span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="" style="padding:10px 0px;margin-left:75px;background-color:#f7f8f9;position:relative;">
+                        <div class="output-text site-text-wrap" style="height:250px;line-height:20px;padding:0px 10px;overflow:auto;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="upload" class="tab-pane fade">
+            <div class="clearfix">
+                <div class="pull-left" style="width:400px;">
+                    <form id="upload_image_form">
+                        <div class="clearfix">
+                            <div class="pull-left" style="line-height:25px;">
+                                <span class="label label-default" style="font-size:15px;font-family:monospace;">Image</span>
+                            </div>
+                            <div class="pull-right" style="width:100px;">
+                                <select name="scene" class="site-select" style="width:100%;height:25px;padding:0px 8px;background-color:#f7f8f9;border:0px;">
+                                    <option value="user/avatar">user/avatar</option>
+                                </select>
+                            </div>
+                        </div>
+                        <style>
+                        .site-img {
+                            width: 125px;
+                            margin: 0px;
+                            padding: 0px;
+                        }
+
+                        .site-img > img {
+                            width: 125px;
+                            height: 125px;
+                        }
+                        </style>
+                        <div class="clearfix" style="margin-top:10px;padding:10px;background-color:#f7f8f9;">
+                            <div class="pull-left">
+                                <div class="fileinput fileinput-new" style="margin:0px;" data-provides="fileinput">
+                                    <div class="" style="background-color:white;"> 
+                                        <div class="fileinput-new" data-trigger="fileinput">
+                                            <div class="thumbnail site-img" style="margin:0px;">
+                                                <img data-src="holder.js/125x125?size=9&fg=fff&bg=000&text=click to choose" 
+                                                    style="width:125px;height:125px;"/>
+                                            </div>
+                                        </div>
+                                        <div class="fileinput-exists" data-trigger="fileinput">
+                                            <div class="fileinput-preview thumbnail site-img" style="display:table-cell;"></div>
+                                        </div>
+                                        <div class="btn-file clearfix">
+                                            <input type="file" name="image">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="" style="margin-left:135px;line-height:20px;color:#bbb;">
+                                <span>[ format support ]</span>
+                                <br>
+                                <span>JPEG / PNG / BMP / GIF / WEBP</span>
+                                <br><br>
+                                <span>[ size limit ]</span>
+                                <br>
+                                <span>5M</span>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="clearfix">
+                            <a class="btn btn-info btn-block btn-sm submit-upload-image-btn" style="padding:10px 0px;" data-loading-text="Loading">
+                                <i class="fa fa-check"></i>
+                                <span class="">Upload</span>
+                            </a>
+                        </div>
+                    </form>
+                    <form id="upload_file_form" style="margin-top:150px;">
+                        <div class="clearfix" style="line-height:25px;">
+                            <div class="pull-left" style="line-height:25px;">
+                                <span class="label label-default" style="font-size:15px;font-family:monospace;">File</span>
+                            </div>
+                        </div>
+                        <div class="clearfix" style="margin-top:10px;">
+                            <input name="file" type="file" class="hidden">
+                            <input type="text" class="upload-file" style="width:100%;padding:10px;background-color:#f7f8f9;border:0px;"
+                                placeholder="click to choose" readonly>
+                        </div>
+                        <br>
+                        <div class="clearfix">
+                            <a class="btn btn-info btn-block btn-sm submit-upload-file-btn" style="padding:10px 0px;" data-loading-text="Loading">
+                                <i class="fa fa-check"></i>
+                                <span class="">Upload</span>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+                <div class="" style="margin-left:450px;overflow:auto;">
+                    <div class="clearfix">
+                        <div class="pull-left" style="line-height:25px;">
+                            <span class="label label-default" style="font-size:15px;font-family:monospace;">REQ</span>
+                        </div>
+                        <div class="" style="min-height:25px;line-height:25px;margin-left:75px;padding:0px 10px;background-color:#f7f8f9;">
+                            <span class="request-error"></span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="clearfix">
+                        <div class="pull-left" style="line-height:25px;">
+                            <span class="label label-default" style="font-size:15px;font-family:monospace;">RES</span>
+                        </div>
+                        <div class="" style="height:150px;line-height:20px;margin-left:75px;padding:5px 10px;background-color:#f7f8f9;overflow:auto;">
+                            <span class="response-header"></span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="" style="padding:10px 0px;margin-left:75px;background-color:#f7f8f9;position:relative;">
+                        <div class="output-text site-text-wrap" style="height:250px;line-height:20px;padding:0px 10px;overflow:auto;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="mqtt" class="tab-pane fade">
+            <div class="clearfix">
+                <div class="pull-left" style="width:400px;"> 
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <a class="site-a" href="javascript:void(0)" onclick="$('.connect-body').toggleClass('hidden')">
+                                        <b class="text-muted">Configure</b>
+                                    </a>
+                                </div>
+                                <div class="pull-right">
+                                    <a class="mqtt-connect-broker-btn site-a" data-loading-text="Loading">
+                                        <span>connect</span>
+                                    </a>
+                                    <a class="mqtt-disconnect-broker-btn site-a hidden" data-loading-text="Loading">
+                                        <span>disconnect</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body connect-body">
+                            <div class="clearfix">
+                                <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">Host</span>
+                                </div>
+                                <div class="clearfix" style="margin-left:90px;border-bottom:1px solid #e1e2e3;">
+                                    <input name="mqtt_host" type="text" class="" style="width:100%;border:0px;padding:5px 8px;" 
+                                        value="<%= CONST.mqtt.host %>" placeholder="Host">
+                                </div>
+                            </div>
+                            <div class="clearfix" style="margin-top:10px;">
+                                <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">Port</span>
+                                </div>
+                                <div class="pull-left" style="width:60px;margin-left:15px;border-bottom:1px solid #e1e2e3;">
+                                    <input name="mqtt_port" type="number" class="" style="width:100%;border:0px;padding:5px 8px;" 
+                                        value="<%= CONST.mqtt.port %>" placeholder="Port">
+                                </div>
+                                <div class="pull-right" style="width:45px;margin-left:15px;border-bottom:1px solid #e1e2e3;">
+                                    <input name="mqtt_keep_alive" type="number" style="width:100%;border:0px;padding:5px 8px;" value="60" placeholder="seconds">
+                                </div>
+                                <div class="pull-right" style="width:90px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <b style="color:#bbb;">Keep Alive</b>
+                                </div>
+                            </div>
+                            <div class="clearfix" style="margin-top:10px;">
+                                <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">Auth</span>
+                                </div>
+                                <div class="clearfix" style="margin-left:90px;border-bottom:1px solid #e1e2e3;">
+                                    <input name="mqtt_username" type="text" class="" style="width:100%;border:0px;padding:5px 8px;" 
+                                        value="<%= CONST.mqtt.username %>" placeholder="username">
+                                </div>
+                            </div>
+                            <div class="clearfix" style="margin-top:10px;">
+                                <div class="clearfix" style="margin-left:90px;border-bottom:1px solid #e1e2e3;">
+                                    <input name="mqtt_password" type="text" class="" style="width:100%;border:0px;padding:5px 8px;" 
+                                        value="<%= CONST.mqtt.password %>" placeholder="password">
+                                </div>
+                            </div>
+                            <div class="clearfix" style="margin-top:10px;">
+                                <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <a class="generate-mqtt-clientid-btn site-a" href="javascript:void(0)">
+                                        <span style="color:#bbb;">Client</span>
+                                    </a>
+                                </div>
+                                <div class="" style="margin-left:90px;border-bottom:1px solid #e1e2e3;">
+                                    <input name="mqtt_client_id" type="text" class="" style="width:100%;border:0px;padding:5px 8px;" value="" placeholder="clientid">
+                                </div>
+                            </div>
+                            <div class="clearfix" style="margin-top:10px;">
+                                <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">Flags</span>
+                                </div>
+                                <div class="pull-left" style="width:25px;margin-left:15px;line-height:25px;" align="center">
+                                    <input name="mqtt_clean_session" type="checkbox" style="width:15px;height:15px;margin:0px;" checked />
+                                </div>
+                                <div class="pull-left" style="line-height:25px;">
+                                    <span>Clean Session</span>
+                                </div>
+                                <div class="pull-left" style="width:25px;margin-left:45px;line-height:25px;" align="center">
+                                    <input name="mqtt_use_ssl" type="checkbox" style="width:15px;height:15px;margin:0px;" <%= CONST.mqtt.ssl ? 'checked':'' %>/>
+                                </div>
+                                <div class="pull-left" style="line-height:25px;">
+                                    <span>SSL</span>
+                                </div>
+                                <div class="pull-right" style="line-height:25px;">
+                                    <span>LWT</span>
+                                </div>
+                                <div class="pull-right" style="width:25px;line-height:25px;" align="center">
+                                    <input type="checkbox" class="toggle-lwt" style="width:15px;height:15px;margin:0px;" 
+                                        onchange="$('.will-config').toggleClass('hidden')" />
+                                </div>
+                            </div>
+                            <div class="will-config hidden">
+                                <div class="" style="margin:10px 0px;padding:10px;background-color:#f7f8f9;" align="center">
+                                    <span class="text-muted">Last Will & Testament</span>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                        <span style="color:#bbb;">Topic</span>
+                                    </div>
+                                    <div class="" style="margin-left:90px;border-bottom:1px solid #e1e2e3;">
+                                        <input name="mqtt_will_topic" type="text" class="" style="width:100%;border:0px;padding:5px 8px;" 
+                                            value="topic/will" placeholder="Topic">
+                                    </div>
+                                </div>
+                                <div class="clearfix" style="margin-top:10px;">
+                                    <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                        <span style="color:#bbb;">QoS</span>
+                                    </div>
+                                    <div class="" style="margin-left:90px;">
+                                        <div class="pull-left" style="border-bottom:1px solid #e1e2e3;">
+                                            <select name="mqtt_will_qos" class="site-select" style="height:25px;padding:0px 8px;border:0px;background-color:white;">
+                                                <option value="0">0 - At most once</option>
+                                                <option value="1">1 - At least once</option>
+                                                <option value="2">2 - Exactly once</option>
+                                            </select>
+                                        </div>
+                                        <div class="pull-right" style="width:45px;margin-left:15px;border-bottom:1px solid #e1e2e3;">
+                                            <select name="mqtt_will_retained" class="site-select" 
+                                                style="width:100%;height:25px;padding:0px 8px;border:0px;background-color:white;">
+                                                <option value="N">No</option>
+                                                <option value="Y">Yes</option>
+                                            </select>
+                                        </div>
+                                        <div class="pull-right" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                            <span style="color:#bbb;">Retained</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix" style="margin-top:10px;">
+                                    <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                        <span style="color:#bbb;">Payload</span>
+                                    </div>
+                                    <div class="" style="margin-left:90px;border-bottom:1px solid #e1e2e3;">
+                                        <textarea name="mqtt_will_payload" 
+                                            style="width:100%;border:0px;padding:2px 8px;line-height:20px;resize:vertical;" 
+                                            rows="2" placeholder="Payload String">{ "content" : "last will" }</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <a class="site-a" href="javascript:void(0)" onclick="$('.subscribe-body').toggleClass('hidden')">
+                                        <b class="text-muted">Subscribe</b>
+                                    </a>
+                                </div>
+                                <div class="pull-right">
+                                    <a class="mqtt-subscribe-topic-btn site-a" data-loading-text="Loading">
+                                        <span>add</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body subscribe-body">
+                            <div class="clearfix">
+                                <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">Topic</span>
+                                </div>
+                                <div class="" style="margin-left:90px;border-bottom:1px solid #e1e2e3;">
+                                    <input name="mqtt_subscribe_topic" type="text" class="" style="width:100%;border:0px;padding:5px 8px;" 
+                                        value="topic/#" placeholder="Subscribe topic">
+                                </div>
+                            </div>
+                            <div class="clearfix" style="margin-top:10px;">
+                                <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">QoS</span>
+                                </div>
+                                <div class="pull-left" style="margin-left:15px;border-bottom:1px solid #e1e2e3;">
+                                    <select name="mqtt_subscribe_qos" class="site-select" style="height:25px;padding:0px 8px;border:0px;background-color:white;">
+                                        <option value="0">0 - At most once</option>
+                                        <option value="1">1 - At least once</option>
+                                        <option value="2">2 - Exactly once</option>
+                                    </select>
+                                </div>
+                                <div class="pull-right" style="width:50px;margin-left:15px;border-bottom:1px solid #e1e2e3;">
+                                    <input name="mqtt_subscribe_timeout" type="number" 
+                                        style="width:100%;border:0px;padding:5px 8px;text-align:center;" 
+                                        value="5" placeholder="Seconds" title="Seconds">
+                                </div>
+                                <div class="pull-right" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">Timeout</span>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="subscribe-list" style="padding:10px;border:1px dashed #e1e2e3;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-left:400px;padding-left:20px;overflow:auto;"> 
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <a class="site-a" href="javascript:void(0)" onclick="$('.publish-body').toggleClass('hidden')">
+                                        <b class="text-muted">Publish</b>
+                                    </a>
+                                </div>
+                                <div class="pull-right">
+                                    <a class="mqtt-publish-message-btn site-a" data-loading-text="Loading">
+                                        <span>send</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body publish-body">
+                            <div class="clearfix">
+                                <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">Topic</span>
+                                </div>
+                                <div class="pull-left" style="width:200px;margin-left:15px;border-bottom:1px solid #e1e2e3;">
+                                    <input name="mqtt_publish_topic" type="text" class="" style="width:100%;border:0px;padding:5px 8px;" 
+                                        value="topic/javascript" placeholder="Publish topic" />
+                                </div>
+                                <div class="pull-right" style="width:45px;margin-left:15px;border-bottom:1px solid #e1e2e3;">
+                                    <select name="mqtt_publish_retained" class="site-select" 
+                                        style="width:100%;height:25px;padding:0px 8px;border:0px;background-color:white;">
+                                        <option value="N">No</option>
+                                        <option value="Y">Yes</option>
+                                    </select>
+                                </div>
+                                <div class="pull-right" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">Retained</span>
+                                </div>
+                                <div class="pull-right" style="margin-left:15px;margin-right:30px;border-bottom:1px solid #e1e2e3;">
+                                    <select name="mqtt_publish_qos" class="site-select" style="height:25px;padding:0px 8px;border:0px;background-color:white;">
+                                        <option value="0">0 - At most once</option>
+                                        <option value="1">1 - At least once</option>
+                                        <option value="2">2 - Exactly once</option>
+                                    </select>
+                                </div>
+                                <div class="pull-right" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">QoS</span>
+                                </div>
+                            </div>
+                            <div class="clearfix" style="margin-top:10px;">
+                                <div class="pull-left" style="width:75px;line-height:25px;background-color:#f7f8f9;" align="center">
+                                    <span style="color:#bbb;">Payload</span>
+                                </div>
+                                <div class="clearfix" style="margin-left:90px;border-bottom:1px solid #e1e2e3;">
+                                    <textarea name="mqtt_publish_payload" 
+                                        style="width:100%;border:0px;padding:2px 8px;line-height:20px;resize:vertical;" 
+                                        rows="4" placeholder="Payload String">{ "content" : "hello world" }</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="clearfix">
+                                <div class="pull-left">
+                                    <b class="text-muted">History</b>
+                                </div>
+                                <div class="pull-right">
+                                    <a class="mqtt-clear-message-btn site-a">
+                                        <span>clear</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="mqtt-history-message-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

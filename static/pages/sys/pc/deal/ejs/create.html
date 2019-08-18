@@ -1,0 +1,251 @@
+
+<div class="center-block clearfix" style="width:1024px;padding:30px 20px;">
+    <ul class="nav nav-tabs" style="padding:10px 20px 0px 10px;">
+        <li class="pull-right active" style="width:100px;">
+            <a style="padding:10px 0px;text-align:center;" href="#profile_tab" data-toggle="tab">
+                <span>Profile</span>
+            </a>
+        </li>
+        <li class="" style="line-height:35px;">
+            <b style="font-size:15px;">Create Deal</b>
+        </li>
+    </ul>
+    <form class="create-deal-form" style="margin-top:30px;">
+        <div class="clearfix">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Title - EN</span>
+            </div>
+            <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                <input name="title" type="text" class="" style="width:100%;padding:5px 8px;border:0px;"
+                    placeholder="English title" />
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Title - CN</span>
+            </div>
+            <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                <input name="title_cn" type="text" class="" style="width:100%;padding:5px 8px;border:0px;"
+                    placeholder="Chinese title" />
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Categories</span>
+            </div>
+            <div class="" style="margin-left:120px;padding:6px 8px;border-bottom:1px solid #e1e2e3;">
+                <select name="categories" multiple>
+                    <% for (var id in categories) { %>
+                    <option value="<%= id %>"><%= categories[id].en || categories[id].cn %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:50%;padding-right:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Value - TXT</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <input name="value_txt" type="text" class="" style="width:100%;padding:5px 8px;border:0px;"
+                        placeholder="Actual currency" />
+                </div>
+            </div>
+            <div class="pull-left" style="width:50%;padding-left:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Value - USD</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <div class="pull-right" style="width:50px;padding-top:5px;" align="center">
+                        <span class="text-muted">USD</span>
+                    </div>
+                    <div class="" style="margin-right:50px;">
+                        <input name="value" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" placeholder="US dollars" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:50%;padding-right:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Date</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <div class="pull-right" style="width:30px;line-height:25px;" align="center">
+                        <a class="clear-date-btn site-a site-hover-transition text-muted">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    </div>
+                    <div class="" style="margin-right:30px;">
+                        <input name="date" type="text" class="deal-date"
+                            style="width:100%;border:0px;padding:5px 8px;background-color:white;" placeholder="Transaction date" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-left" style="width:50%;padding-left:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Status</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <select name="status" style="width:100%;height:30px;border:0px;background-color:white;">
+                        <option value="1">Completed</option>
+                        <option value="2">Published</option>
+                        <option value="3">Canceled</option>
+                        <option value="4">Uncertain</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix hidden" style="margin-top:15px;">
+            <div class="pull-left" style="width:50%;padding-right:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Access</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <select name="access" style="width:100%;height:30px;border:0px;background-color:white;">
+                        <option value="1">Whole</option>
+                        <option value="2">Partial</option>
+                        <option value="3">Classifed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="pull-left" style="width:50%;padding-left:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Review</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <select name="review" style="width:100%;height:30px;border:0px;background-color:white;">
+                        <option value="1">Confirmed</option>
+                        <option value="2" selected>Not completed</option>
+                        <option value="3">With questions</option>
+                        <option value="4">For reference</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        <div class="clearfix">
+            <div class="pull-left" style="width:40%;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <a class="site-a site-hover-transition" style="color:#bbb;" href="javascript:void(0)" onclick="$('input.uniqueness').rating('rate',0)">
+                        <span>Uniqueness</span>
+                    </a>
+                </div>
+                <div class="" style="margin-left:125px;">
+                    <input name="uniqueness" type="hidden" class="uniqueness rating" />
+                </div>
+            </div>
+            <div class="pull-left" style="width:60%;">
+                <input name="uniqueness_remark" type="text" class="text-muted"
+                    style="width:100%;padding:5px 8px;border:0px;background-color:#f7f8f9;" placeholder="remarks ..." />
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:40%;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <a class="site-a site-hover-transition" style="color:#bbb;" href="javascript:void(0)" onclick="$('input.creativity').rating('rate',0)">
+                        <span>Creativity</span>
+                    </a>
+                </div>
+                <div class="" style="margin-left:125px;">
+                    <input name="creativity" type="hidden" class="creativity rating" />
+                </div>
+            </div>
+            <div class="pull-left" style="width:60%;">
+                <input name="creativity_remark" type="text" class="text-muted"
+                    style="width:100%;padding:5px 8px;border:0px;background-color:#f7f8f9;" placeholder="remarks ..." />
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:40%;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <a class="site-a site-hover-transition" style="color:#bbb;" href="javascript:void(0)" onclick="$('input.complexity').rating('rate',0)">
+                        <span>Complexity</span>
+                    </a>
+                </div>
+                <div class="" style="margin-left:125px;">
+                    <input name="complexity" type="hidden" class="complexity rating" />
+                </div>
+            </div>
+            <div class="pull-left" style="width:60%;">
+                <input name="complexity_remark" type="text" class="text-muted"
+                    style="width:100%;padding:5px 8px;border:0px;background-color:#f7f8f9;" placeholder="remarks ..." />
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:40%;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <a class="site-a site-hover-transition" style="color:#bbb;" href="javascript:void(0)" onclick="$('input.influence').rating('rate',0)">
+                        <span>Influence</span>
+                    </a>
+                </div>
+                <div class="" style="margin-left:125px;">
+                    <input name="influence" type="hidden" class="influence rating" />
+                </div>
+            </div>
+            <div class="pull-left" style="width:60%;">
+                <input name="influence_remark" type="text" class="text-muted"
+                    style="width:100%;padding:5px 8px;border:0px;background-color:#f7f8f9;" placeholder="remarks ..." />
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:40%;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <a class="site-a site-hover-transition" style="color:#bbb;" href="javascript:void(0)" onclick="$('input.deduction').rating('rate',0)">
+                        <span>Deduction</span>
+                    </a>
+                </div>
+                <div class="" style="margin-left:125px;">
+                    <input name="deduction" type="hidden" class="deduction rating" />
+                </div>
+            </div>
+            <div class="pull-left" style="width:60%;">
+                <input name="deduction_remark" type="text" class="text-muted"
+                    style="width:100%;padding:5px 8px;border:0px;background-color:#f7f8f9;" placeholder="remarks ..." />
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:30px;">
+            <div class="pull-right">
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a style="width:75px;padding:5px;text-align:center;" href="#raw_tab" data-toggle="tab">
+                            <span>RAW</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a style="width:75px;padding:5px;text-align:center;" href="#note_tab" data-toggle="tab">
+                            <span>EN</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a style="width:75px;padding:5px;text-align:center;" href="#note_cn_tab" data-toggle="tab">
+                            <span>CN</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="" style="width:100px;margin-right:200px;line-height:30px;background-color:#f7f8f9;" align="center">
+                <span style="color:#bbb;">Note</span>
+            </div>
+        </div>
+        <div class="tab-content" style="margin-top:5px;">
+            <div id="raw_tab" class="tab-pane fade in active">
+                <script id="raw_editor" type="text/plain" style="width:100%;height:300px;"></script>
+            </div>
+            <div id="note_tab" class="tab-pane fade">
+                <script id="note_editor" type="text/plain" style="width:100%;height:300px;"></script>
+            </div>
+            <div id="note_cn_tab" class="tab-pane fade">
+                <script id="note_cn_editor" type="text/plain" style="width:100%;height:300px;"></script>
+            </div>
+        </div>
+    </form>
+    <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+        <a class="create-deal-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+            <i class="fa fa-check"></i>
+            <span>SUBMIT</span>
+        </a>
+    </div>
+</div>
+
+

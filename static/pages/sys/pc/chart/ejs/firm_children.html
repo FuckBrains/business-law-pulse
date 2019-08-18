@@ -1,0 +1,18 @@
+
+<div class="" style="margin-top:15px;">
+    <% for (var i=0;i<firms.length;i++) { %>
+    <% var firm = firms[i]; %>
+    <div class="clearfix" style="padding:5px 0px;">
+        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+            <input name="firm" type="checkbox" style="width:15px;height:15px;margin:0px 10px;" value="<%= firm.id %>" checked />
+        </div>
+        <div class="" style="margin-left:120px;padding:5px 8px;">
+            <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/firm/<%= firm.id %>/update" target="_blank">
+                <span><%= firm.name %></span>
+            </a>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+

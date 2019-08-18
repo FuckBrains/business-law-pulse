@@ -1,0 +1,29 @@
+
+<% if (lawyers.length==0) { %>
+<div class="" style="padding:10px 0px;">
+    <span style="color:#bbb;">N/A</span>
+</div>
+<% } else { %>
+<div class="clearfix">
+    <% for (var i=0;i<lawyers.length;i=i+5) { %>
+    <% for (var j=i;j<Math.min(i+5,lawyers.length);j++) { %>
+    <% var lawyer = lawyers[j] %>
+    <div class="pull-left" style="width:20%;">
+        <a class="site-a site-hover-transition text-muted" href="/law/lawyer/<%= lawyer.id %>/detail">
+            <div class="" style="padding:20px;">
+                <div class="" align="center">
+                    <div class="img-circle site-shadow site-background"
+                        style="width:75px;height:75px;background-image:url('<%= lawyer.avatar.thumbnails[1].url %>');"></div>
+                </div>
+                <div class="" style="margin-top:10px;" align="center">
+                    <span style="font-size:12px;"><%= lawyer.name || lawyer.name_cn %></span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <% } %>
+    <% } %>
+</div>
+<% } %>
+
+

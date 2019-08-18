@@ -1,0 +1,147 @@
+
+<div class="center-block clearfix" style="width:1024px;padding:30px 20px;">
+    <div class="clearfix" style="padding:10px;">
+        <div class="pull-left">
+            <b style="font-size:15px;">Ranking of deals</b>
+        </div>
+    </div>
+    <div class="" style="padding:20px;background-color:#f5f6f7;">
+        <div class="clearfix">
+            <div class="pull-left" style="width:50%;padding-right:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                    <span style="color:#bbb;">Start</span>
+                </div>
+                <div class="" style="margin-left:120px;">
+                    <input id="chart_start_time" name="start" type="hidden"
+                        value="<%= new Date('2016-01-01T00:00:00+08:00').format('yyyy-mm') %>" />
+                    <input type="text" class="chart-start-time" style="width:100%;border:0px;padding:5px 8px;" placeholder="MM / YYYY" readonly>
+                </div>
+            </div>
+            <div class="pull-left" style="width:50%;padding-left:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                    <span style="color:#bbb;">End</span>
+                </div>
+                <div class="" style="margin-left:120px;">
+                    <input id="chart_end_time" name="end" type="hidden"
+                        value="<%= new Date('2016-12-01T00:00:00+08:00').format('yyyy-mm') %>" />
+                    <input type="text" class="chart-end-time" style="width:100%;border:0px;padding:5px 8px;" placeholder="MM / YYYY" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="advance-filter hidden" style="margin-top:-20px;padding:20px;background-color:#f5f6f7;">
+        <div class="clearfix">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                <span style="color:#bbb;">Categories</span>
+            </div>
+            <div class="" style="margin-left:120px;padding:6px 8px;background-color:white;">
+                <select name="categories" multiple data-field-type="number">
+                    <% for (var id in categories) { %>
+                    <option value="<%= id %>"><%= categories[id].en || categories[id].cn %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                <span style="color:#bbb;">Industries</span>
+            </div>
+            <div class="" style="margin-left:120px;padding:6px 8px;background-color:white;">
+                <select name="industries" multiple data-field-type="number">
+                    <% for (var id in industries) { %>
+                    <option value="<%= id %>"><%= industries[id].en || industries[id].cn %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:15px;">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                <span style="color:#bbb;">Areas</span>
+            </div>
+            <div class="" style="margin-left:120px;padding:6px 8px;background-color:white;">
+                <select name="areas" multiple data-field-type="number">
+                    <% for (var id in areas) { %>
+                    <option value="<%= id %>"><%= areas[id].en || areas[id].cn %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top:-15px;padding:15px;background-color:#f5f6f7;">
+        <div class="pull-right">
+            <a class="site-a site-hover-transition advance-filter btn btn-link btn-xs" style="color:#bbb;"
+                onclick="$('.advance-filter').toggleClass('hidden');">
+                <i class="fa fa-chevron-down"></i>
+                <span>Filter</span>
+            </a>
+            <a class="site-a site-hover-transition advance-filter btn btn-link btn-xs hidden" style="color:#bbb;"
+                onclick="$('.advance-filter').toggleClass('hidden');">
+                <i class="fa fa-chevron-up"></i>
+                <span>Filter</span>
+            </a>
+            <span style="margin:0px 10px;color:#bbb;">|</span>
+            <a class="site-a render-chart-btn btn btn-link btn-xs">
+                <i class="fa fa-flash text-primary"></i>
+                <span class="text-primary">Analyse</span>
+            </a>
+        </div>
+    </div>
+    <br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Deal</b>
+    </div>
+    <div class="ranking-deal-list" style="padding:30px 0px;"><%= ejs.empty_data %></div>
+    <br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Firm</b>
+    </div>
+    <div class="ranking-firm-list" style="padding:30px 0px;"><%= ejs.empty_data %></div>
+    <br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Lawyer</b>
+    </div>
+    <div class="ranking-lawyer-list" style="padding:30px 0px;"><%= ejs.empty_data %></div>
+</div>
+
+
+<!-- 律所交易列表 -->
+<div id="firm_deal_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:500px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Deals of related firm</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <div class="firm-deal-list" style="max-height:450px;overflow:auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 律师交易列表 -->
+<div id="lawyer_deal_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:500px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Deals of related lawyer</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <div class="lawyer-deal-list" style="max-height:450px;overflow:auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,33 @@
+
+<div class="center-block" style="" align="center">
+    <div class="" style="width:8em;margin-top:3em;">
+        <span class="text-muted" style="font-size:0.8em;">X-Debug</span>
+    <div>
+    <div class="clearfix" style="margin-top:0.5em;">
+        <div class="btn-group">
+            <a class="debug-on-btn btn <%= window.sessionStorage.getItem('debug')=='1' ? 'btn-primary':'btn-default' %> btn-xs" 
+                style="width:4em;padding:0.3em 0;font-size:1em;">
+                <span style="font-size:0.8em;">ON</span>
+            </a>
+            <a class="debug-off-btn btn <%= window.sessionStorage.getItem('debug')=='1' ? 'btn-default':'btn-primary' %> btn-xs" 
+                style="width:4em;padding:0.3em 0;font-size:1em;">
+                <span style="font-size:0.8em;">OFF</span>
+            </a>
+        </div>
+    </div>
+    <br><br>
+    <div class="">
+        <span class="text-muted" style="font-size:0.8em;">Tools</span>
+    <div>
+    <div class="" style="width:8em;margin-top:0.5em;">
+        <a class="btn btn-default btn-block btn-xs" style="padding:0.5em 0;font-size:1em;" href="/api/config">
+            <span style="margin-left:0.3em;font-size:0.8em;">CONFIG</span>
+        </a>
+    </div>
+    <div class="" style="width:8em;margin-top:0.5em;">
+        <a class="btn btn-default btn-block btn-xs" style="padding:0.5em 0;font-size:1em" href="/api/mqtt">
+            <span style="margin-left:0.3em;font-size:0.8em;">MQTT</span>
+        </a>
+    </div>
+</div>
+

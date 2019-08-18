@@ -1,0 +1,42 @@
+
+<% if (firms.length==0) { %>
+<div class="" style="padding:3em 0;" align="center">
+    <b style="color:#bbb;">N/A</b>
+</div>
+<% } else { %>
+<table class="table table-hover" style="margin:0;font-size:0.8em;">
+    <tbody>
+        <% for (var i=0;i<firms.length;i++) { %>
+        <% var firm = firms[i]; %>
+        <tr>
+            <td style="<%= i==0 ? 'border-top:0;':'' %>" align="center">
+                <% if (i<1) { %>
+                <span class="label label-danger" style="font-size:0.8em;vertical-align:middle;"><%= i+1 %></span>
+                <% } else if (i<3) { %>
+                <span class="label label-info" style="font-size:0.8em;vertical-align:middle;"><%= i+1 %></span>
+                <% } else if (i<5) { %>
+                <span class="label label-default" style="font-size:0.8em;vertical-align:middle;"><%= i+1 %></span>
+                <% } else { %>
+                <span style="font-size:0.8em;vertical-align:middle;"><%= i+1 %></span>
+                <% } %>
+            </td>
+            <td style="<%= i==0 ? 'border-top:0;':'' %>">
+                <a class="site-a site-hover-transition" style="color:black;" href="http://<%= CONST.domain.www %>/law/firm/<%= firm.id %>/detail">
+                    <div class="">
+                        <span><%= firm.name || firm.name_cn %></span>
+                    </div>
+                </a>
+            </td>
+            <td style="line-height:0.9em;<%= i==0 ? 'border-top:0;':'' %>" align="center">
+                <% if (firm.volume) { %>
+                <span style="font-size:0.8em;color:#bbb;"><%= firm.volume.shorten().replace(' ','<br>') %></span>
+                <% } else { %>
+                <span>N/A</span>
+                <% } %>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+

@@ -1,0 +1,116 @@
+
+<div class="center-block" style="width:1024px;padding:30px 20px;">
+    <div class="clearfix">
+        <div class="pull-left">
+            <a class="upload-admin-avatar site-a" style="width:100px;height:100px;" data-scene="admin/avatar" data-exist="<%= admin.avatar.thumbnails[0].url %>"></a>
+        </div>
+        <div class="" style="padding-left:20px;overflow:auto;">
+            <ul class="nav nav-tabs" style="padding:60px 20px 0px 0px;">
+                <li class="pull-right" style="width:100px;">
+                    <a style="padding:10px 0px;text-align:center;" href="#audit_tab" data-toggle="tab">
+                        <span>Audit</span>
+                    </a>
+                </li>
+                <li class="pull-right" style="width:100px;">
+                    <a style="padding:10px 0px;text-align:center;" href="#permission_tab" data-toggle="tab">
+                        <span>Permissions</span>
+                    </a>
+                </li>
+                <li class="pull-right active" style="width:100px;">
+                    <a style="padding:10px 20px;text-align:center;" href="#profile_tab" data-toggle="tab">
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li class="" style="line-height:30px;">
+                    <b class="" style="font-size:15px;">Modify Admin</b>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content" style="margin-top:30px;">
+        <div id="profile_tab" class="tab-pane fade in active">
+            <form class="update-profile-form center-block" style="width:50%;padding:20px 0px;">
+                <div class="clearfix">
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span class="text-muted">Name</span>
+                    </div>
+                    <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                        <input name="realname" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                            value="<%= admin.realname %>" placeholder="-- Name --" /> 
+                    </div>
+                </div>
+                <br>
+                <div class="clearfix">
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span class="text-muted">Gender</span>
+                    </div>
+                    <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                        <select name="gender" style="width:100%;height:30px;border:0px;background-color:white;">
+                            <option value="">-- Choose --</option>
+                            <option value="M" <%= admin.gender=='M' ? 'selected':'' %>>Male</option>
+                            <option value="F" <%= admin.gender=='F' ? 'selected':'' %>>Female</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="clearfix">
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span class="text-muted">Email</span>
+                    </div>
+                    <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                        <input name="email" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                            value="<%= admin.email %>" placeholder="-- Email --" /> 
+                    </div>
+                </div>
+                <br>
+                <div class="clearfix">
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span class="text-muted">Cellphone</span>
+                    </div>
+                    <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                        <input name="cellphone" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                            value="<%= admin.cellphone %>" placeholder="-- Cellphone --" /> 
+                    </div>
+                </div>
+            </form>
+            <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-profile-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+        <div id="permission_tab" class="tab-pane fade">
+            <form class="update-permission-form" style="padding:0px 15px;">
+                <div class="">
+                    <span style="font-size:15px;">Admin</span>
+                </div>
+                <br>
+                <div class="row" style="padding:10px;background-color:#f7f8f9;">
+                    <% for (var i=0;i<permissions['admin'].length;i++) { %>
+                    <div class="col-xs-3 checkbox" style="margin:5px 0px;">
+                        <label>
+                            <input name="permission" type="checkbox" value="<%= permissions['admin'][i].value %>" 
+                                <%= (admin.permissions.indexOf(permissions['admin'][i].value) != -1) ? 'checked':'' %>>
+                            <span class="text-muted"><%= permissions['admin'][i].name %></span> 
+                        </label>
+                    </div>
+                    <% } %>
+                </div>
+            </form>
+            <br>
+            <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-permission-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+        <div id="audit_tab" class="tab-pane fade">
+            <div class="" style="padding:10px;">
+                <span class="text-muted">No audit records</span>
+            </div>
+        </div>
+    </div>
+</div>
+

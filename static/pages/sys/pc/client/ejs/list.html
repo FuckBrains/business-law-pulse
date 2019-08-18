@@ -1,0 +1,109 @@
+
+<% if (clients.length==0) { %>
+<div class="" style="padding:20px;">
+    <span style="color:#bbb;">No client records</span>
+</div>
+<% } else { %>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th><div class="text-muted" align="center">Logo</div></th>
+            <th><div class="text-muted">Name</div></th>
+            <th><div class="text-muted">Parent</div></th>
+            <th><div class="text-muted" align="center">Status</div></th>
+            <th><div class="text-muted" align="center">Actions</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<clients.length;i++) { %>
+        <% var client = clients[i]; %>
+        <tr data-client-id="<%= client.id %>">
+            <td style="width:75px;" align="center">
+                <img style="max-width:30px;max-height:30px;" src="<%= client.logo.thumbnails[2].url %>" />
+            </td>
+            <td>
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <span class="label label-primary" style="opacity:0.75;">EN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <span><%= client.name || '-' %></span>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:5px;">
+                    <div class="pull-left">
+                        <span class="label label-danger" style="opacity:0.75;">CN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <span><%= client.name_cn || '-' %></span>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <% if (!!client.parent) { %>
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <span class="label label-primary" style="opacity:0.75;">EN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <span><%= client.parent.name || '-' %></span>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:5px;">
+                    <div class="pull-left">
+                        <span class="label label-danger" style="opacity:0.75;">CN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <span><%= client.parent.name_cn || '-' %></span>
+                    </div>
+                </div>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:75px;" align="center">
+                <% if (client.status==1) { %>
+                <span>Normal</span>
+                <% } else if (client.status==2) { %>
+                <span>Closed</span>
+                <% } else if (client.status==2) { %>
+                <span>Merged</span>
+                <% } %>
+            </td>
+            <td style="width:120px;" align="center">
+                <div class="btn-group">
+                    <a class="btn btn-default btn-sm" style="width:75px;" href="/manage/law/client/<%= client.id %>/update">
+                        <span>Modify</span>
+                    </a>
+                    <a class="btn btn-default btn-sm disabled hidden" style="width:75px;" href="javascript:void(0)">
+                        <span>Locked</span>
+                    </a>
+                    <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret text-muted"></span>
+                    </a>
+                    <ul class="dropdown-menu pull-right" style="width:100px;">
+                        <li>
+                            <a class="remove-client-btn" href="javascript:void(0)">
+                                <div class="clearfix">
+                                    <div class="pull-right">
+                                        <i class="fa fa-angle-right text-muted"></i>
+                                    </div>
+                                    <div class="" style="margin-right:20px;">
+                                        <span>Remove</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="hidden btn btn-link btn-sm disabled" href="javascript:void(0)">
+                                <span>Locked</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+
+

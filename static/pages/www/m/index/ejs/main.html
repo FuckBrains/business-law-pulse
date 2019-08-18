@@ -1,0 +1,83 @@
+
+<div class="center-block">
+    <div class="" style="padding:1em 0.5em;">
+        <img style="width:100%;" src="<%= CONST.static.url %>images/index/banner.jpg" />
+    </div>
+    <div class="" style="padding:0.5em;background-color:#fafafa;">
+        <div class="" style="padding:1em 0;" align="center">
+            <span style="font-size:0.8em;">NUMBER OF TOP DEALS ( PRC, 2016 )</span>
+        </div>
+        <div class="" style="overflow-x:auto;" align="center">
+            <div class="month-count-line" style="width:20em;">
+                <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+            </div>
+        </div>
+        <br>
+        <div class="" style="padding:1em 0;" align="center">
+            <span style="font-size:0.8em;">VOLUME OF TOP DEALS ( PRC, 2016 )</span>
+        </div>
+        <div class="" style="overflow-x:auto;" align="center">
+            <div class="month-volume-bar" style="width:20em;">
+                <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+            </div>
+        </div>
+        <br>
+        <div class="" style="padding:1em 0;" align="center">
+            <span style="font-size:0.8em;color:#bbb;">MORE JURISDICTIONS ARE COMING ...</span>
+        </div>
+    </div>
+    <br>
+    <div class="" style="padding:0.5em;">
+        <div class="clearfix" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+            <div class="pull-left">
+                <b style="font-size:0.8em;color:#0b71bf;">TOP LAW FIRMS</b>
+            </div>
+            <div class="pull-right">
+                <ul id="myTabs" class="nav nav-pills" style="font-size:0.6em;">
+                    <li class="active">
+                        <a href="#prc" style="width:6em;padding:0.4em;" data-toggle="tab" align="center">
+                            <span>PRC</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#global" style="width:6em;padding:0.4em;" data-toggle="tab" align="center">
+                            <span>GLOBAL</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div id="prc" class="tab-pane fade in active">
+                <div class="prc-firm-list">
+                    <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+                </div>
+            </div>
+            <div id="global" class="tab-pane fade">
+                <div class="global-firm-list">
+                    <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+                </div>
+            </div>
+        </div>
+        <div class="" style="margin-top:0.75em;padding:0.5em;font-size:0.75em;color:#ddd;border:1px dashed #ddd;">
+            <span>Data retrieved from January 1, 2016 to December 31, 2016</span>
+        </div>
+    </div>
+    <div class="" style="padding:0.5em;">
+        <div class="clearfix" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+            <div class="pull-left">
+                <b style="font-size:0.8em;color:#0b71bf;">SELECTED DEALS</b>
+            </div>
+            <div class="pull-right">
+                <a class="site-a site-hover-transition" style="color:#bbb;" href="javascript:void(0)">
+                    <span style="font-size:0.8em;">MORE</span>
+                </a>
+            </div>
+        </div>
+        <div class="recent-deal-list">
+            <%= new EJS({ text: ejs.loading }).render({ padding: '5em', font: '3em' }) %>
+        </div>
+    </div>
+</div>
+
+

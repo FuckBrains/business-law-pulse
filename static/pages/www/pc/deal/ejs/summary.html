@@ -1,0 +1,115 @@
+
+<% if ($.isEmptyObject(summary)) { %>
+<div class="" style="margin-top:10px;">
+    <span style="color:#bbb;">N/A</span>
+</div>
+<% } else { %>
+<table class="table table-bordered" style="margin:0px;">
+    <thead>
+        <tr class="active">
+            <th><div class="text-muted" style="padding:5px;">PARTIES</div></th>
+            <th><div class="text-muted" style="padding:5px;">CLIENTS</div></th>
+            <th><div class="text-muted" style="padding:5px;">LAW FIRMS</div></th>
+            <th><div class="text-muted" style="padding:5px;">LAWYERS</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var id in summary) { %>
+
+        <% for (var i=0;i<(summary[id].firms.length || 1);i++) { %>
+        <tr>
+            <% if (i==0) { %>
+            <td style="width:125px;" rowspan="<%= summary[id].firms.length || 1 %>">
+                <div class="" style="padding:5px;">
+                    <% if (!!parties[id]) { %>
+                    <span><%= parties[id].en || parties[id].cn %></span>
+                    <% } else { %>
+                    <span style="color:#bbb;">-</span>
+                    <% } %>
+                </div>
+            </td>
+            <td style="width:300px;" rowspan="<%= summary[id].firms.length || 1 %>">
+                <% if (summary[id].clients.length==0) { %>
+                <div class="" style="padding:5px;color:#bbb;">
+                    <span>-</span>
+                </div>
+                <% } else { %>
+
+                <% summary[id].clients.forEach(function(client) { %>
+                <div class="site-hover-light site-hover-transition" style="margin:5px 0px;padding:5px;">
+                    <div class="">
+                        <span><%= client.name || client.name_cn %></span>
+                    </div>
+                    <div class="" style="font-size:12px;color:#bbb;">
+                        <% client.industries.forEach(function(industry,index) { %>
+                        <span><%= industries[industry].en || industries[industry].cn %></span>
+                        <% if (index<client.industries.length-1) { %>
+                        <span style="margin:0px 5px;">|</span>
+                        <% } %>
+                        <% }) %>
+                    </div>
+                </div>
+                <% }) %>
+
+                <% } %>
+            </td>
+            <% } %>
+            <td style="width:300px;">
+                <% if (summary[id].firms.length==0) { %>
+                <div class="" style="padding:5px;color:#bbb;">
+                    <span>-</span>
+                </div>
+                <% } else { %>
+
+                <% var firm = summary[id].firms[i]; %>
+                <a class="site-a site-hover-transition" style="color:black;" href="/law/firm/<%= firm.id %>/detail">
+                    <div class="site-hover-light" style="margin:5px 0px;padding:5px;">
+                        <div class="">
+                            <span><%= firm.name ||  firm.name_cn %></span>
+                        </div>
+                        <div class="" style="font-size:12px;color:#bbb;">
+                            <% firm.areas.forEach(function(area,index) { %>
+                            <span><%= areas[area].en || areas[area].cn %></span>
+                            <% if (index<firm.areas.length-1) { %>
+                            <span style="margin:0px 5px;">|</span>
+                            <% } %>
+                            <% }) %>
+                        </div>
+                    </div>
+                </a>
+
+                <% } %>
+            </td>
+            <td style="width:150px;">
+                <% if (summary[id].firms.length==0 || summary[id].firms[i].lawyers.length==0) { %>
+                <div class="" style="padding:5px;color:#bbb;">
+                    <span>-</span>
+                </div>
+                <% } else { %>
+
+                <% summary[id].firms[i].lawyers.forEach(function(lawyer) { %>
+                <a class="site-a site-hover-transition" style="color:black;" href="/law/lawyer/<%= lawyer.id %>/detail">
+                    <div class="site-hover-light" style="margin:5px 0px;padding:5px;">
+                        <div class="">
+                            <span><%= lawyer.name || lawyer.name_cn %></span>
+                        </div>
+                        <% if (!!lawyer.role) { %>
+                        <div class="" style="font-size:12px;color:#bbb;">
+                            <span><%= roles[lawyer.role].en ||  roles[lawyer.role].cn %></span>
+                        </div>
+                        <% } %>
+                    </div>
+                </a>
+                <% }) %>
+
+                <% } %>
+            </td>
+        </tr>
+        <% } %>
+
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+
+

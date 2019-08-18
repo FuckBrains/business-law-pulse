@@ -1,0 +1,73 @@
+
+<% if (career.length==0) { %>
+<div class="" style="padding:20px;">
+    <span style="color:#bbb;">No firm records</span>
+</div>
+<% } else { %>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th><div class="text-muted" align="center">Logo</div></th>
+            <th><div class="text-muted">Name</div></th>
+            <th><div class="text-muted" align="center">Start</div></th>
+            <th><div class="text-muted" align="center">End</div></th>
+            <th><div class="text-muted" align="center">Deals</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<career.length;i++) { %>
+        <% var item = career[i]; %>
+        <tr data-firm-id="<%= item.firm.id %>">
+            <td style="width:100px;" align="center">
+                <a class="site-a" href="/manage/law/firm/<%= item.firm.id %>/update" target="_blank">
+                    <img style="max-width:90px;max-height:35px;" src="<%= item.firm.logo.thumbnails[2].url %>" />
+                </a>
+            </td>
+            <td>
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <span class="label label-primary" style="opacity:0.75;">EN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/firm/<%= item.firm.id %>/update" target="_blank">
+                            <span><%= item.firm.name || '-' %></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:5px;">
+                    <div class="pull-left">
+                        <span class="label label-danger" style="opacity:0.75;">CN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/firm/<%= item.firm.id %>/update" target="_blank">
+                            <span><%= item.firm.name_cn || '-' %></span>
+                        </a>
+                    </div>
+                </div>
+            </td>
+            <td style="width:150px;" align="center">
+                <% if (item.start) { %>
+                <span><%= new Date(item.start).format('yyyy-mm-dd') %></span>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:150px;" align="center">
+                <% if (item.end) { %>
+                <span><%= new Date(item.end).format('yyyy-mm-dd') %></span>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:100px;" align="center">
+                <a class="list-firm-deal-btn site-a site-hover-transition" style="color:black;">
+                    <span><%= item.deals.length %></span>
+                </a>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+
+

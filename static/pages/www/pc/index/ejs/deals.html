@@ -1,0 +1,39 @@
+
+<table class="table table-hover">
+    <thead>
+        <tr class="active" style="font-size:12px;">
+            <th><div class="text-muted">DEAL NAMES</div></th>
+            <th><div class="text-muted" align="center">DATE</div></th>
+            <th><div class="text-muted">VALUE ( USD )</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<deals.length;i++) { %>
+        <% var deal = deals[i]; %>
+        <tr>
+            <td>
+                <a class="site-a site-hover-transition" style="color:black;" href="http://<%= CONST.domain.www %>/law/deal/<%= deal.id %>/detail" target="_blank">
+                    <div class="" style="padding:10px 0px;">
+                        <span><%= deal.title || deal.title_cn %></span>
+                    </div>
+                </a>
+            </td>
+            <td class="text-muted" style="width:150px;" align="center">
+                <% if (!!deal.date) { %>
+                <span><%= new Date(deal.date).format('yyyy-mm-dd')  %></span>
+                <% } else { %>
+                <span>-</span>
+                <% } %>
+            </td>
+            <td style="width:150px;">
+                <% if (!!deal.value) { %>
+                <span><%= deal.value.shorten() %></span>
+                <% } else { %>
+                <span style="color:#bbb;">N/A</span>
+                <% } %>
+            </div>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+

@@ -1,0 +1,158 @@
+
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <title>找回密码 | 足球地带</title>
+    </head>
+
+    <body style="margin:0px;">
+        <div style="font-size:14px;font-family:'Microsoft YaHei';background-color:#f7f9fa;"> 
+            <div style="width:100%;max-width:500px;margin:0px auto;padding:30px 0px;">
+                <div style="background-color:white;border-radius:5px;border:1px solid #d9d9d9;box-shadow:3px 3px 3px #e6e6e6;">
+                    <div style="padding:15px 25px;line-height:30px;font-size:1.1em;color:white;background-color:#3593fc;">
+                        <div style="float:left;">
+                            <strong>您好，亲！</strong>
+                        </div>
+                        <div style="float:right;">
+                            <span>▼</span>
+                        </div>
+                        <div style="clear:both;"></div>
+                    </div>
+                    <div class="content" style="padding:10px 25px;line-height:25px;">
+                        <div style="color:#bbb;">
+                            <p>
+                                <span>您收到这封邮件，是因为在</span>
+                                <a style="margin:0px 5px;text-decoration:none;color:#729ddd;" href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/" 
+                                    target="_blank" title="访问官网">
+                                    <b style="margin:0px 5px;">足球地带</b>
+                                </a>
+                                <span>的忘记密码中进行操作。</span>
+                                <span>如果您没有进行上述操作，请忽略此邮件。您不需要退订或进行其他进一步的操作。</span>
+                            </p>
+                            <p>
+                                <span>您只需点击下面 "验证邮箱" 的按钮，即可访问重置密码的页面：</span>
+                            </p>
+                        </div>
+                        <div style="margin:30px auto;" align="center">
+                            <a style="text-decoration:none;" 
+                                href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/user/email/?scene=retrieve&email={{ email }}&validation={{ validation }}"
+                                target="_blank">
+                                <div style="width:250px;padding:15px 0px;display:inline-block;background-color:#3593fc;border-radius:5px;">
+                                    <span style="font-size:1.2em;color:white;">重 置 密 码</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div style="color:#bbb;">
+                            <p>
+                                <span>如果点击上面按钮无法跳转至验证页面，请尝试点击以下链接，或将下面地址手工粘贴到浏览器地址栏再访问</span>
+                            </p>
+                        </div>
+                        <div style="padding:15px 20px;border:1px dashed #e1e2e3;">
+                            <a style="color:#729ddd;word-wrap:break-word;word-break:break-all;overflow:hidden;" 
+                                href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/user/email/?scene=retrieve&email={{ email }}&validation={{ validation }}"
+                                target="_blank">
+                                <span>http://{{ CONST.domain.www }}/user/email/?scene=retrieve&validation={{ validation }}</span>
+                            </a>
+                        </div>
+                        <br>
+                        <div style="color:#777777;">
+                            <span>此致，</span>
+                            <br>
+                            <span>足球地带 管理团队</span>
+                        </div>
+                        <div style="margin-top:75px;color:#bbb;">
+                            <span style="font-size:0.9em;">更多更快的足球资讯，点击进入下列版块：</span>
+                        </div>
+                        <div style="margin:0px -5px;font-size:0.8em;">
+                            <div style="width:33.33333333%;float:left;">
+                                <div style="padding:5px;">
+                                    <a style="text-decoration:none;color:white;" 
+                                        href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/news" target="_blank">
+                                        <div style="padding:5px;background-color:#3593fc;" align="center">
+                                            <span>新闻资讯</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="width:33.33333333%;float:left;">
+                                <div style="padding:5px;">
+                                    <a style="text-decoration:none;color:white;" 
+                                        href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/program" target="_blank">
+                                        <div style="padding:5px;background-color:#3593fc;" align="center">
+                                            <span>比赛直播</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="width:33.33333333%;float:left;">
+                                <div style="padding:5px;">
+                                    <a style="text-decoration:none;color:white;" 
+                                        href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/fifa/stats" target="_blank">
+                                        <div style="padding:5px;background-color:#3593fc;" align="center">
+                                            <span>积分赛程</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="width:33.33333333%;float:left;">
+                                <div style="padding:5px;">
+                                    <a style="text-decoration:none;color:white;" 
+                                        href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/video" target="_blank">
+                                        <div style="padding:5px;background-color:#3593fc;" align="center">
+                                            <span>精彩视频</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="width:33.33333333%;float:left;">
+                                <div style="padding:5px;">
+                                    <a style="text-decoration:none;color:white;" 
+                                        href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/contribution" target="_blank">
+                                        <div style="padding:5px;background-color:#3593fc;" align="center">
+                                            <span>深度文章</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="width:33.33333333%;float:left;">
+                                <div style="padding:5px;">
+                                    <a style="text-decoration:none;color:white;" 
+                                        href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/cartoon" target="_blank">
+                                        <div style="padding:5px;background-color:#3593fc;" align="center">
+                                            <span>足球动漫</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="clear:both;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="padding:10px;font-size:0.8em;color:#bbb;">
+                    <div style="float:left;">
+                        <span>&copy;</span>
+                    </div>
+                    <div style="float:left;">
+                        <span>2013-2017</span>
+                    </div>
+                    <div style="margin-left:5px;float:left;">
+                        <a href="{{ 'https' if CONST.ssl else 'http' }}://{{ CONST.domain.www }}/"
+                            style="text-decoration:none;color:#bbb;" target="_blank">
+                            <strong style="">FOOTBALLZONE.COM</strong>
+                        </a>
+                    </div>
+                    <div style="float:right;">
+                        <span style="">公众号：</span>
+                        <a href="http://weixin.sogou.com/weixinwap?query=足球地带" 
+                            style="text-decoration:none;color:black;" target="_blank">
+                            <strong style="">足球地带</strong>
+                        </a>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+

@@ -1,0 +1,308 @@
+
+<div class="center-block" style="width:1024px;padding:30px 20px;">
+    <div class="clearfix">
+        <div class="pull-left">
+            <a class="upload-lawyer-avatar site-a" style="width:100px;height:100px;" data-scene="law/lawyer/avatar" data-exist="<%= lawyer.avatar.thumbnails[0].url %>"></a>
+        </div>
+        <div class="" style="padding-left:20px;overflow:auto;">
+            <ul class="nav nav-tabs" style="padding:60px 20px 0px 0px;">
+                <li class="navbar-left" style="line-height:35px;">
+                    <b style="font-size:15px;">Modify Lawyer</b>
+                </li>
+                <li class="pull-right">
+                    <a style="padding:10px;" href="http://<%= CONST.domain.www %>/law/lawyer/<%= lawyer.id %>/detail" target="_blank">
+                        <i class="fa fa-link text-primary"></i>
+                    </a>
+                </li>
+                <li class="pull-right" style="width:100px;">
+                    <a style="padding:10px 0px;text-align:center;" href="#feedbacks_tab" data-toggle="tab">
+                        <span>Feedbacks</span>
+                    </a>
+                </li>
+                <li class="pull-right" style="width:100px;">
+                    <a style="padding:10px 20px;text-align:center;" href="#career_tab" data-toggle="tab">
+                        <span>Career</span>
+                    </a>
+                </li>
+                <li class="pull-right" style="width:100px;">
+                    <a style="padding:10px 20px;text-align:center;" href="#deals_tab" data-toggle="tab">
+                        <span>Deals</span>
+                    </a>
+                </li>
+                <li class="pull-right active" style="width:100px;">
+                    <a style="padding:10px 20px;text-align:center;" href="#profile_tab" data-toggle="tab">
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab-content">
+        <div id="profile_tab" class="tab-pane fade in active">
+            <form class="update-lawyer-form" style="margin-top:30px;">
+                <input name="avatar" type="hidden" value="" />
+                <input name="note" type="hidden" value="" />
+                <input name="note_cn" type="hidden" value="" />
+                <input name="raw" type="hidden" value="" />
+                <div class="clearfix">
+                    <div class="pull-left" style="width:50%;padding-right:50px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Name - EN</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <input name="name" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= lawyer.name %>" placeholder="English Name" /> 
+                        </div>
+                    </div>
+                    <div class="pull-left" style="width:50%;padding-left:50px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Name - CN</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <input name="name_cn" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= lawyer.name_cn %>" placeholder="Chinese Name" /> 
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:15px;">
+                    <div class="pull-left" style="width:50%;padding-right:50px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Gender</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <select name="gender" style="width:100%;height:30px;border:0px;background-color:white;">
+                                <option value="">-- Choose --</option>
+                                <option value="M" <%= lawyer.gender=='M' ? 'selected':'' %>>Male</option>
+                                <option value="F" <%= lawyer.gender=='F' ? 'selected':'' %>>Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pull-left" style="width:50%;padding-left:50px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Position</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <input name="position" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                value="<%= lawyer.position %>" placeholder="Job title" /> 
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:15px;">
+                    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Categories</span>
+                    </div>
+                    <div class="" style="margin-left:120px;padding:6px 8px;border-bottom:1px solid #e1e2e3;">
+                        <select name="categories" multiple>
+                            <% for (var id in categories) { %>
+                            <% if (lawyer.categories.indexOf(parseInt(id)) == -1) { %>
+                            <option value="<%= id %>"><%= categories[id].en || categories[id].cn %></option>
+                            <% } else { %>
+                            <option value="<%= id %>" selected><%= categories[id].en || categories[id].cn %></option>
+                            <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:30px;">
+                    <div class="pull-right">
+                        <ul class="nav nav-pills">
+                            <li class="active">
+                                <a style="width:75px;padding:5px;text-align:center;" href="#raw_tab" data-toggle="tab">
+                                    <span>RAW</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a style="width:75px;padding:5px;text-align:center;" href="#note_tab" data-toggle="tab">
+                                    <span>EN</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a style="width:75px;padding:5px;text-align:center;" href="#note_cn_tab" data-toggle="tab">
+                                    <span>CN</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="" style="width:100px;margin-right:200px;line-height:30px;background-color:#f7f8f9;" align="center">
+                        <span style="color:#bbb;">Notes</span>
+                    </div>
+                </div>
+                <div class="tab-content" style="margin-top:5px;">
+                    <div id="raw_tab" class="tab-pane fade in active">
+                        <script id="raw_editor" type="text/plain" style="width:100%;height:250px;"></script>
+                    </div>
+                    <div id="note_tab" class="tab-pane fade">
+                        <script id="note_editor" type="text/plain" style="width:100%;height:250px;"></script>
+                    </div>
+                    <div id="note_cn_tab" class="tab-pane fade">
+                        <script id="note_cn_editor" type="text/plain" style="width:100%;height:250px;"></script>
+                    </div>
+                </div>
+            </form>
+            <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                <a class="update-lawyer-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                    <i class="fa fa-check"></i>
+                    <span>SUBMIT</span>
+                </a>
+            </div>
+        </div>
+        <div id="career_tab" class="tab-pane fade">
+            <div class="career" style="margin-top:30px;"></div>
+        </div>
+        <div id="deals_tab" class="tab-pane fade">
+            <div class="" style="margin-top:30px;padding:15px;background-color:#f7f8f9;">
+                <div class="input-group">
+                    <input name="keyword" type="text" class="form-control input-sm" placeholder="Keywords of deal" />
+                    <span class="input-group-btn">
+                        <a class="search-deal-btn btn btn-default btn-sm" style="width:100px;">
+                            <i class="fa fa-search text-muted"></i>
+                            <span class="text-muted">Search</span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <div class="deal-list"></div>
+            <br>
+            <div class="deal-pagination"></div>
+        </div>
+        <div id="feedbacks_tab" class="tab-pane fade">
+            <div class="" style="margin-top:30px;padding:15px;background-color:#f7f8f9;">
+                <div class="pull-right" style="margin-left:20px;">
+                    <a class="btn btn-primary btn-sm" data-toggle="modal" href="#add_feedback_modal">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+                <div class="input-group">
+                    <input name="keyword" type="text" class="form-control input-sm" placeholder="Keywords of feedback" />
+                    <span class="input-group-btn">
+                        <a class="search-feedback-btn btn btn-default btn-sm" style="width:100px;">
+                            <i class="fa fa-search text-muted"></i>
+                            <span class="text-muted">Search</span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <div class="feedback-list"></div>
+            <br>
+            <div class="feedback-pagination"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 律所交易列表 -->
+<div id="firm_deal_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:500px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Deals of related firm</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <div class="firm-deal-list" style="max-height:450px;overflow:auto;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 添加反馈 -->
+<div id="add_feedback_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:475px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header"> <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Add Feedback</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <form class="create-feedback-form">
+                    <div class="clearfix">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Name - EN</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <input name="name" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                placeholder="English Name" /> 
+                        </div>
+                    </div>
+                    <div class="clearfix" style="margin-top:15px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Content - EN</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <textarea name="content" style="width:100%;padding:5px 8px;border:0px;resize:vertical;" 
+                                rows="3" placeholder="English Content"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix" style="margin-top:15px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Name - CN</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <input name="name_cn" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+                                placeholder="Chinese Name" /> 
+                        </div>
+                    </div>
+                    <div class="clearfix" style="margin-top:15px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Content - CN</span>
+                        </div>
+                        <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                            <textarea name="content_cn" style="width:100%;padding:5px 8px;border:0px;resize:vertical;" 
+                                rows="3" placeholder="Chinese Content"></textarea>
+                        </div>
+                    </div>
+                    <div class="clearfix" style="margin-top:15px;">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Time</span>
+                        </div>
+                        <div class="" style="margin-left:120px;">
+                            <div class="pull-right" style="width:30px;line-height:25px;" align="center">
+                                <a class="clear-created-btn site-a site-hover-transition text-muted">
+                                    <i class="fa fa-remove"></i>
+                                </a>
+                            </div>
+                            <div class="" style="margin-right:30px;">
+                                <input name="created" type="text" class="feedback-created"
+                                    style="width:100%;border:0px;padding:5px 8px;background-color:white;" placeholder="Feedback Time" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="clearfix">
+                        <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                            <span style="color:#bbb;">Rating</span>
+                        </div>
+                        <div class="" style="margin-left:120px;">
+                            <style>
+                            .rating-symbol {
+                                margin: 0px 5px;
+                            }
+                            </style>
+                            <input name="rating" type="hidden" class="Feedback Rating" />
+                        </div>
+                    </div>
+                <form>
+                <div class="" style="margin-top:30px;padding:20px;border-top:1px solid #e7e8e9;background-color:#f7f8f9;" align="center">
+                    <a class="create-feedback-btn btn btn-primary btn-sm" style="padding:10px 20px;">
+                        <i class="fa fa-check"></i>
+                        <span>SUBMIT</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

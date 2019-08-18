@@ -1,0 +1,177 @@
+
+<div class="" style="padding:0.6em;">
+    <div class="">
+        <b style="font-family:arial;"><%= deal.title || deal.title_cn %></b>
+        <% var score = deal.complexity + deal.creativity + deal.influence + deal.uniqueness - deal.deduction %>
+        <% if (score>3) { %>
+        <i class="fa fa-star" style="margin-left:0.6em;color:#0b71bf;" title="Business Law Credits"></i>
+        <% } %>
+    </div>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">BASIC</b>
+    </div>
+    <div class="clearfix" style="margin:0.6em 0;line-height:2em;font-size:0.8em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.8em;color:#bbb;">DATE</span>
+        </div>
+        <div class="pull-left" style="margin-left:1em;">
+            <span><%= new Date(deal.date).format('yyyy-mm-dd') %></span>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top:0.5em;line-height:2em;font-size:0.8em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.8em;color:#bbb;">STATUS</span>
+        </div>
+        <div class="pull-left" style="margin-left:1em;">
+            <% if (deal.status==1) { %>
+            <span>Completed</span>
+            <% } else if (deal.status==2) { %>
+            <span>Published</span>
+            <% } else if (deal.status==3) { %>
+            <span>Canceled</span>
+            <% } else if (deal.status==4) { %>
+            <span>Uncertain</span>
+            <% } %>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top:0.5em;line-height:2em;font-size:0.8em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.8em;color:#bbb;">VALUE</span>
+        </div>
+        <div class="pull-left" style="margin-left:1em;">
+            <% if (!!deal.value_txt) { %>
+            <span><%= deal.value_txt %></span>
+            <% } else if (!!deal.value) { %>
+            <span>USD <%= deal.value.shorten() %></span>
+            <% } else { %>
+            <span>N/A</span>
+            <% } %>
+        </div>
+    </div>
+    <br>
+    <%
+        var highlights = [];
+        if (deal.uniqueness_remark) highlights.push(deal.uniqueness_remark);
+        if (deal.creativity_remark) highlights.push(deal.creativity_remark);
+        if (deal.complexity_remark) highlights.push(deal.complexity_remark);
+        if (deal.influence_remark) highlights.push(deal.influence_remark);
+        if (deal.deduction_remark) highlights.push(deal.deduction_remark);
+    %>
+    <% if (highlights.length>0) { %>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">HIGHLIGHTS</b>
+    </div>
+    <ul style="margin:0.6em 0;padding-left:1.5em;line-height:1.2em;">
+        <% for (var i=0;i<highlights.length;i++) { %>
+        <li>
+            <span style="font-size:0.8em;"><%= highlights[i] %></span>
+        </li>
+        <% } %>
+    </ul>
+    <br>
+    <% } %>
+
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">PROFESSIONALS</b>
+    </div>
+    <div class="deal-summary table-responsive" style="margin:0.6em 0;">
+        <%= new EJS({ text: ejs.loading }).render({ padding: '3em', font: '3em' }) %>
+    </div>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">CATEGORIES</b>
+    </div>
+    <% if (deal.categories.length==0) { %>
+    <div class="" style="margin-top:0.6em;">
+        <span style="font-size:0.8em;color:#bbb;">N/A</span>
+    </div>
+    <% } else { %>
+    <ul style="margin:0.5em 0;padding-left:1.5em;line-height:1.2em;">
+        <% for (var i=0;i<deal.categories.length;i++) { %>
+        <a class="site-a site-hover-transition" style="color:black;" href="javascript:void(0)">
+            <li style="margin-top:0.3em;">
+                <span style="font-size:0.8em;"><%= categories[deal.categories[i]].en || categories[deal.categories[i]].cn %></span>
+            </li>
+        </a>
+        <% } %>
+    </ul>
+    <% } %>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">INDUSTRIES</b>
+    </div>
+    <% if (deal.industries.length==0) { %>
+    <div class="" style="margin-top:0.6em;">
+        <span style="font-size:0.8em;color:#bbb;">N/A</span>
+    </div>
+    <% } else { %>
+    <ul style="margin:0.5em 0;padding-left:1.5em;line-height:1.2em;">
+        <% for (var i=0;i<deal.industries.length;i++) { %>
+        <a class="site-a site-hover-transition" style="color:black;" href="javascript:void(0)">
+            <li style="margin-top:0.3em;">
+                <span style="font-size:0.8em;"><%= industries[deal.industries[i]].en || industries[deal.industries[i]].cn %></span>
+            </li>
+        </a>
+        <% } %>
+    </ul>
+    <% } %>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">JURISDICTIONS</b>
+    </div>
+    <% if (deal.areas.length==0) { %>
+    <div class="" style="margin-top:0.6em;">
+        <span style="font-size:0.8em;color:#bbb;">N/A</span>
+    </div>
+    <% } else { %>
+    <ul style="margin:0.5em 0;padding-left:1.5em;line-height:1.2em;">
+        <% for (var i=0;i<deal.areas.length;i++) { %>
+        <a class="site-a site-hover-transition" style="color:black;" href="javascript:void(0)">
+            <li style="margin-top:0.3em;">
+                <span style="font-size:0.8em;"><%= areas[deal.areas[i]].en || areas[deal.areas[i]].cn %></span>
+            </li>
+        </a>
+        <% } %>
+    </ul>
+    <% } %>
+    <br>
+    <div class="" style="padding:0.3em 0;border-bottom:1px solid #0b71bf;">
+        <b style="font-size:0.8em;font-family:arial;color:#0b71bf;">NOTES</b>
+    </div>
+    <div class="deal-note site-text-wrap" style="margin-top:0.5em;font-size:0.8em;">
+        <% if (deal.note) { %>
+        <%= deal.note %>
+        <% } else { %>
+        <span style="color:#bbb;">N/A</span>
+        <% } %>
+    </div>
+    <br><br>
+    <div class="" style="font-size:0.8em;color:#bbb;">
+        <i class="fa fa-exclamation-circle"></i>
+        <span style="margin-left:0.3em;">If you know more information about this deal or submit a new deal,</span>
+        <a class="site-a text-primary" href="javascript:void(0)" onclick="submit_btn.click()">please contact us</a>
+        <span>.</span>
+    </div>
+</div>
+
+<%
+    var subject = 'RE: ' + (deal.title || deal.title_cn);
+    var cc = 'me@longsicong.cn';
+    var bcc = '';
+    var body = 'Dear VantageAsia,' + '\r\n\r\n';
+    body += 'I would like to view more information of this deal.' + '\r\n\r\n';
+    body += 'Please show me the guidance.' + '\r\n\r\n';
+    body += 'Looking forward to your reply.' + '\r\n\r';
+    body += 'Kind regards';
+%>
+<a id="submit_btn" class="site-a hidden" style="color:white;position:fixed;bottom:20px;right:20px;z-index:999;"
+    href="mailto:llong@vantageasia.com?subject=<%= encodeURIComponent(subject) %>&cc=<%= cc %>&bcc=<%= bcc %>&body=<%= encodeURIComponent(body) %>">
+    <div class="img-rounded site-solid" style="padding:15px 25px;background-color:#0b71bf;">
+        <i class="fa fa-check-square"></i>
+        <span style="margin-left:5px;">SUBMIT</span>
+    </div>
+</a>
+
+
+

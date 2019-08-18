@@ -1,0 +1,44 @@
+
+<% if (firms.length==0) { %>
+<div class="" style="padding:30px 0px;border:1px dashed #e1e2e3;" align="center">
+    <span style="color:#bbbbbb;">No firm found</span>
+</div>
+<% } else { %>
+
+<% for (var i=0;i<firms.length;i++) { %>
+<% var firm = firms[i] %>
+<div class="site-hover-light clearfix" style="padding:10px 15px;">
+    <div class="pull-right">
+        <a class="site-a" href="/manage/law/firm/<%= firm.id %>/update" target="_blank">
+            <i class="fa fa-link text-primary"></i>
+        </a>
+    </div>
+    <div class="" style="margin-right:50px;overflow:hidden;">
+        <a class="pick-firm-btn site-a">
+            <input class="firm-id" type="hidden" value="<%= firm.id %>" />
+            <input class="firm-name" type="hidden" value="<%= firm.name || firm.name_cn %>" />
+            <div class="clearfix">
+                <div class="pull-left">
+                    <span class="label label-primary" style="opacity:0.75;">EN</span>
+                </div>
+                <div class="" style="margin-left:30px;">
+                    <span style="color:black;"><%= firm.name || '-' %></span>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:5px;">
+                <div class="pull-left">
+                    <span class="label label-danger" style="opacity:0.75;">CN</span>
+                </div>
+                <div class="" style="margin-left:30px;">
+                    <span style="color:black;"><%= firm.name_cn || '-' %></span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<hr class="site-hr">
+<% } %>
+
+<% } %>
+
+

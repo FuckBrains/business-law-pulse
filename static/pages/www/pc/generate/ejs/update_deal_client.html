@@ -1,0 +1,153 @@
+
+<div class="clearfix" style="margin-bottom:5px;">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <% if (CONST.lang=='en') { %>
+        <span style="color:#bbb;">Client</span>
+        <% } else { %>
+        <span style="color:#bbb;">客户</span>
+        <% } %>
+    </div>
+    <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+        <input name="id" type="hidden" value="<%= client.id %>" />
+        <% if (CONST.lang=='en') { %>
+        <input name="name" type="text" style="width:100%;padding:5px 8px;border:0px;" value="<%= client.name %>" placeholder="Client Name" />
+        <% } else { %>
+        <input name="name" type="text" style="width:100%;padding:5px 8px;border:0px;" value="<%= client.name %>" placeholder="客户名称" />
+        <% } %>
+    </div>
+</div>
+<br>
+<div class="clearfix">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <% if (CONST.lang=='en') { %>
+        <span style="color:#bbb;">Party</span>
+        <% } else { %>
+        <span style="color:#bbb;">交易方</span>
+        <% } %>
+    </div>
+    <div class="" style="margin-left:120px;padding:5px 8px;border-bottom:1px solid #e1e2e3;">
+        <select name="party">
+            <% if (CONST.lang=='en') { %>
+            <option value="">-- Choose --</option>
+            <% } else { %>
+            <option value="">-- 选择 --</option>
+            <% } %>
+
+            <% for (var id in parties) { %>
+            <% if (client.party == parseInt(id)) { %>
+
+            <% if (CONST.lang=='en') { %>
+            <option value="<%= id %>" selected><%= parties[id].en %></option>
+            <% } else { %>
+            <option value="<%= id %>" selected><%= parties[id].cn %></option>
+            <% } %>
+
+            <% } else { %>
+
+            <% if (CONST.lang=='en') { %>
+            <option value="<%= id %>"><%= parties[id].en %></option>
+            <% } else { %>
+            <option value="<%= id %>"><%= parties[id].cn %></option>
+            <% } %>
+
+            <% } %>
+            <% } %>
+        </select>
+    </div>
+</div>
+<br>
+<div class="clearfix">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <% if (CONST.lang=='en') { %>
+        <span style="color:#bbb;">Industries</span>
+        <% } else { %>
+        <span style="color:#bbb;">行业</span>
+        <% } %>
+    </div>
+    <div class="" style="margin-left:120px;padding:5px 8px;border-bottom:1px solid #e1e2e3;">
+        <select name="industries" multiple>
+            <% for (var id in industries) { %>
+            <% if (client.industries.indexOf(id) == -1) { %>
+
+            <% if (CONST.lang=='en') { %>
+            <option value="<%= id %>"><%= industries[id].en %></option>
+            <% } else { %>
+            <option value="<%= id %>"><%= industries[id].cn %></option>
+            <% } %>
+
+            <% } else { %>
+
+            <% if (CONST.lang=='en') { %>
+            <option value="<%= id %>" selected><%= industries[id].en %></option>
+            <% } else { %>
+            <option value="<%= id %>" selected><%= industries[id].cn %></option>
+            <% } %>
+
+            <% } %>
+            <% } %>
+        </select>
+    </div>
+</div>
+<br>
+<div class="clearfix">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <% if (CONST.lang=='en') { %>
+        <span style="color:#bbb;">Areas</span>
+        <% } else { %>
+        <span style="color:#bbb;">地区</span>
+        <% } %>
+    </div>
+    <div class="" style="margin-left:120px;padding:5px 8px;border-bottom:1px solid #e1e2e3;">
+        <select name="areas" multiple>
+            <% for (var id in areas) { %>
+            <% if (client.areas.indexOf(id) == -1) { %>
+
+            <% if (CONST.lang=='en') { %>
+            <option value="<%= id %>"><%= areas[id].en %></option>
+            <% } else { %>
+            <option value="<%= id %>"><%= areas[id].cn %></option>
+            <% } %>
+
+            <% } else { %>
+
+            <% if (CONST.lang=='en') { %>
+            <option value="<%= id %>" selected><%= areas[id].en %></option>
+            <% } else { %>
+            <option value="<%= id %>" selected><%= areas[id].cn %></option>
+            <% } %>
+
+            <% } %>
+            <% } %>
+        </select>
+    </div>
+</div>
+<br>
+<div class="clearfix">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <% if (CONST.lang=='en') { %>
+        <span style="color:#bbb;">Submit</span>
+        <% } else { %>
+        <span style="color:#bbb;">提交</span>
+        <% } %>
+    </div>
+    <div class="" style="margin-left:120px;">
+        <a class="update-deal-client-btn btn btn-link btn-sm site-a">
+            <i class="fa fa-check"></i>
+            <% if (CONST.lang=='en') { %>
+            <span>OK</span>
+            <% } else { %>
+            <span>确认</span>
+            <% } %>
+        </a>
+        <a class="btn btn-link btn-sm site-a" style="margin-left:10px;" onclick="$('.deal-client-list, .update-deal-client-form').toggleClass('hidden');">
+            <i class="fa fa-share text-muted"></i>
+            <% if (CONST.lang=='en') { %>
+            <span class="text-muted">Back</span>
+            <% } else { %>
+            <span class="text-muted">返回</span>
+            <% } %>
+        </a>
+    </div>
+</div>
+
+

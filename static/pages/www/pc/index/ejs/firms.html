@@ -1,0 +1,83 @@
+
+<% if (firms.length==0) { %>
+<div class="" style="padding:50px 0px;" align="center">
+    <b style="font-size:20px;color:#bbb;">N/A</b>
+</div>
+<% } else { %>
+<table class="table table-hover">
+    <thead>
+        <tr class="active" style="font-size:12px;">
+            <th><div class="text-muted" align="center">RANK</div></th>
+            <th><div class="text-muted" align="center">BRAND MARK</div></th>
+            <th><div class="text-muted">LAW FIRM NAME</div></th>
+            <th>
+                <div class="text-muted" align="center">TOTAL</div>
+                <div class="text-muted" align="center">NUMBER</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">TOTAL</div>
+                <div class="text-muted" align="center">VOLUME</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">TOTAL</div>
+                <div class="text-muted" align="center">CREDITS</div>
+            </th>
+            <th>
+                <div class="text-muted" align="center">OVERALL</div>
+                <div class="text-muted" align="center">GRADE</div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<firms.length;i++) { %>
+        <% var firm = firms[i]; %>
+        <tr>
+            <td style="width:60px;" align="center">
+                <% if (i<1) { %>
+                <span class="label label-danger" style="font-size:12px;font-weight:lighter;"><%= i+1 %></span>
+                <% } else if (i<3) { %>
+                <span class="label label-info" style="font-size:12px;font-weight:lighter;"><%= i+1 %></span>
+                <% } else if (i<5) { %>
+                <span class="label label-default" style="font-size:12px;font-weight:lighter;"><%= i+1 %></span>
+                <% } else { %>
+                <span><%= i+1 %></span>
+                <% } %>
+            </td>
+            <td style="width:150px;" align="center">
+                <a class="" href="http://<%= CONST.domain.www %>/firm/<%= firm.id %>/detail" target="_blank">
+                    <% if (firm.logo.url.indexOf('default') == -1) { %>
+                    <img style="max-width:120px;" src="<%= firm.logo.thumbnails[1].url %>" />
+                    <% } else { %>
+                    <img class="site-block" src="holder.js/120x37.5?text=N/A" />
+                    <% } %>
+                </a>
+            </td>
+            <td>
+                <a class="site-a site-hover-transition" style="color:black;" href="http://<%= CONST.domain.www %>/law/firm/<%= firm.id %>/detail" target="_blank">
+                    <div class="site-line-clamp" style="-webkit-line-clamp:2;">
+                        <span><%= firm.name || firm.name_cn %></span>
+                    </div>
+                </a>
+            </td>
+            <td style="width:100px;" align="center" title="STD : <%= firm.std_number %>">
+                <span><%= firm.number %></span>
+            </td>
+            <td style="width:125px;" align="center" title="STD : <%= firm.std_volume %>">
+                <% if (firm.volume) { %>
+                <span><%= firm.volume.shorten() %></span>
+                <% } else { %>
+                <span style="color:#bbb;">N/A</span>
+                <% } %>
+            </td>
+            <td style="width:100px;" align="center" title="STD : <%= firm.std_score %>">
+                <span><%= firm.score %></span>
+            </td>
+            <td style="width:90px;" align="center">
+                <span class="label label-primary" style="font-size:12px;font-weight:lighter;"><%= Math.round(firm.std_ova) %></span>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+

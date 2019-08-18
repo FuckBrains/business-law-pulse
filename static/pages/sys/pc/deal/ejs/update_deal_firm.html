@@ -1,0 +1,75 @@
+
+<div class="clearfix" style="margin-bottom:5px;">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <span style="color:#bbb;">Firm</span>
+    </div>
+    <div class="" style="margin-left:120px;">
+        <div class="" style="padding-top:5px;padding-left:5px;">
+            <input name="firm" type="hidden" value="<%= firm.id %>" />
+            <span><%= firm.name || firm.name_cn %></span>
+        </div>
+    </div>
+</div>
+<br>
+<div class="clearfix">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <span style="color:#bbb;">Party</span>
+    </div>
+    <div class="" style="margin-left:120px;padding:5px 8px;border-bottom:1px solid #e1e2e3;">
+        <select name="party" data-field-type="number">
+            <option value="0">-- Choose --</option>
+            <% for (var id in parties) { %>
+            <% if (firm.party == parseInt(id)) { %>
+            <option value="<%= id %>" selected><%= parties[id].en || parties[id].cn %></option>
+            <% } else { %>
+            <option value="<%= id %>"><%= parties[id].en || parties[id].cn %></option>
+            <% } %>
+            <% } %>
+        </select>
+    </div>
+</div>
+<br>
+<div class="clearfix">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <span style="color:#bbb;">Areas</span>
+    </div>
+    <div class="" style="margin-left:120px;padding:6px 8px;border-bottom:1px solid #e1e2e3;">
+        <select name="areas" multiple data-field-type="number">
+            <% for (var id in areas) { %>
+            <% if (firm.areas.indexOf(parseInt(id)) == -1) { %>
+            <option value="<%= id %>"><%= areas[id].en || areas[id].cn %></option>
+            <% } else { %>
+            <option value="<%= id %>" selected><%= areas[id].en || areas[id].cn %></option>
+            <% } %>
+            <% } %>
+        </select>
+    </div>
+</div>
+<br>
+<div class="clearfix">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <span style="color:#bbb;">Remarks</span>
+    </div>
+    <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+        <textarea name="remark" style="width:100%;padding:5px 8px;border:0px;" rows="2" 
+            placeholder="-- remarks --"><%= firm.remark %></textarea>
+    </div>
+</div>
+<br>
+<div class="clearfix">
+    <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+        <span style="color:#bbb;">Submit</span>
+    </div>
+    <div class="" style="margin-left:120px;">
+        <a class="update-deal-firm-btn btn btn-link btn-sm site-a">
+            <i class="fa fa-check"></i>
+            <span>OK</span>
+        </a>
+        <a class="btn btn-link btn-sm site-a" style="margin-left:10px;" onclick="$('.deal-firm-list, .update-deal-firm-form').toggleClass('hidden');">
+            <i class="fa fa-share text-muted"></i>
+            <span class="text-muted">Back</span>
+        </a>
+    </div>
+</div>
+
+

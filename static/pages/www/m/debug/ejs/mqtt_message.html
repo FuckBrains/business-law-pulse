@@ -1,0 +1,41 @@
+
+<div class="message-item clearfix site-hover-light" style="padding:1em 0.5em;border-bottom:1px solid #e1e2e3;">
+    <div class="clearfix" style="line-height:2em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.9em;color:#bbb;">Topic</span>
+        </div>
+        <div class="" style="margin-left:6em;overflow:auto;">
+            <span><%= message.destinationName %></span>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top:0.5em;line-height:2em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.9em;color:#bbb;">Flags</span>
+        </div>
+        <div class="" style="margin-left:6em;overflow:auto;">
+            <span>QoS=<%= message.qos %></span>
+            <span style="margin:0 0.5em;">|</span>
+            <span>Duplicate=<%= message.duplicate ? 'Y':'N' %></span>
+            <span style="margin:0 0.5em;">|</span>
+            <span>Retained=<%= message.retained ? 'Y':'N' %></span>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top:0.5em;line-height:2em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.9em;color:#bbb;">Arrived</span>
+        </div>
+        <div class="" style="margin-left:6em;overflow:auto;">
+            <span><%= new Date().format('yyyy-mm-dd hh:ii:ss') %><span>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top:0.5em;line-height:2em;">
+        <div class="pull-left" style="width:5em;background-color:#f7f8f9;" align="center">
+            <span style="font-size:0.9em;color:#bbb;">Payload</span>
+        </div>
+        <div class="" style="margin-left:6em;overflow:auto;">
+            <span><%= message.payloadString %></span>
+        </div>
+    </div>
+</div>
+
+

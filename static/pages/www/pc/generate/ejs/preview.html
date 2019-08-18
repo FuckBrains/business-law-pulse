@@ -1,0 +1,350 @@
+
+<style>
+.preview h1,h2,h3,h4,h5,h6 {
+    margin: 0px;
+}
+
+.preview hr {
+    margin: 10px 0px;
+    border-top: 1px solid #eee;
+}
+
+.preview a {
+    text-decoration: none;
+}
+
+.preview table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}
+
+.preview table>thead>tr {
+    background-color: #f5f5f5;
+}
+
+.preview table>thead>tr>th, .preview table>tbody>tr>td {
+    padding: 3px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+</style>
+
+<div class="preview" style="width:660px;margin:0px auto;font-family:arial;font-size:9px;">
+
+    <div class="" style="line-height:20px;">
+        <h1 style="font-size:15px;"><%= deal.title || 'N/A' %></h1>
+    </div>
+    <div class="" style="margin-top:5px;color:#bbb;">
+        <% if (CONST.lang=='en') { %>
+        <span>DATE :</span>
+        <% } else { %>
+        <span>日期 :</span>
+        <% } %>
+
+        <span><%= deal.date || 'N/A' %></span>
+
+        <span style="margin:0px 10px;">|</span>
+
+        <% if (CONST.lang=='en') { %>
+        <span>STATUS :</span>
+        <% } else { %>
+        <span>状态 :</span>
+        <% } %>
+
+        <% if (deal.status == 1) { %>
+        <span><%= CONST.lang=='en' ? 'Completed':'已完成' %></span>
+        <% } else if (deal.status == 2) { %>
+        <span><%= CONST.lang=='en' ? 'Published':'已公布' %></span>
+        <% } else if (deal.status == 3) { %>
+        <span><%= CONST.lang=='en' ? 'Canceled':'已取消' %></span>
+        <% } else if (deal.status == 4) { %>
+        <span><%= CONST.lang=='en' ? 'Uncertain':'未确定' %></span>
+        <% } else { %>
+        <span>N/A</span>
+        <% } %>
+
+        <span style="margin:0px 10px;">|</span>
+
+        <% if (CONST.lang=='en') { %>
+        <span>VALUE :</span>
+        <% } else { %>
+        <span>金额 :</span>
+        <% } %>
+
+        <span><%= deal.value_txt || 'N/A' %></span>
+    </div>
+    <hr>
+    <div class="" style="margin-top:20px;padding:3px 0px;border-bottom:1px solid #0b71bf;">
+        <% if (CONST.lang=='en') { %>
+        <h2 style="font-size:10px;font-family:arial;color:#0b71bf;">PROFESSIONALS</h2>
+        <% } else { %>
+        <h2 style="font-size:10px;font-family:arial;color:#0b71bf;">关系</h2>
+        <% } %>
+    </div>
+    <div class="" style="margin-top:5px;">
+        <% var summary = deal.summary %>
+        <table class="" style="width:100%;margin:0px;">
+            <thead>
+                <tr class="">
+                    <% if (CONST.lang=='en') { %>
+                    <th style="width:100px;"><div class="" style="padding:3px;color:#777;">PARTIES</div></th>
+                    <th style="width:200px;"><div class="" style="padding:3px;color:#777;">CLIENTS</div></th>
+                    <th style="width:200px;"><div class="" style="padding:3px;color:#777;">LAW FIRMS</div></th>
+                    <th style="width:130px;"><div class="" style="padding:3px;color:#777;">LAWYERS</div></th>
+                    <% } else { %>
+                    <th style="width:100px;"><div class="" style="padding:3px;color:#777;">交易方</div></th>
+                    <th style="width:200px;"><div class="" style="padding:3px;color:#777;">客户</div></th>
+                    <th style="width:200px;"><div class="" style="padding:3px;color:#777;">律所</div></th>
+                    <th style="width:130px;"><div class="" style="padding:3px;color:#777;">律师</div></th>
+                    <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (var id in summary) { %>
+
+                <% for (var i=0;i<(summary[id].firms.length || 1);i++) { %>
+                <tr>
+                    <% if (i==0) { %>
+                    <td rowspan="<%= summary[id].firms.length || 1 %>">
+                        <div class="" style="padding:3px;">
+                            <% if (!!parties[id]) { %>
+
+                            <% if (CONST.lang=='en') { %>
+                            <span><%= parties[id].en %></span>
+                            <% } else { %>
+                            <span><%= parties[id].cn %></span>
+                            <% } %>
+
+                            <% } else { %>
+                            <span style="color:#bbb;">-</span>
+                            <% } %>
+                        </div>
+                    </td>
+                    <td rowspan="<%= summary[id].firms.length || 1 %>">
+                        <% if (summary[id].clients.length==0) { %>
+                        <div class="" style="padding:3px;color:#bbb;">
+                            <span>-</span>
+                        </div>
+                        <% } else { %>
+
+                        <% for (var j=0;j<summary[id].clients.length;j++) { %>
+                        <% var client = summary[id].clients[j]; %>
+                        <div class="" style="margin:3px 0px;padding:3px;">
+                            <div class="">
+                                <span><%= client.name %></span>
+                            </div>
+                            <div class="" style="font-size:6px;color:#bbb;">
+                                <% for (var k=0;k<client.industries.length;k++) { %>
+
+                                <% if (CONST.lang=='en') { %>
+                                <span><%= industries[client.industries[k]].en %></span>
+                                <% } else { %>
+                                <span><%= industries[client.industries[k]].cn %></span>
+                                <% } %>
+
+                                <% if (k<client.industries.length-1) { %>
+                                <span style="margin:0px 3px;">|</span>
+                                <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+                        <% } %>
+
+                        <% } %>
+                    </td>
+                    <% } %>
+                    <td>
+                        <% if (summary[id].firms.length==0) { %>
+                        <div class="" style="padding:3px;color:#bbb;">
+                            <span>-</span>
+                        </div>
+                        <% } else { %>
+
+                        <% var firm = summary[id].firms[i]; %>
+                        <div class="" style="margin:3px 0px;padding:3px;">
+                            <div class="">
+                                <span><%= firm.name %></span>
+                            </div>
+                            <div class="" style="font-size:6px;color:#bbb;">
+                                <% for (var j=0;j<firm.areas.length;j++) { %>
+
+                                <% if (CONST.lang=='en') { %>
+                                <span><%= areas[firm.areas[j]].en %></span>
+                                <% } else { %>
+                                <span><%= areas[firm.areas[j]].cn %></span>
+                                <% } %>
+
+                                <% if (j<firm.areas.length-1) { %>
+                                <span style="margin:0px 3px;">|</span>
+                                <% } %>
+                                <% } %>
+                            </div>
+                        </div>
+
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if (summary[id].firms.length==0 || summary[id].firms[i].lawyers.length==0) { %>
+                        <div class="" style="padding:3px;color:#bbb;">
+                            <span>-</span>
+                        </div>
+                        <% } else { %>
+
+                        <% for (var j=0;j<summary[id].firms[i].lawyers.length;j++) { %>
+                        <% var lawyer = summary[id].firms[i].lawyers[j]; %>
+                        <div class="" style="margin:3px 0px;padding:3px;">
+                            <div class="">
+                                <span><%= lawyer.name %></span>
+                            </div>
+                            <% if (!!lawyer.role) { %>
+                            <div class="" style="font-size:6px;color:#bbb;">
+                                <% if (CONST.lang=='en') { %>
+                                <span><%= roles[lawyer.role].en %></span>
+                                <% } else { %>
+                                <span><%= roles[lawyer.role].cn %></span>
+                                <% } %>
+                            </div>
+                            <% } %>
+                        </div>
+                        <% } %>
+
+                        <% } %>
+                    </td>
+                </tr>
+                <% } %>
+
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="" style="margin:20px -10px 0px -10px;">
+        <div class="" style="width:33.33333333%;float:left;">
+            <div class="" style="padding:0px 10px;">
+                <div class="" style="padding:3px 0px;border-bottom:1px solid #0b71bf;">
+                    <% if (CONST.lang=='en') { %>
+                    <h2 style="font-size:10px;color:#0b71bf;">CATEGORIES</h2>
+                    <% } else { %>
+                    <h2 style="font-size:10px;color:#0b71bf;">类别</h2>
+                    <% } %>
+                </div>
+                <% var summary_categories = deal.categories %>
+                <% if (summary_categories.length==0) { %>
+                <div class="" style="margin-top:5px;padding:5px 0px;">
+                    <span style="color:#bbb;">N/A</span>
+                </div>
+                <% } else { %>
+                <% for (var i=0;i<summary_categories.length;i++) { %>
+                <div class="" style="margin-top:5px;padding:5px;background-color:#f5f6f7;">
+                    <% if (CONST.lang=='en') { %>
+                    <span><%= categories[summary_categories[i]].en %></span>
+                    <% } else { %>
+                    <span><%= categories[summary_categories[i]].cn %></span>
+                    <% } %>
+                </div>
+                <% } %>
+                <% } %>
+            </div>
+        </div>
+        <div class="" style="width:33.33333333%;float:left;">
+            <div class="" style="padding:0px 10px;">
+                <div class="" style="padding:3px 0px;border-bottom:1px solid #0b71bf;">
+                    <% if (CONST.lang=='en') { %>
+                    <h2 style="font-size:10px;color:#0b71bf;">INDUSTRIES</h2>
+                    <% } else { %>
+                    <h2 style="font-size:10px;color:#0b71bf;">行业</h2>
+                    <% } %>
+                </div>
+                <% var summary_industries = [] %>
+                <%
+                    for (var i=0;i<deal.clients.length;i++) {
+                        for (var j=0;j<deal.clients[i].industries.length;j++) {
+                            if (summary_industries.indexOf(deal.clients[i].industries[j]) == -1) {
+                                summary_industries.push(deal.clients[i].industries[j]);
+                            }
+                        }
+                    }
+                %>
+                
+                <% if (summary_industries.length==0) { %>
+                <div class="" style="margin-top:5px;padding:5px 0px;">
+                    <span style="color:#bbb;">N/A</span>
+                </div>
+                <% } else { %>
+                <% for (var i=0;i<summary_industries.length;i++) { %>
+                <div class="" style="margin-top:5px;padding:5px;background-color:#f5f6f7;">
+                    <% if (CONST.lang=='en') { %>
+                    <span><%= industries[summary_industries[i]].en %></span>
+                    <% } else { %>
+                    <span><%= industries[summary_industries[i]].cn %></span>
+                    <% } %>
+                </div>
+                <% } %>
+                <% } %>
+            </div>
+        </div>
+        <div class="" style="width:33.33333333%;float:left;">
+            <div class="" style="padding:0px 10px;">
+                <div class="" style="padding:3px 0px;border-bottom:1px solid #0b71bf;">
+                    <% if (CONST.lang=='en') { %>
+                    <h2 style="font-size:10px;color:#0b71bf;">JURISDICTIONS</h2>
+                    <% } else { %>
+                    <h2 style="font-size:10px;color:#0b71bf;">法域</h2>
+                    <% } %>
+                </div>
+                <% var summary_areas = [] %>
+                <%
+                    for (var i=0;i<deal.clients.length;i++) {
+                        for (var j=0;j<deal.clients[i].areas.length;j++) {
+                            if (summary_areas.indexOf(deal.clients[i].areas[j]) == -1) {
+                                summary_areas.push(deal.clients[i].areas[j]);
+                            }
+                        }
+                    }
+
+                    for (var i=0;i<deal.firms.length;i++) {
+                        for (var j=0;j<deal.firms[i].areas.length;j++) {
+                            if (summary_areas.indexOf(deal.firms[i].areas[j]) == -1) {
+                                summary_areas.push(deal.firms[i].areas[j]);
+                            }
+                        }
+                    }
+                %>
+
+                <% if (summary_areas.length==0) { %>
+                <div class="" style="margin-top:5px;padding:5px 0px;">
+                    <span style="color:#bbb;">N/A</span>
+                </div>
+                <% } else { %>
+                <% for (var i=0;i<summary_areas.length;i++) { %>
+                <div class="" style="margin-top:5px;padding:5px;background-color:#f5f6f7;">
+                    <% if (CONST.lang=='en') { %>
+                    <span><%= areas[summary_areas[i]].en %></span>
+                    <% } else { %>
+                    <span><%= areas[summary_areas[i]].cn %></span>
+                    <% } %>
+                </div>
+                <% } %>
+                <% } %>
+            </div>
+        </div>
+        <div class="" style="clear:both;"></div>
+    </div>
+
+    <div class="" style="margin-top:20px;padding:3px 0px;border-bottom:1px solid #0b71bf;">
+        <% if (CONST.lang=='en') { %>
+        <h2 style="font-size:10px;color:#0b71bf;">NOTES</h2>
+        <% } else { %>
+        <h2 style="font-size:10px;color:#0b71bf;">描述</h2>
+        <% } %>
+    </div>
+    <% if (deal.note) { %>
+    <div class="deal-note" style="margin-top:3px;"><%= deal.note %></div>
+    <% } else { %>
+    <div class="" style="margin-top:5px;">
+        <span style="color:#bbb;">N/A</span>
+    </div>
+    <% } %>
+</div>
+
+

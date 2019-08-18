@@ -1,0 +1,17 @@
+colorama==0.4.1
+gunicorn_thrift==0.2.23
+thriftpy==0.3.9
+redis==3.2.1
+mongoengine==0.17.0
+pycrypto==2.6.1
+requests==2.21.0
+pillow==6.0.0
+paho-mqtt==1.4.0
+jinja2==2.10.1
+pytz==2019.1
+aiohttp==3.5.4
+uvloop==0.12.2
+aiohttp-session==2.7.0
+aioredis==1.2.0
+aiohttp-jinja2==1.1.1
+weasyprint==47

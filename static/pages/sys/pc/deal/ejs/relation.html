@@ -1,0 +1,411 @@
+
+<ul class="nav nav-tabs" style="margin-top:30px;padding:15px 20px 0px 20px;background-color:#f7f8f9;">
+    <li class="active" style="width:100px;text-align:center;">
+        <a class="list-client-tab" href="#list_client" data-toggle="tab">
+            <span>Client</span>
+        </a>
+    </li>
+    <li class="" style="width:100px;text-align:center;">
+        <a class="list-firm-tab" href="#list_firm" data-toggle="tab">
+            <span>Firm</span>
+        </a>
+    </li>
+    <li class="" style="width:100px;text-align:center;">
+        <a class="list-lawyer-tab" href="#list_lawyer" data-toggle="tab">
+            <span>Lawyer</span>
+        </a>
+    </li>
+    <li class="deal-summary-tab hidden" style="width:100px;text-align:center;">
+        <a class="deal-summary-btn" href="#deal_summary" data-toggle="tab">
+            <span>Summary</span>
+        </a>
+    </li>
+    <li class="pull-right dropdown" style="width:90px;text-align:center;">
+        <a class="dropdown-toggle" style="margin:0px;" data-toggle="dropdown" href="javascript:void(0)">
+            <i class="fa fa-plus"></i>
+        </a>
+        <ul class="dropdown-menu" style="width:100%;">
+            <li>
+                <a class="add-client-tab" href="#add_client" data-toggle="tab">
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <i class="fa fa-angle-right text-muted"></i>
+                        </div>
+                        <div class="">
+                            <span>Client</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a class="add-firm-tab" href="#add_firm" data-toggle="tab">
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <i class="fa fa-angle-right text-muted"></i>
+                        </div>
+                        <div class="">
+                            <span>Firm</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a class="add-lawyer-tab" href="#add_lawyer" data-toggle="tab">
+                    <div class="clearfix">
+                        <div class="pull-right">
+                            <i class="fa fa-angle-right text-muted"></i>
+                        </div>
+                        <div class="">
+                            <span>Lawyer</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<br>
+<div class="tab-content">
+    <div id="deal_summary" class="tab-pane fade" style="padding:20px;"></div>
+    <div id="list_client" class="clearfix tab-pane fade in active">
+        <div class="deal-client-list"></div>
+        <form class="update-deal-client-form hidden" style="width:600px;margin:20px auto;"></form>
+    </div>
+    <div id="list_firm" class="tab-pane fade">
+        <div class="deal-firm-list"></div>
+        <form class="update-deal-firm-form hidden" style="width:600px;margin:20px auto;"></form>
+    </div>
+    <div id="list_lawyer" class="tab-pane fade">
+        <div class="deal-lawyer-list"></div>
+        <form class="update-deal-lawyer-form hidden" style="width:600px;margin:20px auto;"></form>
+    </div>
+    <div id="add_client" class="tab-pane fade">
+        <form class="add-deal-client-form" style="width:600px;margin:20px auto;">
+            <div class="clearfix">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Client</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <input name="client" type="hidden" />
+                    <a class="site-a site-hover-transition" style="color:black;" href="#pick_client_modal" data-toggle="modal">
+                        <input type="text" class="deal-client" style="width:100%;padding:5px 8px;border:0px;" 
+                            placeholder="-- Choose --" readonly> 
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Party</span>
+                </div>
+                <div class="" style="margin-left:120px;padding:5px 8px;border-bottom:1px solid #e1e2e3;">
+                    <select name="party">
+                        <option value="">-- Choose --</option>
+                        <% for (var id in parties) { %>
+                        <option value="<%= id %>"><%= parties[id].en || parties[id].cn %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Major</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <select name="major" style="width:100%;height:30px;border:0px;background-color:white;">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Industries</span>
+                </div>
+                <div class="" style="margin-left:120px;padding:5px 8px;border-bottom:1px solid #e1e2e3;">
+                    <select name="industries" multiple>
+                        <% for (var id in industries) { %>
+                        <option value="<%= id %>"><%= industries[id].en || industries[id].cn %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Areas</span>
+                </div>
+                <div class="" style="margin-left:120px;padding:5px 8px;border-bottom:1px solid #e1e2e3;">
+                    <select name="areas" multiple>
+                        <% for (var id in areas) { %>
+                        <option value="<%= id %>"><%= areas[id].en || areas[id].cn %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Remarks</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <textarea name="remark" style="width:100%;padding:5px 8px;border:0px;" rows="2" 
+                        placeholder="-- remarks --"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="clearfix">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Submit</span>
+                </div>
+                <div class="" style="margin-left:120px;">
+                    <a class="add-deal-client-btn btn btn-link btn-sm site-a">
+                        <i class="fa fa-check"></i>
+                        <span>OK</span>
+                    </a>
+                    <a class="btn btn-link btn-sm disabled hidden" href="javascript:void(0)">
+                        <span>Locked</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="add_firm" class="tab-pane fade">
+        <form class="add-deal-firm-form" style="width:600px;margin:20px auto;">
+            <div class="clearfix">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Firm</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <input name="firm" type="hidden" />
+                    <a class="site-a site-hover-transition" style="color:black;" href="#pick_firm_modal" data-toggle="modal">
+                        <input type="text" class="deal-firm" style="width:100%;padding:6px 8px;border:0px;" 
+                            placeholder="-- Choose --" readonly> 
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Party</span>
+                </div>
+                <div class="" style="margin-left:120px;padding:5px 8px;border-bottom:1px solid #e1e2e3;">
+                    <select name="party">
+                        <option value="0">-- Choose --</option>
+                        <% for (var id in parties) { %>
+                        <option value="<%= id %>"><%= parties[id].en || parties[id].cn %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Areas</span>
+                </div>
+                <div class="" style="margin-left:120px;padding:6px 8px;border-bottom:1px solid #e1e2e3;">
+                    <select name="areas" multiple>
+                        <% for (var id in areas) { %>
+                        <option value="<%= id %>"><%= areas[id].en || areas[id].cn %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Remarks</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <textarea name="remark" style="width:100%;padding:5px 8px;border:0px;" rows="2" 
+                        placeholder="-- remarks --"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="clearfix">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Submit</span>
+                </div>
+                <div class="" style="margin-left:120px;">
+                    <a class="add-deal-firm-btn btn btn-link btn-sm site-a">
+                        <i class="fa fa-check"></i>
+                        <span>OK</span>
+                    </a>
+                    <a class="btn btn-link btn-sm disabled hidden" href="javascript:void(0)">
+                        <span>Locked</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="add_lawyer" class="tab-pane fade">
+        <form class="add-deal-lawyer-form" style="width:600px;margin:20px auto;">
+            <div class="clearfix">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Lawyer</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <input name="lawyer" type="hidden" />
+                    <a class="site-a site-hover-transition" style="color:black;" href="#pick_lawyer_modal" data-toggle="modal">
+                        <input type="text" class="deal-lawyer" style="width:100%;padding:6px 8px;border:0px;" 
+                            placeholder="-- Choose --" readonly> 
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Firm</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <select name="firm" style="width:100%;height:30px;border:0px;background-color:white;">
+                        <option value="">-- Choose --</option>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Role</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <select name="role" style="width:100%;height:30px;border:0px;background-color:white;">
+                        <option value="">-- Choose --</option>
+                        <% for (var id in roles) { %>
+                        <option value="<%= id %>"><%= roles[id].en || roles[id].cn %></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:10px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Remarks</span>
+                </div>
+                <div class="" style="margin-left:120px;border-bottom:1px solid #e1e2e3;">
+                    <textarea name="remark" style="width:100%;padding:5px 8px;border:0px;" rows="2" 
+                        placeholder="-- remarks --"></textarea>
+                </div>
+            </div>
+            <br>
+            <div class="clearfix">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#f7f8f9;" align="center">
+                    <span style="color:#bbb;">Submit</span>
+                </div>
+                <div class="" style="margin-left:120px;">
+                    <a class="add-deal-lawyer-btn btn btn-link btn-sm site-a">
+                        <i class="fa fa-check"></i>
+                        <span>OK</span>
+                    </a>
+                    <a class="btn btn-link btn-sm disabled hidden" href="javascript:void(0)">
+                        <span>Locked</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- 查找客户 -->
+<div id="pick_client_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:500px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Choose Client</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="pull-right" style="margin-left:10px;">
+                        <a class="btn btn-success btn-sm" href="#/client/add" target="_blank">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                    <div class="input-group">
+                        <input name="keyword" type="text" class="form-control input-sm" placeholder="Keywords of client name" />
+                        <span class="input-group-btn">
+                            <a class="search-client-btn btn btn-default btn-sm">
+                                <i class="fa fa-search text-muted"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="client-list" style="margin-top:20px;"></div>
+                <div class="client-pagination" style="margin-top:20px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 查找律所 -->
+<div id="pick_firm_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:500px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Choose Firm</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="pull-right" style="margin-left:10px;">
+                        <a class="btn btn-success btn-sm" href="#/client/add" target="_blank">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                    <div class="input-group">
+                        <input name="keyword" type="text" class="form-control input-sm" placeholder="Keywords of firm name" />
+                        <span class="input-group-btn">
+                            <a class="search-firm-btn btn btn-default btn-sm">
+                                <i class="fa fa-search text-muted"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="firm-list" style="margin-top:20px;"></div>
+                <div class="firm-pagination" style="margin-top:20px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 查找律师 -->
+<div id="pick_lawyer_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:500px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Choose Lawyer</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="pull-right" style="margin-left:10px;">
+                        <a class="btn btn-success btn-sm" href="#/client/add" target="_blank">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                    <div class="input-group">
+                        <input name="keyword" type="text" class="form-control input-sm" placeholder="Keywords of lawyer name" />
+                        <span class="input-group-btn">
+                            <a class="search-lawyer-btn btn btn-default btn-sm">
+                                <i class="fa fa-search text-muted"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="lawyer-list" style="margin-top:20px;"></div>
+                <div class="lawyer-pagination" style="margin-top:20px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

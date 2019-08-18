@@ -1,0 +1,51 @@
+
+<div class="" style="padding:0px 15px;">
+    <div class="module-record">
+        <div class="btn-group pull-right <%= CONST.env=='local' ? '': 'hidden' %>">
+            <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                <span class="caret text-muted"></span>
+            </a>
+            <ul class="dropdown-menu pull-right" style="width:100px;">
+                <li>
+                    <a class="create-item-tab-btn site-a" href="javascript:void(0)">
+                        <div class="clearfix">
+                            <div class="pull-left" style="width:20px;" align="center">
+                                <i class="fa fa-lightbulb-o text-muted"></i>
+                            </div>
+                            <div class="" style="margin-left:25px;">
+                                <span>create</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a class="update-module-modal-btn site-a" href="javascript:void(0)">
+                        <div class="clearfix">
+                            <div class="pull-left" style="width:20px;" align="center">
+                                <i class="fa fa-edit text-muted"></i>
+                            </div>
+                            <div class="" style="margin-left:25px;">
+                                <span>edit</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="" style="line-height:20px;font-size:15px;">
+            <b><%= module.name %></b>
+        </div>
+    </div>
+    <div class="" style="margin-top:10px;">
+        <span class="text-muted"><%= module.remark %></span>
+    </div>
+</div>
+<hr>
+<div class="item-list">
+    <% for (var i=0;i<items.length;i++) { %>
+    <%= new EJS({ text: ejs_doc_item_detail }).render({ index: i+1, item: items[i] }) %>
+    <% } %>
+</div>
+
+

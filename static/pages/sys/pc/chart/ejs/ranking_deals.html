@@ -1,0 +1,82 @@
+
+<table class="table table-hover" style="margin:0px;">
+    <thead>
+        <tr>
+            <th><div class="text-muted">Title</div></th>
+            <th><div class="text-muted" align="center">Unique</div></th>
+            <th><div class="text-muted" align="center">Creative</div></th>
+            <th><div class="text-muted" align="center">Complex</div></th>
+            <th><div class="text-muted" align="center">Influence</div></th>
+            <th><div class="text-muted" align="center">Deduction</div></th>
+            <th><div class="text-muted" align="center">Score</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<deals.length;i++) { %>
+        <% var deal = deals[i]; %>
+        <tr data-deal-id="<%= deal.id %>">
+            <td>
+                <div class="">
+                    <a class="site-a site-hover-transition" style="color:black;" href="/manage/law/deal/<%= deal.id %>/update" target="_blank">
+                        <span><%= deal.title || deal.title_cn %></span>
+                    </a>
+                </div>
+                <div class="" style="margin-top:5px;color:#bbb;">
+                    <span><%= new Date(deal.date).format('yyyy-mm-dd')  %></span>
+
+                    <span style="margin:0px 10px;">|</span>
+
+                    <% if (deal.status==1) { %>
+                    <span>Completed</span>
+                    <% } else if (deal.status==2) { %>
+                    <span>Published</span>
+                    <% } else if (deal.status==3) { %>
+                    <span>Canceled</span>
+                    <% } else if (deal.status==4) { %>
+                    <span>Uncertain</span>
+                    <% } %>
+
+                    <span style="margin:0px 10px;">|</span>
+
+                    <% if (!!deal.value_txt) { %>
+                    <span><%= deal.value_txt %></span>
+                    <% } else if (!!deal.value) { %>
+                    <span>USD <%= deal.value.shorten() %></span>
+                    <% } else { %>
+                    <span>Empty Value</span>
+                    <% } %>
+                </div>
+            </td>
+            <td style="width:80px;" align="center">
+                <div class="" title="<%= deal.uniqueness_remark %>">
+                    <span class="text-muted"><%= deal.uniqueness || '-' %></span>
+                </div>
+            </td>
+            <td style="width:80px;" align="center">
+                <div class="" title="<%= deal.creativity_remark %>">
+                    <span class="text-muted"><%= deal.creativity || '-' %></span>
+                </div>
+            </td>
+            <td style="width:80px;" align="center">
+                <div class="" title="<%= deal.complexity_remark %>">
+                    <span class="text-muted"><%= deal.complexity || '-' %></span>
+                </div>
+            </td>
+            <td style="width:80px;" align="center">
+                <div class="" title="<%= deal.influence_remark %>">
+                    <span class="text-muted"><%= deal.influence || '-' %></span>
+                </div>
+            </td>
+            <td style="width:80px;" align="center">
+                <div class="" title="<%= deal.deduction_remark %>">
+                    <span class="text-muted"><%= -deal.deduction || '-' %></span>
+                </div>
+            </td>
+            <td style="width:60px;" align="center">
+                <b><%= deal.score %></b>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+

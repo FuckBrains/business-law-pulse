@@ -1,0 +1,28 @@
+
+<tr class="config-item">
+    <td style="width:100px;" align="center">
+        <span class="config-id"><%= config.id %></span>
+    </td>
+    <td style="width:350px;">
+        <input name="en" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+            value="<%= config.en %>" placeholder="English" /> 
+    </td>
+    <td style="width:350px;">
+        <input name="cn" type="text" class="" style="width:100%;padding:5px 8px;border:0px;" 
+            value="<%= config.cn %>" placeholder="Chinese" /> 
+    </td>
+    <td style="width:100px;" align="center">
+        <a class="add-config-btn site-a text-muted <%= (!config.en && !config.cn) ? '':'hidden' %>">
+            <i class="fa fa-plus"></i>
+        </a>
+        <a class="remove-config-btn site-a <%= (!config.en && !config.cn) ? 'hidden':'' %>" style="color:#bbbbbb;" data-saved="<%= saved %>">
+            <% if (saved==1) { %>
+            <i class="fa fa-ban"></i>
+            <% } else { %>
+            <i class="fa fa-remove"></i>
+            <% } %>
+        </a>
+    </td>
+</tr>
+
+

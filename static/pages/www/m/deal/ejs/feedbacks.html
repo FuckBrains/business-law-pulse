@@ -1,0 +1,24 @@
+
+<% if (feedbacks.length==0) { %>
+<div class="" style="margin-top:0.6em;">
+    <span style="font-size:0.8em;color:#bbb;">N/A</span>
+</div>
+<% } else { %>
+
+<% for (var i=0;i<feedbacks.length;i++) { %>
+<% var feedback = feedbacks[i]; %>
+<hr class="site-hr">
+<div class="site-text-wrap" style="padding:0.8em 0;line-height:1.6em;font-size:0.8em;">
+    <span><%= feedback.name || feedback.title_cn %></span>
+    <span style="color:#bbb;">:</span>
+    <span><%= feedback.content || feedback.content_cn %></span>
+    <span style="color:#bbb;">[</span>
+    <span style="color:#bbb;"><%= new Date(feedback.created).format('yyyy-mm-dd')  %></span>
+    <span style="color:#bbb;">]</span>
+</div>
+<% } %>
+
+<% } %>
+
+
+

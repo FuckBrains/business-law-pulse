@@ -1,0 +1,143 @@
+
+<div class="item-record" data-item-id="<%= item.id %>">
+    <div class="site-hover-light" style="padding:10px 15px;position:relative;">
+        <div class="" style="position:absolute;left:-30px;">
+            <span class="label label-default"><%= index %></span>
+        </div>
+        <div class="clearfix">
+            <div class="btn-group pull-right <%= CONST.env=='local' ? '': 'hidden' %>">
+                <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret text-muted"></span>
+                </a>
+                <ul class="dropdown-menu pull-right" style="width:100px;">
+                    <li class="hidden">
+                        <a class="site-a" href="javascript:void(0)">
+                            <div class="">
+                                <div class="pull-left" style="width:20px;" align="center"> 
+                                    <i class="fa fa-th-list text-muted"></i>
+                                </div>
+                                <div class="" style="margin-left:25px;">
+                                    <span>view</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider hidden"></li>
+                    <li>
+                        <a class="seq-prev-item-btn site-a" href="javascript:void(0)">
+                            <div class="">
+                                <div class="pull-left" style="width:20px;" align="center"> 
+                                    <i class="fa fa-angle-up text-muted"></i>
+                                </div>
+                                <div class="" style="margin-left:25px;">
+                                    <span>up</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="seq-next-item-btn site-a" href="javascript:void(0)">
+                            <div class="">
+                                <div class="pull-left" style="width:20px;" align="center"> 
+                                    <i class="fa fa-angle-down text-muted"></i>
+                                </div>
+                                <div class="" style="margin-left:25px;">
+                                    <span>down</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="seq-first-item-btn site-a" href="javascript:void(0)">
+                            <div class="">
+                                <div class="pull-left" style="width:20px;" align="center"> 
+                                    <i class="fa fa-angle-double-up text-muted"></i>
+                                </div>
+                                <div class="" style="margin-left:25px;">
+                                    <span>top</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="seq-last-item-btn site-a" href="javascript:void(0)">
+                            <div class="">
+                                <div class="pull-left" style="width:20px;" align="center"> 
+                                    <i class="fa fa-angle-double-down text-muted"></i>
+                                </div>
+                                <div class="" style="margin-left:25px;">
+                                    <span>bottom</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="update-item-tab-btn" href="javascript:void(0)">
+                            <div class="">
+                                <div class="pull-left" style="width:20px;" align="center"> 
+                                    <i class="fa fa-edit text-muted"></i>
+                                </div>
+                                <div class="" style="margin-left:25px;">
+                                    <span>edit</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="remove-item-btn site-a" href="javascript:void(0)">
+                            <div class="">
+                                <div class="pull-left" style="width:20px;" align="center"> 
+                                    <i class="fa fa-times text-muted"></i>
+                                </div>
+                                <div class="" style="margin-left:25px;">
+                                    <span>remove</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="" style="margin-right:50px;line-height:20px;">
+                <b class="site-text-wrap" style="font-size:15px;font-family:monospace;"><%= item.url %></b>
+            </div>
+        </div>
+        <div class="" style="margin-top:10px;font-family:monospace;">
+            <span class="text-muted"><%= item.remark %></span>
+        </div>
+        <div class="" style="padding-top:10px;">
+            <div class="pull-left" style="margin-top:-1px;">
+                <strong class="text-muted" style="font-size:12px;font-family:monospace;">[req]</strong>
+            </div>
+            <div class="" style="margin-left:50px;">
+                <div class="item-input-hint">
+                    <a class="site-a">
+                        <i class="fa fa-angle-left text-info"></i>
+                        <span>more</span>
+                        <i class="fa fa-angle-right text-info"></i>
+                    </a>
+                </div>
+                <div class="item-input-content hidden" style="font-family:monospace;"><%= item.input %></div>
+            </div>
+        </div>
+        <div class="" style="margin-top:10px;">
+            <div class="pull-left" style="margin-top:-1px;">
+                <strong class="text-muted" style="font-size:12px;font-family:monospace;">[res]</strong>
+            </div>
+            <div class="" style="margin-left:50px;">
+                <div class="item-output-hint">
+                    <a class="site-a">
+                        <i class="fa fa-angle-left text-info"></i>
+                        <span>more</span>
+                        <i class="fa fa-angle-right text-info"></i>
+                    </a>
+                </div>
+                <div class="item-output-content hidden" style="font-family:monospace;"><%= item.output %></div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+
+

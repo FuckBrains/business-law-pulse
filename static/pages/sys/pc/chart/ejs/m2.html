@@ -1,0 +1,198 @@
+
+<div class="center-block clearfix" style="width:1024px;padding:30px 20px;">
+    <div class="clearfix" style="padding:10px;">
+        <div class="pull-left">
+            <b style="font-size:15px;">Infograhic of deals</b>
+        </div>
+    </div>
+    <div class="" style="padding:20px;background-color:#f5f6f7;">
+        <div class="clearfix">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                <span style="color:#bbb;">Firm</span>
+            </div>
+            <div class="" style="margin-left:120px;">
+                <a class="site-a site-hover-transition" style="color:black;" href="#pick_firm_modal" data-toggle="modal">
+                    <input type="text" class="firm" style="width:100%;padding:5px 8px;border:0px;" placeholder="-- Choose --" readonly>
+                </a>
+            </div>
+        </div>
+        <div class="firm-children"></div>
+    </div>
+    <hr class="site-hr">
+    <div class="" style="padding:20px;background-color:#f5f6f7;">
+        <div class="clearfix">
+            <div class="pull-left" style="width:50%;padding-right:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                    <span style="color:#bbb;">Start</span>
+                </div>
+                <div class="" style="margin-left:120px;">
+                    <input id="chart_start_time" name="start" type="hidden"
+                        value="<%= new Date('2016-01-01T00:00:00+08:00').format('yyyy-mm') %>" />
+                    <input type="text" class="chart-start-time" style="width:100%;border:0px;padding:5px 8px;" placeholder="MM / YYYY" readonly>
+                </div>
+            </div>
+            <div class="pull-left" style="width:50%;padding-left:50px;">
+                <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                    <span style="color:#bbb;">End</span>
+                </div>
+                <div class="" style="margin-left:120px;">
+                    <input id="chart_end_time" name="end" type="hidden"
+                        value="<%= new Date('2016-12-01T00:00:00+08:00').format('yyyy-mm') %>" />
+                    <input name="end" type="text" class="chart-end-time" style="width:100%;border:0px;padding:5px 8px;" placeholder="MM / YYYY" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="advance-filter hidden" style="margin-top:-20px;padding:20px;background-color:#f5f6f7;">
+        <div class="clearfix">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                <span style="color:#bbb;">Categories</span>
+            </div>
+            <div class="" style="margin-left:120px;padding:6px 8px;background-color:white;">
+                <select name="categories" multiple data-field-type="number">
+                    <% for (var id in categories) { %>
+                    <option value="<%= id %>"><%= categories[id].en || categories[id].cn %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:20px;">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                <span style="color:#bbb;">Industries</span>
+            </div>
+            <div class="" style="margin-left:120px;padding:6px 8px;background-color:white;">
+                <select name="industries" multiple data-field-type="number">
+                    <% for (var id in industries) { %>
+                    <option value="<%= id %>"><%= industries[id].en || industries[id].cn %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        <div class="clearfix" style="margin-top:20px;">
+            <div class="pull-left" style="width:100px;padding:5px 0px;background-color:#fcfcfc;" align="center">
+                <span style="color:#bbb;">Areas</span>
+            </div>
+            <div class="" style="margin-left:120px;padding:6px 8px;background-color:white;">
+                <select name="areas" multiple data-field-type="number">
+                    <% for (var id in areas) { %>
+                    <option value="<%= id %>"><%= areas[id].en || areas[id].cn %></option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top:-15px;padding:15px;background-color:#f5f6f7;">
+        <div class="pull-right">
+            <a class="site-a site-hover-transition advance-filter btn btn-link btn-xs" style="color:#bbb;"
+                onclick="$('.advance-filter').toggleClass('hidden');">
+                <i class="fa fa-chevron-down"></i>
+                <span>Filter</span>
+            </a>
+            <a class="site-a site-hover-transition advance-filter btn btn-link btn-xs hidden" style="color:#bbb;"
+                onclick="$('.advance-filter').toggleClass('hidden');">
+                <i class="fa fa-chevron-up"></i>
+                <span>Filter</span>
+            </a>
+            <span style="margin:0px 10px;color:#bbb;">|</span>
+            <a class="site-a render-chart-btn btn btn-link btn-xs">
+                <i class="fa fa-flash text-primary"></i>
+                <span class="text-primary">Analyse</span>
+            </a>
+        </div>
+    </div>
+    <br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <div class="pull-left">
+            <b style="color:white;">Quantity of period</b>
+        </div>
+        <div class="pull-right">
+            <select class="month-filter bg-primary site-select" style="height:20px;border:0px;background-color:#0b71bf;">
+                <option value="1">By 1 month</option>
+                <option value="3">By 3 months</option>
+                <option value="6">By 6 months</option>
+                <option value="12">By 12 months</option>
+                <option value="24">By 24 months</option>
+            </select>
+        </div>
+    </div>
+    <div class="month-count-line" style="width:90%;margin:0 5%;padding:30px 0;"><%= ejs.empty_data %></div>
+    <br><br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Volume of period</b>
+    </div>
+    <div class="month-volume-bar" style="width:90%;margin:0 5%;padding:30px 0;"><%= ejs.empty_data %></div>
+    <br><br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Volume of level</b>
+    </div>
+    <div class="level-count-pie" style="width:70%;margin:0 15%;padding:30px 0;"><%= ejs.empty_data %></div>
+    <br><br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Quantity of category</b>
+    </div>
+    <div class="category-count-bar" style="width:90%;margin:0 5%;padding:30px 0;"><%= ejs.empty_data %></div>
+    <br><br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Volume of category</b>
+    </div>
+    <div class="category-volume-bar" style="width:90%;margin:0 5%;padding:30px 0;"><%= ejs.empty_data %></div>
+    <br><br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Quantity of industry</b>
+    </div>
+    <div class="industry-count-bar" style="width:90%;margin:0 5%;padding:30px 0;"><%= ejs.empty_data %></div>
+    <br><br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Volume of industry</b>
+    </div>
+    <div class="industry-volume-bar" style="width:90%;margin:0 5%;padding:30px 0;"><%= ejs.empty_data %></div>
+    <br><br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Quantity of area</b>
+    </div>
+    <div class="area-count-bar" style="width:90%;margin:0 5%;padding:30px 0;"><%= ejs.empty_data %></div>
+    <br><br>
+    <div class="clearfix" style="padding:10px 15px;background-color:#0b71bf;">
+        <b style="color:white;">Volume of area</b>
+    </div>
+    <div class="area-volume-bar" style="width:90%;margin:0 5%;padding:30px 0;"><%= ejs.empty_data %></div>
+</div>
+
+
+
+<!-- 查找律所 -->
+<div id="pick_firm_modal" class="modal fade" data-backdrop="true" data-keyboard="false">
+    <div class="modal-dialog" style="width:500px;margin:30px auto;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" title="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+                <b class="text-muted">
+                    <span>Choose Firm</span>
+                </b>
+            </div>
+            <div class="modal-body">
+                <div class="clearfix">
+                    <div class="pull-right" style="margin-left:10px;">
+                        <a class="btn btn-success btn-sm" href="#/firm/add" target="_blank">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+                    <div class="input-group">
+                        <input name="keyword" type="text" class="form-control input-sm" placeholder="Keywords of firm name" />
+                        <span class="input-group-btn">
+                            <a class="search-firm-btn btn btn-default btn-sm">
+                                <i class="fa fa-search text-muted"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="firm-list" style="margin-top:20px;"></div>
+                <div class="firm-pagination" style="margin-top:20px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

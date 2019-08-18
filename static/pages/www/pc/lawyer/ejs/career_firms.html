@@ -1,0 +1,63 @@
+
+<% if (career.length==0) { %>
+<div class="" style="padding:5px 0px;">
+    <span style="color:#bbb;">N/A</span>
+</div>
+<% } else { %>
+<table class="table table-hover">
+    <thead>
+        <tr class="active" style="font-size:12px;">
+            <th><div class="text-muted" align="center">BRAND MARK</div></th>
+            <th><div class="text-muted">LAW FIRM NAME</div></th>
+            <th><div class="text-muted" align="center">START</div></th>
+            <th><div class="text-muted" align="center">END</div></th>
+            <th><div class="text-muted" align="center">DEALS</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<career.length;i++) { %>
+        <% var item = career[i]; %>
+        <tr data-firm-id="<%= item.firm.id %>">
+            <td style="width:150px;" align="center">
+                <a class="" href="http://<%= CONST.domain.www %>/firm/<%= item.firm.id %>/detail" target="_blank">
+                    <% if (item.firm.logo.url.indexOf('default') == -1) { %>
+                    <img style="max-width:120px;" src="<%= item.firm.logo.thumbnails[1].url %>" />
+                    <% } else { %>
+                    <img class="site-block" src="holder.js/120x37.5?text=N/A" />
+                    <% } %>
+                </a>
+            </td>
+            <td>
+                <a class="site-a site-hover-transition" style="color:black;" href="http://<%= CONST.domain.www %>/law/firm/<%= item.firm.id %>/detail" target="_blank">
+                    <div class="site-line-clamp" style="-webkit-line-clamp:2;">
+                        <span><%= item.firm.name || item.firm.name_cn %></span>
+                    </div>
+                </a>
+            </td>
+            <td style="width:150px;" align="center">
+                <% if (item.start) { %>
+                <span><%= new Date(item.start).format('yyyy-mm-dd') %></span>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:150px;" align="center">
+                <% if (item.end) { %>
+                <span><%= new Date(item.end).format('yyyy-mm-dd') %></span>
+                <% } else { %>
+                <span class="text-muted">-</span>
+                <% } %>
+            </td>
+            <td style="width:100px;" align="center">
+                <a class="list-firm-deal-btn site-a site-hover-transition" style="color:black;">
+                    <span><%= item.deals.length %></span>
+                </a>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+
+
+

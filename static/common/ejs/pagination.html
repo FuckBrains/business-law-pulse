@@ -1,0 +1,64 @@
+
+<%
+    var pagination = {
+        size: size,
+        no: no,
+        max: Math.ceil(total/size),
+        range: typeof(range)=='undefined' ? 5:range,
+    }
+%>
+
+<% if (pagination.max>1) { %>
+
+<%
+    pagination.start = pagination.no;
+    pagination.end = pagination.no;
+
+    while (pagination.range>1) {
+        if (pagination.start>1 && pagination.range>0) {
+            pagination.start--;
+            pagination.range--;
+            if (pagination.range==0) break;
+        }
+
+        if (pagination.end<pagination.max && pagination.range>0) {
+            pagination.end++;
+            pagination.range--;
+            if (pagination.range==0) break;
+        }
+
+        if (pagination.start==1 && pagination.end==pagination.max) break;
+    }
+%>
+
+<nav align="<%= typeof(align)=='undefined' ? 'right':align %>">
+    <ul class="pagination <%= typeof(type)=='undefined' ? '':type %>" style="margin:0;">
+        <% if (pagination.no != pagination.start) { %>
+            <li class="<%= item %>" data-page-no="<%= pagination.no-1 %>" data-page-size="<%= pagination.size %>">
+                <a class="<%= btn %>" href="javascript:void(0)">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            </li>
+        <% } %>
+        <% for (var i=pagination.start;i<=pagination.end;i++) { %>
+            <% if (i==pagination.no) { %>
+            <li class="active"><a href="javascript:void(0)"><%= i %></a></li>
+            <% } else { %>
+            <li class="<%= item %>" data-page-no="<%= i %>" data-page-size="<%= pagination.size %>">
+                <a class="<%= btn %>" href="javascript:void(0)">
+                    <span><%= i %></span>
+                </a>
+            </li>
+            <% } %>
+        <% } %>
+        <% if (pagination.no != pagination.end) { %>
+            <li class="<%= item %>" data-page-no="<%= pagination.no+1 %>" data-page-size="<%= pagination.size %>">
+                <a class="<%= btn %>" href="javascript:void(0)">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+</nav>
+<% } %>
+

@@ -1,0 +1,86 @@
+
+<% if (lawyers.length==0) { %>
+<div class="" style="padding:20px;">
+    <span style="color:#bbb;">No laweyer records</span>
+</div>
+<% } else { %>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th><div class="text-muted" align="center">Avatar</div></th>
+            <th><div class="text-muted">Name</div></th>
+            <th><div class="text-muted">Title</div></th>
+            <th><div class="text-muted" align="center">Gender</div></th>
+            <th><div class="text-muted" align="center">Actions</div></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var i=0;i<lawyers.length;i++) { %>
+        <% var lawyer = lawyers[i]; %>
+        <tr data-lawyer-id="<%= lawyer.id %>">
+            <td style="width:75px;" align="center">
+                <div class="" style="width:30px;line-height:30px;">
+                    <img style="max-width:30px;max-height:30px;" src="<%= lawyer.avatar.thumbnails[2].url %>" />
+                </div>
+            </td>
+            <td style="width:350px;">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <span class="label label-primary" style="opacity:0.75;">EN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <span><%= lawyer.name || '-' %></span>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top:5px;">
+                    <div class="pull-left">
+                        <span class="label label-danger" style="opacity:0.75;">CN</span>
+                    </div>
+                    <div class="" style="margin-left:30px;">
+                        <span><%= lawyer.name_cn || '-' %></span>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <span><%= lawyer.position || '-' %></span>
+            </td>
+            <td style="width:150px;" align="center">
+                <span><%= lawyer.gender=='M' ? 'Male':'Female' %></span>
+            </td>
+            <td style="width:120px;" align="center">
+                <div class="btn-group">
+                    <a class="edit-lawyer-btn btn btn-default btn-sm" style="width:75px;" href="/manage/law/lawyer/<%= lawyer.id %>/update">
+                        <span>Modify</span>
+                    </a>
+                    <a class="btn btn-default btn-sm disabled hidden" style="width:75px;" href="javascript:void(0)">
+                        <span>Locked</span>
+                    </a>
+                    <a class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret text-muted"></span>
+                    </a>
+                    <ul class="dropdown-menu pull-right" style="width:100px;">
+                        <li>
+                            <a class="remove-lawyer-btn" href="javascript:void(0)">
+                                <div class="clearfix">
+                                    <div class="pull-right">
+                                        <i class="fa fa-angle-right text-muted"></i>
+                                    </div>
+                                    <div class="" style="margin-right:20px;">
+                                        <span>Remove</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="hidden btn btn-link btn-sm disabled" href="javascript:void(0)">
+                                <span>Locked</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+<% } %>
+
+

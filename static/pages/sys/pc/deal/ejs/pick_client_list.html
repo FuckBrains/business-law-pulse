@@ -1,0 +1,43 @@
+
+<% if (clients.length==0) { %>
+<div class="" style="padding:30px 0px;border:1px dashed #e1e2e3;" align="center">
+    <span style="color:#bbbbbb;">No client found</span>
+</div>
+<% } else { %>
+
+<% for (var i=0;i<clients.length;i++) { %>
+<% var client = clients[i] %>
+<div class="site-hover-light clearfix" style="padding:10px 15px;">
+    <div class="pull-right">
+        <a class="site-a" href="/manage/law/client/<%= client.id %>/update" target="_blank">
+            <i class="fa fa-link text-primary"></i>
+        </a>
+    </div>
+    <div class="" style="margin-right:50px;overflow:hidden;">
+        <a class="pick-client-btn site-a">
+            <input class="client-id" type="hidden" value="<%= client.id %>" />
+            <input class="client-name" type="hidden" value="<%= client.name || client.name_cn %>" />
+            <div class="clearfix">
+                <div class="pull-left">
+                    <span class="label label-primary" style="opacity:0.75;">EN</span>
+                </div>
+                <div class="" style="margin-left:30px;">
+                    <span style="color:black;"><%= client.name || '-' %></span>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top:5px;">
+                <div class="pull-left">
+                    <span class="label label-danger" style="opacity:0.75;">CN</span>
+                </div>
+                <div class="" style="margin-left:30px;">
+                    <span style="color:black;"><%= client.name_cn || '-' %></span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+<hr class="site-hr">
+<% } %>
+
+<% } %>
+
